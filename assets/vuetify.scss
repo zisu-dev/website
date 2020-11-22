@@ -1,0 +1,33 @@
+.v-application code,
+.v-application kbd {
+  display: initial;
+  border: initial;
+  white-space: initial;
+  font-size: initial;
+  font-weight: initial;
+}
+
+.v-application code {
+  background-color: initial !important;
+  -webkit-box-shadow: initial !important;
+  box-shadow: initial !important;
+}
+
+.v-application code:after,
+.v-application code:before,
+.v-application kbd:after,
+.v-application kbd:before {
+  content: none;
+}
+
+.acrylic {
+  .v-app-bar,
+  .v-footer,
+  .v-card,
+  .v-navigation-drawer,
+  .v-menu__content,
+  .v-pagination__navigation,
+  .v-pagination__item {
+    backdrop-filter: blur(10px);
+  }
+}
