@@ -1,6 +1,6 @@
 <template>
   <v-chip label :to="'/tag/' + tag.slug" outlined
-    ><v-icon left>mdi-label</v-icon>{{ tag.name }}</v-chip
+    ><v-icon left>mdi-label</v-icon>{{ tag.title }}</v-chip
   >
 </template>
 

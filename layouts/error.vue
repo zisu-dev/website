@@ -1,13 +1,20 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/"> Home page </NuxtLink>
-  </v-app>
+  <v-container>
+    <v-row justify="center" align="center">
+      <v-col cols="6">
+        <v-card class="text-center" flat>
+          <v-icon size="96px">mdi-alert-circle-outline</v-icon>
+          <v-card-text>
+            <code>Not found</code>
+          </v-card-text>
+          <v-divider />
+          <v-card-actions>
+            <v-btn color="primary" outlined block to="/">Go Home</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -16,22 +23,22 @@ export default {
   props: {
     error: {
       type: Object,
-      default: null,
-    },
+      default: null
+    }
   },
   data() {
     return {
       pageNotFound: '404 Not Found',
-      otherError: 'An error occurred',
+      otherError: 'An error occurred'
     }
   },
   head() {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
-      title,
+      title
     }
-  },
+  }
 }
 </script>
 

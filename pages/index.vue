@@ -78,16 +78,20 @@ export default class Home extends Vue {
   postPerPage = 10
   curPage = 1
 
-  generateParams() {
-    const params = {
-      //
-    }
-    return params
-  }
-
   async load() {
     try {
       this.err = this.posts = null
+      const data: any = await this.$http
+        .get('/post/', {
+          searchParams: {
+            page: this.curPage,
+            per_page: this.postPerPage
+          }
+        })
+        .then((r) => r.json())
+      this.posts = data.items
+      this.postCount = data.total
+      this.pageCount = Math.ceil(this.postCount / this.postPerPage)
     } catch (e) {
       this.err = e
     }

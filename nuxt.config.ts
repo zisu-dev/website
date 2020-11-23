@@ -3,7 +3,6 @@ import { NuxtConfig } from '@nuxt/types'
 const config: NuxtConfig = {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
-
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - zblog',
@@ -15,34 +14,18 @@ const config: NuxtConfig = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/vuetify.scss'],
-
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
-
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
+  modules: ['@nuxt/http', '@nuxtjs/pwa'],
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
-    // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
-  ],
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
-  ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  http: {
+    baseURL: 'http://127.0.0.1:8010'
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {

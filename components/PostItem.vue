@@ -2,23 +2,11 @@
   <v-card>
     <v-card-title>
       <div>
-        <div class="title" v-html="post.title.rendered" />
+        <div class="title" v-text="post.title" />
         <div>
           <v-chip class="pa-1" small label color="transparent">
             <v-icon left>mdi-clock-outline</v-icon>
-            {{ new Date(post.date_gmt).toLocaleString() }}
-          </v-chip>
-          <v-chip
-            class="ml-1"
-            small
-            label
-            color="#0073aa"
-            dark
-            :href="post.link"
-            target="_blank"
-          >
-            <v-icon left>mdi-wordpress</v-icon>
-            View on WordPress
+            {{ new Date(post.published).toLocaleString() }}
           </v-chip>
         </div>
       </div>
@@ -28,13 +16,13 @@
       <article
         ref="content"
         class="markdown-body line-numbers"
-        v-html="post.content.rendered"
+        v-text="post.content"
       />
     </v-card-text>
     <v-divider />
     <div class="pl-1 pr-1">
       <tag-chip
-        v-for="(tag, i) in post._embedded['wp:term'][1]"
+        v-for="(tag, i) in post.tags"
         :key="'t' + i"
         class="ma-1"
         :tag="tag"

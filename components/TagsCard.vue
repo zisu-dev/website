@@ -14,26 +14,21 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import Vue from 'vue'
 import TagChip from '@/components/TagChip.vue'
 
-@Component({ components: { TagChip } })
-export default class TagsCard extends Vue {
-  tags: any[] | null = null
-  err: Error | null = null
-
-  created() {
-    this.load()
-  }
-
-  async load() {
-    this.tags = this.err = null
-
-    try {
-      this.tags = []
-    } catch (e) {
-      this.err = e
+export default Vue.extend({
+  components: {
+    TagChip
+  },
+  async fetch() {
+    const data: any = await this.$http.get('/tag').then((r) => r.json())
+    this.tags = data.items
+  },
+  data() {
+    return {
+      tags: []
     }
   }
-}
+})
 </script>
