@@ -7,9 +7,7 @@
       />
       <v-toolbar-title v-else>{{ $store.state.title }}</v-toolbar-title>
       <v-spacer />
-      <v-toolbar-items>
-        <settings-menu />
-      </v-toolbar-items>
+      <v-toolbar-items> </v-toolbar-items>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -53,15 +51,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import Vue from 'vue'
 import Background from '@/components/Background.vue'
 import AppFooter from '@/components/AppFooter.vue'
-import SettingsMenu from '@/components/SettingsMenu.vue'
 
-@Component({ components: { Background, AppFooter, SettingsMenu } })
-export default class App extends Vue {
-  drawer = !this.$vuetify.breakpoint.xs
-}
+export default Vue.extend({
+  name: 'App',
+  components: { Background, AppFooter },
+  data() {
+    return {
+      drawer: !this.$vuetify.breakpoint.xs
+    }
+  }
+})
 </script>
 
 <style>

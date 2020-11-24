@@ -32,25 +32,31 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import Vue from 'vue'
 import Prism from '@/plugins/prism'
 import TagChip from '@/components/TagChip.vue'
 
-@Component({ components: { TagChip } })
-export default class PostItem extends Vue {
-  @Prop({ required: true }) readonly post!: any
-
-  @Watch('post.slug')
-  _wslug() {
-    this.highlight()
-  }
-
+export default Vue.extend({
+  name: 'PostItem',
+  components: { TagChip },
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  watch: {
+    'post._id'() {
+      this.highlight()
+    }
+  },
   mounted() {
     this.highlight()
+  },
+  methods: {
+    highlight() {
+      Prism.highlightAllUnder(this.$refs.content as Element)
+    }
   }
-
-  highlight() {
-    Prism.highlightAllUnder(this.$refs.content as Element)
-  }
-}
+})
 </script>

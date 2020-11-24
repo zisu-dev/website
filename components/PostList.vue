@@ -7,11 +7,17 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue from 'vue'
 import PostListItem from '@/components/PostListItem.vue'
 
-@Component({ components: { PostListItem } })
-export default class PostList extends Vue {
-  @Prop({ required: true }) readonly posts!: any[]
-}
+export default Vue.extend({
+  name: 'PostList',
+  components: { PostListItem },
+  props: {
+    posts: {
+      type: Array,
+      required: true
+    }
+  }
+})
 </script>

@@ -5,10 +5,15 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue from 'vue'
 
-@Component
-export default class TagChip extends Vue {
-  @Prop({ required: true }) readonly tag!: any
-}
+export default Vue.extend({
+  name: 'TagChip',
+  props: {
+    tag: {
+      type: Object,
+      required: true
+    }
+  }
+})
 </script>

@@ -3,14 +3,16 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import Vue from 'vue'
 
-@Component
-export default class Background extends Vue {
-  get bg() {
-    return 'https://i.loli.net/2020/11/21/H2hewskIoquRBzg.png'
+export default Vue.extend({
+  name: 'Background',
+  computed: {
+    bg() {
+      return 'https://i.loli.net/2020/11/21/H2hewskIoquRBzg.png'
+    }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -2,7 +2,11 @@
   <v-card>
     <v-card-title>
       <div>
-        <a class="title" @click="click" v-text="post.title" />
+        <nuxt-link
+          class="title"
+          :to="`/post/${post.slug}`"
+          v-text="post.title"
+        />
         <div>
           <v-chip class="pa-1" small label color="transparent">
             <v-icon left>mdi-clock-outline</v-icon>
@@ -25,15 +29,17 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue from 'vue'
 import TagChip from '@/components/TagChip.vue'
 
-@Component({ components: { TagChip } })
-export default class PostListItem extends Vue {
-  @Prop({ required: true }) readonly post!: any
-
-  click() {
-    this.$router.push('/post/' + this.post.slug)
+export default Vue.extend({
+  name: 'PostListItem',
+  components: { TagChip },
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
   }
-}
+})
 </script>

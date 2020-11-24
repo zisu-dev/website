@@ -7,9 +7,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import Vue from 'vue'
 import TagsCard from '@/components/TagsCard.vue'
 
-@Component({ components: { TagsCard } })
-export default class Sidebar extends Vue {}
+export default Vue.extend({
+  name: 'Sidebar',
+  components: { TagsCard }
+})
 </script>

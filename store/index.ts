@@ -1,15 +1,17 @@
+import { GetterTree, ActionTree, MutationTree } from 'vuex'
+
 export const state = () => ({
   title: 'ZhangZisu.CN Blog'
 })
 
-type State = ReturnType<typeof state>
+type RootState = ReturnType<typeof state>
 
-export const mutations = {
-  'title:update'(state: State, title: string) {
+export const getters: GetterTree<RootState, RootState> = {}
+
+export const mutations: MutationTree<RootState> = {
+  'title:update'(state: RootState, title: string) {
     state.title = title
   }
 }
 
-export const actions = {}
-
-export const modules = {}
+export const actions: ActionTree<RootState, RootState> = {}
