@@ -2,33 +2,26 @@
   <v-container fluid>
     <v-row justify="center">
       <v-col cols="12" sm="7" md="8" lg="6">
-        <v-row justify="center">
+        <v-row v-if="tag" justify="center">
           <v-col cols="12">
             <v-card>
-              <v-card-actions>
-                <v-text-field
-                  v-model.trim.lazy="searchInput"
-                  label="Search"
-                  placeholder="Type your query here"
-                  append-icon="mdi-magnify"
-                  clearable
-                  @click:append="search = searchInput"
-                  @keydown.enter="search = searchInput"
-                />
-              </v-card-actions>
+              <v-card-title>
+                <v-icon left>mdi-label</v-icon>
+                {{ tag.title }}
+              </v-card-title>
+              <v-card-text v-if="tag.description">
+                {{ tag.description }}
+              </v-card-text>
               <v-divider />
               <v-card-text>
-                <code
-                  >{{
-                    postCount
-                      ? `Showing ${(curPage - 1) * postPerPage + 1}-${Math.min(
-                          curPage * postPerPage,
-                          postCount
-                        )} of ${postCount} posts`
-                      : 'No posts found'
-                  }}
-                  {{ search ? 'with search ' + search : '' }}
-                </code>
+                <code>{{
+                  postCount
+                    ? `Showing ${(curPage - 1) * postPerPage + 1}-${Math.min(
+                        curPage * postPerPage,
+                        postCount
+                      )} of ${postCount} posts`
+                    : 'No posts found'
+                }}</code>
               </v-card-text>
             </v-card>
           </v-col>
@@ -51,7 +44,7 @@
                 </v-card-text>
                 <v-divider />
                 <v-card-actions>
-                  <v-btn color="primary" outlined block @click="$fetch"
+                  <v-btn color="primary" outlined block @click="load"
                     >Reload</v-btn
                   >
                 </v-card-actions>
@@ -82,23 +75,23 @@ import Loading from '@/components/Loading.vue'
 import Sidebar from '@/components/Sidebar.vue'
 
 export default Vue.extend({
-  name: 'HomePage',
+  name: 'TagPage',
   components: { PostList, Loading, Sidebar },
   async fetch() {
-    const searchParams: Record<string, any> = {
-      page: this.curPage,
-      per_page: this.postPerPage
+    if (!this.tag._id) {
+      this.tag = await this.$http
+        .get(`/tag/${this.$route.params.slug}`)
+        .then((r) => r.json())
     }
-    if (this.search) {
-      searchParams.search = this.search
-    }
-
     const data: any = await this.$http
       .get('/post/', {
-        searchParams
+        searchParams: {
+          page: this.curPage,
+          per_page: this.postPerPage,
+          tag: this.tag._id
+        }
       })
       .then((r) => r.json())
-
     this.posts = data.items
     this.postCount = data.total
     this.pageCount = Math.ceil(data.total / this.postPerPage)
@@ -110,15 +103,11 @@ export default Vue.extend({
       pageCount: 1,
       postPerPage: 15,
       curPage: 1,
-      search: '',
-      searchInput: ''
+      tag: {} as any
     }
   },
   watch: {
     curPage() {
-      this.$fetch()
-    },
-    search() {
       this.$fetch()
     }
   },

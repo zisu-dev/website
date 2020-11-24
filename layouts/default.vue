@@ -34,14 +34,6 @@
             <v-list-item-title>Posts</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/search">
-          <v-list-item-avatar tile size="24">
-            <v-icon>mdi-magnify</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>Search</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item to="/link">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-link</v-icon>
