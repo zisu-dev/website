@@ -35,6 +35,10 @@ export const mutations: MutationTree<RootState> = {
   ':initialize'(state: RootState) {
     state.initialized = true
   },
+  ':login'(state: RootState, { token, user }) {
+    state.token = token
+    state.user = user
+  },
   ':logout'(state: RootState) {
     state.token = state.user = null
   }
