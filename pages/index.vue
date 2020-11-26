@@ -77,9 +77,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostList from '@/components/PostList.vue'
-import Loading from '@/components/Loading.vue'
-import Sidebar from '@/components/Sidebar.vue'
+import PostList from '~/components/PostList.vue'
+import Loading from '~/components/Loading.vue'
+import Sidebar from '~/components/Sidebar.vue'
 
 export default Vue.extend({
   name: 'HomePage',
@@ -93,11 +93,9 @@ export default Vue.extend({
       searchParams.search = this.search
     }
 
-    const data: any = await this.$http
-      .get('/post/', {
-        searchParams
-      })
-      .then((r) => r.json())
+    const data: any = await this.$http.$get('/post/', {
+      searchParams
+    })
 
     this.posts = data.items
     this.postCount = data.total

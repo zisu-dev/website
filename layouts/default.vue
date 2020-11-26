@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{ acrylic: $store.state.acrylic }">
     <v-app-bar app dark>
       <v-app-bar-nav-icon
         v-if="$vuetify.breakpoint.xs"
@@ -52,8 +52,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Background from '@/components/Background.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import Background from '~/components/Background.vue'
+import AppFooter from '~/components/AppFooter.vue'
 
 export default Vue.extend({
   name: 'App',
@@ -61,6 +61,23 @@ export default Vue.extend({
   data() {
     return {
       drawer: !this.$vuetify.breakpoint.xs
+    }
+  },
+  watch: {
+    '$store.state.theme': {
+      immediate: true,
+      handler(val) {
+        if (val === 'light') {
+          this.$vuetify.theme.dark = false
+        } else if (val === 'dark') {
+          this.$vuetify.theme.dark = true
+        } else if (process.client) {
+          const darkMediaQuery = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          )
+          this.$vuetify.theme.dark = darkMediaQuery.matches
+        }
+      }
     }
   }
 })

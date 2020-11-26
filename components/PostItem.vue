@@ -33,8 +33,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Prism from '@/plugins/prism'
-import TagChip from '@/components/TagChip.vue'
+import Prism from '~/plugins/prism'
+import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
   name: 'PostItem',

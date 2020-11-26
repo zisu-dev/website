@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TagsCard from '@/components/TagsCard.vue'
+import TagsCard from '~/components/TagsCard.vue'
 
 export default Vue.extend({
   name: 'Sidebar',

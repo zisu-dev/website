@@ -28,7 +28,8 @@
       "@nuxt/types",
       "@nuxt/vue-app",
       "@nuxt/http",
-      "@nuxtjs/vuetify"
+      "@nuxtjs/vuetify",
+      "cookie-universal-nuxt"
     ]
   },
   "exclude": [

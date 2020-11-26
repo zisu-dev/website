@@ -70,9 +70,9 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostList from '@/components/PostList.vue'
-import Loading from '@/components/Loading.vue'
-import Sidebar from '@/components/Sidebar.vue'
+import PostList from '~/components/PostList.vue'
+import Loading from '~/components/Loading.vue'
+import Sidebar from '~/components/Sidebar.vue'
 
 export default Vue.extend({
   name: 'TagPage',
