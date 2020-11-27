@@ -33,7 +33,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Prism from '~/plugins/prism'
 import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
@@ -43,19 +42,6 @@ export default Vue.extend({
     post: {
       type: Object,
       required: true
-    }
-  },
-  watch: {
-    'post._id'() {
-      this.highlight()
-    }
-  },
-  mounted() {
-    this.highlight()
-  },
-  methods: {
-    highlight() {
-      Prism.highlightAllUnder(this.$refs.content as Element)
     }
   }
 })

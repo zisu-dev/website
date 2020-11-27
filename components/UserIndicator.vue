@@ -6,6 +6,14 @@
       </v-btn>
     </template>
     <v-list dense>
+      <v-list-item v-if="user.perm.admin" to="/admin">
+        <v-list-item-icon>
+          <v-icon>mdi-cog</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>Admin</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-list-item @click="logout">
         <v-list-item-icon>
           <v-icon>mdi-exit-to-app</v-icon>
@@ -36,6 +44,8 @@ export default Vue.extend({
       this.$store.commit(':logout')
       this.$cookies.remove('token')
       this.$http.setToken(false)
+      this.$toast.success({ title: 'Bye' })
+      this.$router.push('/')
     }
   }
 })
