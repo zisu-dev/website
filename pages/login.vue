@@ -50,49 +50,22 @@ export default Vue.extend({
           pass: this.pass
         }
         const res: any = await this.$http.$post('/login', body)
+        this.$cookies.set('token', res.token)
         this.$store.commit(':login', res)
         this.$http.setToken(res.token, 'Bearer')
+        this.$toast.success({ title: `Welcome ${res.user.name}` })
+        this.$router.push('/')
       } catch (e) {
-        //
+        this.$toast.error({ title: 'Login failed' })
       }
       this.loading = false
     }
+  },
+  middleware(ctx) {
+    const { store, redirect } = ctx
+    if (store.state.token) {
+      return redirect('/')
+    }
   }
 })
-// import { Vue, Component, Prop } from 'vue-property-decorator'
-// import { api } from '@/api'
-// import { NavigationGuardNext, Route } from 'vue-router'
-
-// @Component({
-//   beforeRouteEnter(to: Route, from: Route, next: NavigationGuardNext) {
-//     if (api.state.loggedIn) {
-//       next('/')
-//     } else {
-//       next()
-//     }
-//   }
-// })
-// export default class Login extends Vue {
-//   @Prop()
-//   embed!: boolean
-
-//   loading = false
-//   username = ''
-//   password = ''
-
-//   async submit() {
-//     this.loading = true
-//     try {
-//       await api.login(this.username, this.password)
-//       if (this.embed) {
-//         window.opener.postMessage('done', '*')
-//         window.close()
-//       }
-//       this.$router.push('/')
-//     } catch (e) {
-//       console.log(e)
-//     }
-//     this.loading = false
-//   }
-// }
 </script>

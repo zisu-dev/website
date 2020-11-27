@@ -5,9 +5,9 @@
         v-if="$vuetify.breakpoint.xs"
         @click="drawer = !drawer"
       />
-      <v-toolbar-title v-else>{{ $store.state.title }}</v-toolbar-title>
+      <v-toolbar-title>{{ $store.state.title }}</v-toolbar-title>
       <v-spacer />
-      <v-toolbar-items> </v-toolbar-items>
+      <user-indicator />
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -54,10 +54,11 @@
 import Vue from 'vue'
 import Background from '~/components/Background.vue'
 import AppFooter from '~/components/AppFooter.vue'
+import UserIndicator from '~/components/UserIndicator.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Background, AppFooter },
+  components: { Background, AppFooter, UserIndicator },
   data() {
     return {
       drawer: !this.$vuetify.breakpoint.xs
