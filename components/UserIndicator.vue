@@ -1,7 +1,7 @@
 <template>
   <v-menu v-if="user" offset-y open-on-hover>
     <template v-slot:activator="{ on, attrs }">
-      <v-btn outlined v-bind="attrs" v-on="on">
+      <v-btn outlined v-bind="attrs" :to="'/user/' + user.slug" v-on="on">
         {{ user.name }}
       </v-btn>
     </template>
