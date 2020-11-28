@@ -18,7 +18,7 @@
               <v-icon>mdi-certificate</v-icon>
             </v-btn>
           </template>
-          <span>Apache-2.0</span>
+          <span>MIT</span>
         </v-tooltip>
         <v-tooltip top>
           <template v-slot:activator="{ on }">
@@ -33,6 +33,14 @@
           </template>
           <span>BY-SA</span>
         </v-tooltip>
+        <v-tooltip top>
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on" @click="changeTheme">
+              <v-icon v-text="themeIcon[theme]" />
+            </v-btn>
+          </template>
+          <span>Theme: {{ theme }}</span>
+        </v-tooltip>
       </v-col>
     </v-row>
   </v-footer>
@@ -40,8 +48,36 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 
 export default Vue.extend({
-  name: 'AppFooter'
+  name: 'AppFooter',
+  data() {
+    return {
+      themeIcon: {
+        auto: 'mdi-brightness-auto',
+        light: 'mdi-brightness-5',
+        dark: 'mdi-brightness-4'
+      }
+    }
+  },
+  computed: {
+    ...mapState(['theme'])
+  },
+  methods: {
+    changeTheme() {
+      if (this.theme === 'auto') {
+        this.setTheme('light')
+      } else if (this.theme === 'light') {
+        this.setTheme('dark')
+      } else {
+        this.setTheme('auto')
+      }
+    },
+    setTheme(theme: string) {
+      this.$cookies.set('theme', theme)
+      this.$store.commit('theme:update', theme)
+    }
+  }
 })
 </script>
