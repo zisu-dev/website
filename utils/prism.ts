@@ -1,17 +1,15 @@
 import Prism from 'prismjs'
-import Vue from 'vue'
+import 'prismjs/components'
 import 'prismjs/components/prism-javascript'
 import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-cpp'
 import 'prismjs/components/prism-c'
+import 'prismjs/components/prism-cpp'
 import 'prismjs/components/prism-bash'
+import 'prismjs/themes/prism.css'
 import 'prismjs/plugins/line-numbers/prism-line-numbers'
-;(Prism as any).manual = true
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 
-declare module 'vue/types/vue' {
-  interface Vue {
-    $prism: typeof Prism
-  }
-}
+// @ts-expect-error
+Prism.manual = true
 
-Vue.prototype.$prism = Prism
+export default Prism

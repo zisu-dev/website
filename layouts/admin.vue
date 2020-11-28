@@ -44,6 +44,11 @@ export default Vue.extend({
   name: 'App',
   components: { Background, AppFooter, UserIndicator },
   middleware: ['admin'],
+  data() {
+    return {
+      drawer: false
+    }
+  },
   watch: {
     '$store.state.theme': {
       immediate: true,

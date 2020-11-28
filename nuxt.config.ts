@@ -12,8 +12,12 @@ const config: NuxtConfig = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  css: ['~/assets/vuetify.scss'],
-  plugins: ['~/plugins/init.ts', '~/plugins/toast.client.ts'],
+  css: ['~/assets/vuetify.scss', '~/assets/global.scss'],
+  plugins: [
+    '~/plugins/init.ts',
+    '~/plugins/bml.ts',
+    '~/plugins/toast.client.ts'
+  ],
   components: true,
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   modules: ['@nuxt/http', '@nuxtjs/pwa', 'cookie-universal-nuxt'],

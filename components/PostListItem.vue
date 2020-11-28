@@ -15,7 +15,9 @@
         </div>
       </div>
     </v-card-title>
-    <v-card-text v-text="post.summary" />
+    <v-card-text>
+      <block v-for="(block, i) in summary" :key="'s' + i" :block="block" />
+    </v-card-text>
     <v-divider />
     <div class="pl-1 pr-1">
       <tag-chip
@@ -30,15 +32,21 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Block from '~/components/Block.vue'
 import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
   name: 'PostListItem',
-  components: { TagChip },
+  components: { TagChip, Block },
   props: {
     post: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    summary() {
+      return this.$bml.parse(this.post.summary)
     }
   }
 })

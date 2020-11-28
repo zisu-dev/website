@@ -18,6 +18,9 @@
     "cookie-universal-nuxt": "^2.1.4",
     "core-js": "^3.6.5",
     "izitoast": "^1.4.0",
+    "katex": "^0.6.0",
+    "markdown-it": "^12.0.2",
+    "markdown-it-katex": "^2.0.3",
     "nuxt": "^2.14.6",
     "prismjs": "^1.22.0"
   },

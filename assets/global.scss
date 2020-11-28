@@ -1,0 +1,10 @@
+@import './markdown.scss';
+
+.code-editor textarea {
+  font-family: monospace;
+}
+
+.block {
+  padding: 2px;
+  margin-bottom: 2px;
+}
