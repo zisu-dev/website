@@ -16,12 +16,12 @@
                   </div>
                 </div>
               </v-card-title>
-              <template v-if="admin">
+              <template v-if="isAdmin">
                 <v-divider />
                 <v-card-text>
-                  <v-btn outlined small :to="'/admin/post/' + post.slug"
-                    >Edit</v-btn
-                  >
+                  <v-btn outlined small :to="'/admin/post/' + post.slug">
+                    Edit
+                  </v-btn>
                 </v-card-text>
               </template>
               <v-divider />
@@ -57,6 +57,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Block from '~/components/Block.vue'
 
 export default Vue.extend({
@@ -75,9 +76,7 @@ export default Vue.extend({
     content() {
       return this.$bml.parse(this.$data.post.content)
     },
-    admin() {
-      return this.$store.state.user?.perm.admin
-    }
+    ...mapGetters(['isAdmin'])
   }
 })
 </script>

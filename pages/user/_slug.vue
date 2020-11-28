@@ -99,7 +99,7 @@ export default Vue.extend({
   computed: {
     canManage() {
       return (
-        this.$store.state.user?.perm.admin ||
+        this.$store.getters.isAdmin ||
         this.$store.state.user?._id === this.$data.user._id
       )
     }

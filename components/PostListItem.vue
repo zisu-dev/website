@@ -15,6 +15,13 @@
         </div>
       </div>
     </v-card-title>
+    <template v-if="isAdmin">
+      <v-divider />
+      <v-card-text>
+        <v-btn outlined small :to="'/admin/post/' + post.slug">Edit</v-btn>
+      </v-card-text>
+    </template>
+    <v-divider />
     <v-card-text>
       <block v-for="(block, i) in summary" :key="'s' + i" :block="block" />
     </v-card-text>
@@ -32,6 +39,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Block from '~/components/Block.vue'
 import TagChip from '~/components/TagChip.vue'
 
@@ -47,7 +55,8 @@ export default Vue.extend({
   computed: {
     summary() {
       return this.$bml.parse(this.post.summary)
-    }
+    },
+    ...mapGetters(['isAdmin'])
   }
 })
 </script>

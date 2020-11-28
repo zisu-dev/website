@@ -14,7 +14,9 @@ export const state = () => ({
 
 type RootState = ReturnType<typeof state>
 
-export const getters: GetterTree<RootState, RootState> = {}
+export const getters: GetterTree<RootState, RootState> = {
+  isAdmin: (state) => state.user?.perm.admin
+}
 
 export const mutations: MutationTree<RootState> = {
   'title:update'(state: RootState, title: string) {
