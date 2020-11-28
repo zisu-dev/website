@@ -19,7 +19,9 @@
               <template v-if="admin">
                 <v-divider />
                 <v-card-text>
-                  <v-btn small :to="'/admin/post/' + post.slug">Edit</v-btn>
+                  <v-btn outlined small :to="'/admin/post/' + post.slug"
+                    >Edit</v-btn
+                  >
                 </v-card-text>
               </template>
               <v-divider />
