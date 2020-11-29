@@ -20,9 +20,13 @@ const config: NuxtConfig = {
   ],
   components: true,
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
-  modules: ['@nuxt/http', '@nuxtjs/pwa', 'cookie-universal-nuxt'],
+  modules: [
+    '@nuxt/http',
+    // '@nuxtjs/pwa',
+    'cookie-universal-nuxt'
+  ],
   http: {
-    baseURL: 'http://127.0.0.1:8010'
+    baseURL: process.env.API_ENDPOINT
   },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
