@@ -19,7 +19,7 @@
               <template v-if="isAdmin">
                 <v-divider />
                 <v-card-text>
-                  <v-btn outlined small :to="'/admin/post/' + post.slug">
+                  <v-btn outlined small :to="'/admin/post/' + post._id">
                     Edit
                   </v-btn>
                 </v-card-text>

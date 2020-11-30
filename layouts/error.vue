@@ -3,13 +3,42 @@
     <v-row justify="center" align="center">
       <v-col cols="6">
         <v-card class="text-center" flat>
-          <v-icon size="96px">mdi-alert-circle-outline</v-icon>
-          <v-card-text>
-            <code>Not found</code>
-          </v-card-text>
+          <template v-if="error.statusCode === 404">
+            <v-icon size="96px">mdi-map-marker-question-outline</v-icon>
+            <v-card-text>
+              <span class="text-h4">{{ pageNotFound }}</span>
+              <br />
+              <code>{{ error.message }}</code>
+            </v-card-text>
+          </template>
+          <template v-else>
+            <v-icon size="96px">mdi-alert-circle-outline</v-icon>
+            <v-card-text>
+              <span class="text-h4">{{ otherError }}</span>
+              <br />
+              <code>{{ error.message }}</code>
+            </v-card-text>
+          </template>
           <v-divider />
           <v-card-actions>
-            <v-btn color="primary" outlined block to="/">Go Home</v-btn>
+            <v-row no-gutters>
+              <v-col cols="6">
+                <v-btn
+                  color="success"
+                  outlined
+                  block
+                  class="mr-1"
+                  @click="$router.go(-1)"
+                >
+                  Go Back
+                </v-btn>
+              </v-col>
+              <v-col cols="6">
+                <v-btn color="primary" outlined block to="/" class="ml-1"
+                  >Go Home</v-btn
+                >
+              </v-col>
+            </v-row>
           </v-card-actions>
         </v-card>
       </v-col>

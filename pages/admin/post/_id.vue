@@ -81,8 +81,8 @@ import TagAutocomplete from '~/components/TagAutocomplete.vue'
 export default Vue.extend({
   components: { TagAutocomplete },
   async asyncData(ctx) {
-    const slug = ctx.params.slug
-    const data: any = await ctx.$http.get(`/post/${slug}`).then((r) => r.json())
+    const id = ctx.params.id
+    const data: any = await ctx.$http.get(`/post/${id}`).then((r) => r.json())
     return {
       post: data
     }

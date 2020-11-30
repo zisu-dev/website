@@ -16,12 +16,36 @@
             <v-list-item-title>Site Index</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/admin">
+        <v-list-item to="/admin" exact>
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-home</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>Admin Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/admin/post">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-post</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Posts</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/admin/tag">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-tag</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Tags</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/admin/user">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Users</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -46,7 +70,7 @@ export default Vue.extend({
   middleware: ['admin'],
   data() {
     return {
-      drawer: false
+      drawer: null
     }
   },
   watch: {
