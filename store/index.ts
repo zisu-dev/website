@@ -4,7 +4,6 @@ import { GetterTree, ActionTree, MutationTree } from 'vuex'
 type Theme = 'auto' | 'dark' | 'light'
 
 export const state = () => ({
-  title: 'ZhangZisu.CN Blog',
   theme: 'auto' as Theme,
   acrylic: true,
   token: null as string | null,
@@ -19,9 +18,6 @@ export const getters: GetterTree<RootState, RootState> = {
 }
 
 export const mutations: MutationTree<RootState> = {
-  'title:update'(state: RootState, title: string) {
-    state.title = title
-  },
   'theme:update'(state: RootState, theme: Theme) {
     state.theme = theme
   },

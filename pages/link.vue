@@ -56,8 +56,10 @@ export default Vue.extend({
       ]
     }
   },
-  mounted() {
-    this.$store.commit('title:update', 'Links')
+  head() {
+    return {
+      title: 'Friend Links'
+    }
   }
 })
 </script>

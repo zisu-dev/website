@@ -61,6 +61,11 @@ export default Vue.extend({
       this.loading = false
     }
   },
+  head() {
+    return {
+      title: 'Login'
+    }
+  },
   middleware(ctx) {
     const { store, redirect } = ctx
     if (store.state.token) {

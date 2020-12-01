@@ -1,30 +1,25 @@
 <template>
   <v-app :class="{ acrylic: $store.state.acrylic }">
     <v-app-bar app dark>
-      <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.xs"
-        @click="drawer = !drawer"
-      />
-      <v-toolbar-title>{{ $store.state.title }}</v-toolbar-title>
+      <v-btn icon tile x-large @click="drawer = !drawer">
+        <v-avatar tile size="32">
+          <v-img src="/logo.svg" class="logo" />
+        </v-avatar>
+      </v-btn>
+      <v-btn text x-large class="pa-0 text-center" to="/">
+        <div class="ma-2">
+          <div class="font-weight-bold">ZhangZisu.CN</div>
+          <div class="text-overline" style="line-height: unset">
+            {{ scope }}
+          </div>
+        </div>
+      </v-btn>
       <v-spacer />
       <user-indicator />
     </v-app-bar>
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      :mobile-breakpoint="$vuetify.breakpoint.thresholds.xs"
-      :expand-on-hover="!$vuetify.breakpoint.xs"
-    >
+    <v-navigation-drawer v-model="drawer" app>
       <v-list nav>
-        <v-list-item href="https://zhangzisu.cn/" target="_blank">
-          <v-list-item-avatar tile size="24">
-            <v-img id="logo" contain src="/logo.svg" />
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>ZhangZisu.CN</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/">
+        <v-list-item to="/post">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-format-list-text</v-icon>
           </v-list-item-avatar>
@@ -32,12 +27,20 @@
             <v-list-item-title>Posts</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/build">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-rocket</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Build Info</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item to="/link">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-link</v-icon>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title>Links</v-list-item-title>
+            <v-list-item-title>Friend Links</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -61,7 +64,12 @@ export default Vue.extend({
   components: { Background, AppFooter, UserIndicator },
   data() {
     return {
-      drawer: !this.$vuetify.breakpoint.xs
+      drawer: null
+    }
+  },
+  computed: {
+    scope() {
+      return this.$route.path.split('/')[1] || 'index'
     }
   },
   watch: {
@@ -80,12 +88,15 @@ export default Vue.extend({
         }
       }
     }
+  },
+  created() {
+    this.$vuetify.theme.themes.light.primary = 'rgba(0, 0, 0, 0)'
   }
 })
 </script>
 
 <style>
-.theme--dark #logo .v-image__image {
+.theme--dark .logo {
   filter: invert(1);
 }
 </style>

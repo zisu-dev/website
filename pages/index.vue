@@ -1,75 +1,69 @@
 <template>
-  <v-container fluid>
+  <v-container class="home">
     <v-row justify="center">
-      <v-col cols="12" sm="7" md="8" lg="6">
-        <v-row justify="center">
-          <v-col cols="12">
-            <v-card>
-              <v-card-actions>
-                <v-text-field
-                  v-model.trim.lazy="searchInput"
-                  label="Search"
-                  placeholder="Type your query here"
-                  append-icon="mdi-magnify"
-                  clearable
-                  @click:append="search = searchInput"
-                  @keydown.enter="search = searchInput"
-                />
-              </v-card-actions>
-              <v-divider />
-              <v-card-text>
-                <code
-                  >{{
-                    postCount
-                      ? `Showing ${(curPage - 1) * postPerPage + 1}-${Math.min(
-                          curPage * postPerPage,
-                          postCount
-                        )} of ${postCount} posts`
-                      : 'No posts found'
-                  }}
-                  {{ search ? 'with search ' + search : '' }}
-                </code>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-        <template v-if="$fetchState.pending">
-          <v-row justify="center">
-            <v-col cols="auto">
-              <loading />
-            </v-col>
-          </v-row>
-        </template>
-        <template v-else-if="$fetchState.error">
-          <v-row justify="center">
-            <v-col cols="auto">
-              <v-card class="text-center" flat>
-                <v-icon size="96px">mdi-alert-circle-outline</v-icon>
-                <v-card-title>An error occurred</v-card-title>
-                <v-card-text>
-                  <code>{{ $fetchState.error.message }}</code>
-                </v-card-text>
-                <v-divider />
-                <v-card-actions>
-                  <v-btn color="primary" outlined block @click="$fetch"
-                    >Reload</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </v-row>
-        </template>
-        <template v-else>
-          <post-list :posts="posts" />
-          <v-row justify="center">
-            <v-col cols="auto">
-              <v-pagination v-model="curPage" :length="pageCount" />
-            </v-col>
-          </v-row>
-        </template>
+      <v-col cols="12" lg="6" xl="4">
+        <v-card color="#1976D2c0" dark>
+          <v-card-title>
+            <div class="fill-width">
+              <div
+                class="text-uppercase font-italic font-weight-light subtitle-1"
+              >
+                Welcome TO
+              </div>
+              <div class="text-right display-1 font-weight-thin">
+                ZhangZisu.CN
+              </div>
+            </div>
+          </v-card-title>
+        </v-card>
       </v-col>
-      <v-col cols="12" sm="5" md="4" lg="3">
-        <sidebar />
+      <v-col cols="12" lg="6" xl="4">
+        <v-card>
+          <v-card-title>Next</v-card-title>
+          <v-divider />
+          <v-list color="transparent">
+            <v-list-item href="https://proxy.zhangzisu.cn/" target="_blank">
+              <v-list-item-content>
+                <v-list-item-title>Proxy</v-list-item-title>
+                <v-list-item-subtitle>
+                  ZhangZisu.CN Proxy Services
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item href="https://status.zhangzisu.cn/" target="_blank">
+              <v-list-item-content>
+                <v-list-item-title>Status</v-list-item-title>
+                <v-list-item-subtitle>
+                  ZhangZisu.CN Status
+                </v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="8" md="4">
+        <v-card>
+          <v-card-title>Contact</v-card-title>
+          <v-divider />
+          <v-list color="transparent">
+            <v-list-item href="https://twitter.com/zisu_zhang" target="_blank">
+              <v-list-item-avatar>
+                <v-icon color="#1DA1F2">mdi-twitter</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>@zisu_zhang</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item href="https://t.me/zhangzisu" target="_blank">
+              <v-list-item-avatar>
+                <v-icon color="#2CA5E0">mdi-telegram</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>@zhangzisu</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -77,51 +71,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostList from '~/components/PostList.vue'
-import Loading from '~/components/Loading.vue'
-import Sidebar from '~/components/Sidebar.vue'
-
 export default Vue.extend({
-  name: 'HomePage',
-  components: { PostList, Loading, Sidebar },
-  async fetch() {
-    const searchParams: Record<string, any> = {
-      page: this.curPage,
-      per_page: this.postPerPage
-    }
-    if (this.search) {
-      searchParams.search = this.search
-    }
-
-    const data: any = await this.$http.$get('/post/', {
-      searchParams
-    })
-
-    this.posts = data.items
-    this.postCount = data.total
-    this.pageCount = Math.ceil(data.total / this.postPerPage)
-  },
-  data() {
+  name: 'IndexPage',
+  head() {
     return {
-      posts: [],
-      postCount: 0,
-      pageCount: 1,
-      postPerPage: 15,
-      curPage: 1,
-      search: '',
-      searchInput: ''
+      title: 'Index'
     }
-  },
-  watch: {
-    curPage() {
-      this.$fetch()
-    },
-    search() {
-      this.$fetch()
-    }
-  },
-  mounted() {
-    this.$store.commit('title:update', 'Posts')
   }
 })
 </script>

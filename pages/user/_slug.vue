@@ -122,6 +122,11 @@ export default Vue.extend({
       }
       this.loading = false
     }
+  },
+  head() {
+    return {
+      title: 'User: ' + this.$data.user.name
+    }
   }
 })
 </script>

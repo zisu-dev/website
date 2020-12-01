@@ -3,8 +3,8 @@ import { NuxtConfig } from '@nuxt/types'
 const config: NuxtConfig = {
   target: 'server',
   head: {
-    titleTemplate: '%s - Blog - ZhangZisu.CN',
-    title: 'Blog - ZhangZisu.CN',
+    titleTemplate: '%s - ZhangZisu.CN',
+    title: 'ZhangZisu.CN',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

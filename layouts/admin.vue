@@ -1,8 +1,17 @@
 <template>
   <v-app class="acrylic">
     <v-app-bar app dark>
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <v-toolbar-title>{{ $store.state.title }}</v-toolbar-title>
+      <v-btn icon tile x-large @click="drawer = !drawer">
+        <v-avatar tile size="32">
+          <v-img src="/logo.svg" class="logo" />
+        </v-avatar>
+      </v-btn>
+      <v-btn text x-large class="pa-0 text-center" to="/">
+        <div class="ma-2">
+          <div class="font-weight-bold">ZhangZisu.CN</div>
+          <div class="text-overline" style="line-height: unset">Admin</div>
+        </div>
+      </v-btn>
       <v-spacer />
       <user-indicator />
     </v-app-bar>

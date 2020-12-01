@@ -77,6 +77,11 @@ export default Vue.extend({
       return this.$bml.parse(this.$data.post.content)
     },
     ...mapGetters(['isAdmin'])
+  },
+  head() {
+    return {
+      title: this.$data.post.title
+    }
   }
 })
 </script>
