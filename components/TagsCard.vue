@@ -22,7 +22,7 @@ export default Vue.extend({
     TagChip
   },
   async fetch() {
-    const data: any = await this.$http.get('/tag').then((r) => r.json())
+    const data: any = await this.$http.$get('/tag')
     this.tags = data.items
   },
   data() {

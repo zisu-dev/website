@@ -64,7 +64,7 @@ export default Vue.extend({
   components: { Block },
   async asyncData(ctx) {
     const slug = ctx.params.slug
-    const data: any = await ctx.$http.get(`/post/${slug}`).then((r) => r.json())
+    const data: any = await ctx.$http.$get(`/post/${slug}`)
     return {
       post: data
     }

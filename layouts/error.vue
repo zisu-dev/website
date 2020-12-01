@@ -21,22 +21,14 @@
           </template>
           <v-divider />
           <v-card-actions>
-            <v-row no-gutters>
-              <v-col cols="6">
-                <v-btn
-                  color="success"
-                  outlined
-                  block
-                  class="mr-1"
-                  @click="$router.go(-1)"
-                >
+            <v-row>
+              <v-col cols="12" lg="6">
+                <v-btn color="success" outlined block @click="$router.go(-1)">
                   Go Back
                 </v-btn>
               </v-col>
-              <v-col cols="6">
-                <v-btn color="primary" outlined block to="/" class="ml-1"
-                  >Go Home</v-btn
-                >
+              <v-col cols="12" lg="6">
+                <v-btn color="primary" outlined block to="/">Go Home</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>

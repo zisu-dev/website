@@ -79,19 +79,15 @@ export default Vue.extend({
   components: { PostList, Loading, Sidebar },
   async fetch() {
     if (!this.tag._id) {
-      this.tag = await this.$http
-        .get(`/tag/${this.$route.params.slug}`)
-        .then((r) => r.json())
+      this.tag = await this.$http.$get(`/tag/${this.$route.params.slug}`)
     }
-    const data: any = await this.$http
-      .get('/post/', {
-        searchParams: {
-          page: this.curPage,
-          per_page: this.postPerPage,
-          tag: this.tag._id
-        }
-      })
-      .then((r) => r.json())
+    const data: any = await this.$http.$get('/post/', {
+      searchParams: {
+        page: this.curPage,
+        per_page: this.postPerPage,
+        tag: this.tag._id
+      }
+    })
     this.posts = data.items
     this.postCount = data.total
     this.pageCount = Math.ceil(data.total / this.postPerPage)

@@ -85,7 +85,7 @@ import Vue from 'vue'
 export default Vue.extend({
   async asyncData(ctx) {
     const slug = ctx.params.slug
-    const data: any = await ctx.$http.get(`/user/${slug}`).then((r) => r.json())
+    const data: any = await ctx.$http.$get(`/user/${slug}`)
     return {
       user: data
     }

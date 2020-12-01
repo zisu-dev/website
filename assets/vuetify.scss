@@ -31,4 +31,12 @@
   .v-pagination__item {
     backdrop-filter: blur(10px);
   }
+
+  .v-tabs > .v-tabs-bar {
+    background: transparent !important;
+  }
+
+  .v-tabs-items {
+    background: transparent !important;
+  }
 }

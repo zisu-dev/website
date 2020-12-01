@@ -82,7 +82,7 @@ export default Vue.extend({
   components: { TagAutocomplete },
   async asyncData(ctx) {
     const id = ctx.params.id
-    const data: any = await ctx.$http.get(`/post/${id}`).then((r) => r.json())
+    const data: any = await ctx.$http.$get(`/post/${id}`)
     return {
       post: data
     }
