@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <v-col xs="12" md="8" lg="6" xl="4">
-        <v-card color="#FFFFFFc0">
+        <v-card>
           <v-list color="transparent">
             <v-list-item
               v-for="(info, i) in infos"

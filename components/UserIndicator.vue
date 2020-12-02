@@ -1,11 +1,21 @@
 <template>
-  <v-menu v-if="user" offset-y open-on-hover>
+  <v-menu v-if="user" offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn outlined v-bind="attrs" :to="'/user/' + user.slug" v-on="on">
-        {{ user.name }}
+      <v-btn icon v-bind="attrs" :to="'/user/' + user.slug" v-on="on">
+        <v-avatar size="32">
+          <v-img :src="getAvatar(user.email)" />
+        </v-avatar>
       </v-btn>
     </template>
     <v-list dense>
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ user.name }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-list-item v-if="user.perm.admin" to="/admin">
         <v-list-item-icon>
           <v-icon>mdi-cog</v-icon>
@@ -33,6 +43,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import gravatar from 'gravatar'
 
 export default Vue.extend({
   name: 'UserIndicator',
@@ -46,6 +57,9 @@ export default Vue.extend({
       this.$http.setToken(false)
       this.$toast.success({ title: 'Bye' })
       this.$router.push('/')
+    },
+    getAvatar(email: string) {
+      return gravatar.url(email)
     }
   }
 })
