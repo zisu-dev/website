@@ -10,9 +10,18 @@
               >
                 Welcome TO
               </div>
-              <div class="text-right display-1 font-weight-thin">ZZisu.dev</div>
+              <div class="text-right display-1">
+                ZZisu.dev<br />
+                <span class="text-overline font-weight-light">
+                  formerly zhangzisu.cn
+                </span>
+              </div>
             </div>
           </v-card-title>
+          <v-divider />
+          <v-card-text class="text-center">
+            <code>Code is philosophy</code>
+          </v-card-text>
         </v-card>
       </v-col>
       <v-col cols="12" lg="6" xl="4">
@@ -44,12 +53,12 @@
           <v-card-title>Contact</v-card-title>
           <v-divider />
           <v-list color="transparent">
-            <v-list-item href="https://twitter.com/zisu_zhang" target="_blank">
+            <v-list-item href="https://twitter.com/zzisu03" target="_blank">
               <v-list-item-avatar>
                 <v-icon color="#1DA1F2">mdi-twitter</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>@zisu_zhang</v-list-item-title>
+                <v-list-item-title>zzisu03</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
             <v-list-item href="https://t.me/zhangzisu" target="_blank">
@@ -57,7 +66,23 @@
                 <v-icon color="#2CA5E0">mdi-telegram</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>@zhangzisu</v-list-item-title>
+                <v-list-item-title>zhangzisu</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item href="mailto:i@zzs1.cn" target="_blank">
+              <v-list-item-avatar>
+                <v-icon>mdi-email</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>i@zzs1.cn</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item href="https://github.com/zzisu" target="_blank">
+              <v-list-item-avatar>
+                <v-icon color="#181717">mdi-github</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>zzisu</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list>

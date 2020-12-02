@@ -1,20 +1,6 @@
 <template>
   <v-app class="acrylic">
-    <v-app-bar app dark>
-      <v-btn icon tile x-large @click="drawer = !drawer">
-        <v-avatar tile size="32">
-          <v-img src="/logo.svg" class="logo" />
-        </v-avatar>
-      </v-btn>
-      <v-btn text x-large class="pa-0 text-center" to="/">
-        <div class="ma-2">
-          <div class="font-weight-bold">ZZisu.dev</div>
-          <div class="text-overline" style="line-height: unset">Admin</div>
-        </div>
-      </v-btn>
-      <v-spacer />
-      <user-indicator />
-    </v-app-bar>
+    <app-bar v-model="drawer" />
     <v-navigation-drawer v-model="drawer" app>
       <v-list nav>
         <v-list-item to="/">
@@ -71,11 +57,10 @@
 import Vue from 'vue'
 import Background from '~/components/Background.vue'
 import AppFooter from '~/components/AppFooter.vue'
-import UserIndicator from '~/components/UserIndicator.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Background, AppFooter, UserIndicator },
+  components: { Background, AppFooter },
   middleware: ['admin'],
   data() {
     return {
@@ -101,9 +86,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style>
-.theme--dark #logo .v-image__image {
-  filter: invert(1);
-}
-</style>

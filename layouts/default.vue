@@ -1,22 +1,6 @@
 <template>
   <v-app :class="{ acrylic: $store.state.acrylic }">
-    <v-app-bar app dark>
-      <v-btn icon tile x-large @click="drawer = !drawer">
-        <v-avatar tile size="32">
-          <v-img src="/logo.svg" class="logo" />
-        </v-avatar>
-      </v-btn>
-      <v-btn text x-large class="pa-0 text-center" to="/">
-        <div class="ma-2">
-          <div class="font-weight-bold">ZZisu.dev</div>
-          <div class="text-overline" style="line-height: unset">
-            {{ scope }}
-          </div>
-        </div>
-      </v-btn>
-      <v-spacer />
-      <user-indicator />
-    </v-app-bar>
+    <app-bar v-model="drawer" />
     <v-navigation-drawer v-model="drawer" app>
       <v-list nav>
         <v-list-item to="/post">
@@ -55,21 +39,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapState } from 'vuex'
 import Background from '~/components/Background.vue'
+import AppBar from '~/components/AppBar.vue'
 import AppFooter from '~/components/AppFooter.vue'
-import UserIndicator from '~/components/UserIndicator.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Background, AppFooter, UserIndicator },
+  components: { Background, AppBar, AppFooter },
   data() {
     return {
       drawer: null
     }
-  },
-  computed: {
-    ...mapState(['scope'])
   },
   watch: {
     '$store.state.theme': {
@@ -87,15 +67,6 @@ export default Vue.extend({
         }
       }
     }
-  },
-  created() {
-    this.$vuetify.theme.themes.light.primary = 'rgba(0, 0, 0, 0)'
   }
 })
 </script>
-
-<style>
-.theme--dark .logo {
-  filter: invert(1);
-}
-</style>
