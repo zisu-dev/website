@@ -8,7 +8,7 @@
       </v-btn>
       <v-btn text x-large class="pa-0 text-center" to="/">
         <div class="ma-2">
-          <div class="font-weight-bold">ZhangZisu.CN</div>
+          <div class="font-weight-bold">ZZisu.dev</div>
           <div class="text-overline" style="line-height: unset">
             {{ scope }}
           </div>
@@ -55,6 +55,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import Background from '~/components/Background.vue'
 import AppFooter from '~/components/AppFooter.vue'
 import UserIndicator from '~/components/UserIndicator.vue'
@@ -68,9 +69,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    scope() {
-      return this.$route.path.split('/')[1] || 'index'
-    }
+    ...mapState(['scope'])
   },
   watch: {
     '$store.state.theme': {

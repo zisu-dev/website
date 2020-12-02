@@ -8,7 +8,7 @@
       </v-btn>
       <v-btn text x-large class="pa-0 text-center" to="/">
         <div class="ma-2">
-          <div class="font-weight-bold">ZhangZisu.CN</div>
+          <div class="font-weight-bold">ZZisu.dev</div>
           <div class="text-overline" style="line-height: unset">Admin</div>
         </div>
       </v-btn>

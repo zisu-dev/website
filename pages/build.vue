@@ -98,6 +98,9 @@ export default Vue.extend({
   data: () => ({
     t: 0
   }),
+  created() {
+    this.$store.commit('scope:update', 'build info')
+  },
   head() {
     return {
       title: 'Build Info'

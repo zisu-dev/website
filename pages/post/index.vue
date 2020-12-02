@@ -120,6 +120,9 @@ export default Vue.extend({
       this.$fetch()
     }
   },
+  created() {
+    this.$store.commit('scope:update', 'blog')
+  },
   head() {
     return {
       title: 'Posts'

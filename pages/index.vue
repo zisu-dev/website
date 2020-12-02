@@ -10,9 +10,7 @@
               >
                 Welcome TO
               </div>
-              <div class="text-right display-1 font-weight-thin">
-                ZhangZisu.CN
-              </div>
+              <div class="text-right display-1 font-weight-thin">ZZisu.dev</div>
             </div>
           </v-card-title>
         </v-card>
@@ -41,7 +39,7 @@
           </v-list>
         </v-card>
       </v-col>
-      <v-col cols="12" sm="8" md="4">
+      <v-col cols="12" lg="6" xl="4">
         <v-card>
           <v-card-title>Contact</v-card-title>
           <v-divider />
@@ -73,6 +71,9 @@
 import Vue from 'vue'
 export default Vue.extend({
   name: 'IndexPage',
+  created() {
+    this.$store.commit('scope:update', 'index')
+  },
   head() {
     return {
       title: 'Index'
