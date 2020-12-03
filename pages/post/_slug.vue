@@ -26,17 +26,9 @@
               </template>
               <v-divider />
               <v-card-text>
-                <block
-                  v-for="(block, i) in summary"
-                  :key="'s' + i"
-                  :block="block"
-                />
+                <bml :src="post.summary" />
                 <v-divider class="mb-2 mt-2" />
-                <block
-                  v-for="(block, i) in content"
-                  :key="'c' + i"
-                  :block="block"
-                />
+                <bml :src="post.content" />
               </v-card-text>
               <v-divider />
               <div class="pl-1 pr-1">
@@ -58,10 +50,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import Block from '~/components/Block.vue'
+import Bml from '~/components/Bml.vue'
+import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
-  components: { Block },
+  components: { Bml, TagChip },
   async asyncData(ctx) {
     const slug = ctx.params.slug
     const data: any = await ctx.$http.$get(`/post/${slug}`)
@@ -70,12 +63,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    summary() {
-      return this.$bml.parse(this.$data.post.summary)
-    },
-    content() {
-      return this.$bml.parse(this.$data.post.content)
-    },
     ...mapGetters(['isAdmin'])
   },
   head() {

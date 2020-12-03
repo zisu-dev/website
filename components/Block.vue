@@ -1,10 +1,11 @@
 <template>
-  <div class="block line-numbers">
-    <pre
+  <div>
+    <v-code
       v-if="block.type === 'code'"
-      :class="['language-' + block.props.lang]"
-    ><code>{{block.content}}</code></pre>
-    <md v-else-if="block.type === 'md'" :source="block.content" />
+      :code="block.content"
+      :language="block.props.lang"
+    />
+    <v-markdown v-else-if="block.type === 'md'" :source="block.content" />
     <div v-else>
       {{ block }}
     </div>
@@ -13,20 +14,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Md from '~/components/functional/md'
-import Prism from '~/utils/prism'
+import VMarkdown from '~/components/functional/VMarkdown'
+import VCode from '~/components/functional/VCode'
 
 export default Vue.extend({
   name: 'Block',
-  components: { Md },
+  components: { VMarkdown, VCode },
   props: {
     block: {
       type: Object,
       required: true
     }
-  },
-  mounted() {
-    Prism.highlightAllUnder(this.$el)
   }
 })
 </script>

@@ -9,6 +9,7 @@ function assign(obj) {
 }
 
 export default {
+  name: 'VCode',
   functional: true,
   props: {
     code: {

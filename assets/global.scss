@@ -1,12 +1,10 @@
 @import './markdown.scss';
 
-.code-editor textarea {
-  font-family: monospace;
-}
-
-.block {
-  padding: 2px;
-  margin-bottom: 2px;
+.bml-root {
+  div:not(:first-child) {
+    padding: 2px;
+    margin-top: 2px;
+  }
 }
 
 .fill-width {

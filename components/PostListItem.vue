@@ -23,7 +23,7 @@
     </template>
     <v-divider />
     <v-card-text>
-      <block v-for="(block, i) in summary" :key="'s' + i" :block="block" />
+      <bml :src="post.summary" />
     </v-card-text>
     <v-divider />
     <div class="pl-1 pr-1">
@@ -40,12 +40,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import Block from '~/components/Block.vue'
+import Bml from '~/components/Bml.vue'
 import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
   name: 'PostListItem',
-  components: { TagChip, Block },
+  components: { TagChip, Bml },
   props: {
     post: {
       type: Object,
@@ -53,9 +53,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    summary() {
-      return this.$bml.parse(this.post.summary)
-    },
     ...mapGetters(['isAdmin'])
   }
 })
