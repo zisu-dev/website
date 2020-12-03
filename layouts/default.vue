@@ -3,6 +3,14 @@
     <app-bar v-model="drawer" />
     <v-navigation-drawer v-model="drawer" app>
       <v-list nav>
+        <v-list-item to="/">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item to="/post">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-format-list-text</v-icon>

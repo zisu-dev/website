@@ -5,8 +5,8 @@
         <v-img src="/logo.svg" class="logo" />
       </v-avatar>
     </v-btn>
-    <v-btn text x-large class="pa-0 text-left" to="/">
-      <div class="ma-2">
+    <v-btn text x-large class="pa-0 text-left" disabled>
+      <div class="ma-2 site-title">
         <div class="font-weight-bold">ZZisu.dev</div>
         <div class="text-overline" style="line-height: unset">
           {{ scope }}
@@ -76,5 +76,9 @@ export default Vue.extend({
 <style>
 .theme--dark .logo {
   filter: invert(1);
+}
+
+.site-title {
+  color: #ffffff;
 }
 </style>

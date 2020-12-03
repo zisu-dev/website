@@ -18,7 +18,6 @@ const config: NuxtConfig = {
     '~/plugins/bml.ts',
     '~/plugins/toast.client.ts'
   ],
-  components: true,
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   modules: [
     '@nuxt/http',
