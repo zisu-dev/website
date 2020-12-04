@@ -47,7 +47,7 @@ export default Vue.extend({
       try {
         throw await new Error('Not implemented')
       } catch (e) {
-        this.$toast.error({ title: 'Register failed' })
+        this.$toast.error({ title: 'Register failed', message: e.message })
       }
       this.loading = false
     }
