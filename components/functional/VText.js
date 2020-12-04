@@ -15,9 +15,7 @@ export default {
       Object.assign({}, ctx.data, {
         class: [ctx.data.class],
         domProps: {
-          innerHTML: md.utils
-            .escapeHtml(ctx.props.src)
-            .replaceAll('\n', '<br/>')
+          innerHTML: md.utils.escapeHtml(ctx.props.src).replace(/\n/g, '<br/>')
         }
       })
     )
