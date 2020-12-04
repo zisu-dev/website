@@ -1,8 +1,8 @@
 interface IBlock {
   type: string
-  id: string | undefined
-  props: Record<string, any>
   content: string
+  id?: string
+  props?: Record<string, any>
 }
 
 export function parse(bml: string) {
@@ -13,6 +13,20 @@ export function parse(bml: string) {
 
   let cur: IBlock | undefined
   let contentLines: string[] = []
+  let textLines: string[] = []
+
+  function finalizeTextBlock() {
+    if (textLines.length) {
+      while (textLines.length && !textLines[textLines.length - 1].trim())
+        textLines.pop()
+      blocks.push({
+        type: 'text',
+        content: textLines.join('\n')
+      })
+      textLines = []
+    }
+  }
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
     if (cur) {
@@ -30,6 +44,8 @@ export function parse(bml: string) {
         /^<\s*([a-zA-Z]+)(?:\[(\w+)\])?((?:\s+(?:[a-zA-Z]+)(?:\s*=\s*[\S]+)?)*)\s*>/
       )
       if (m && m[1]) {
+        finalizeTextBlock()
+
         const [, type, id, attrs] = m
         const props: Record<string, any> = {}
         if (attrs) {
@@ -51,10 +67,13 @@ export function parse(bml: string) {
           props,
           content: ''
         }
-      } else {
-        // comment
+      } else if (!line.startsWith('//')) {
+        if (textLines.length || line.trim()) {
+          textLines.push(line)
+        }
       }
     }
   }
+  finalizeTextBlock()
   return blocks
 }

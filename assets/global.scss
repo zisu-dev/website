@@ -1,6 +1,9 @@
 .bml-root {
-  div:not(:first-child) {
+  div {
     padding: 2px;
+  }
+
+  div:not(:first-child) {
     margin-top: 2px;
   }
 }

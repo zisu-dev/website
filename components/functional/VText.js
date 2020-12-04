@@ -1,10 +1,10 @@
 import md from '~/utils/markdown'
 
 export default {
-  name: 'VMarkdown',
+  name: 'VText',
   functional: true,
   props: {
-    source: {
+    src: {
       type: String,
       required: true
     }
@@ -13,9 +13,11 @@ export default {
     return h(
       'div',
       Object.assign({}, ctx.data, {
-        class: [ctx.data.class, 'markdown-body'],
+        class: [ctx.data.class],
         domProps: {
-          innerHTML: md.render(ctx.props.source)
+          innerHTML: md.utils
+            .escapeHtml(ctx.props.src)
+            .replaceAll('\n', '<br/>')
         }
       })
     )
