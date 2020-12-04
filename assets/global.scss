@@ -10,3 +10,8 @@
 .fill-width {
   width: 100%;
 }
+
+.code-editor textarea {
+  font-family: monospace;
+  line-height: unset !important;
+}

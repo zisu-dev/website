@@ -142,10 +142,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style>
-.code-editor textarea {
-  font-family: monospace;
-  line-height: unset;
-}
-</style>

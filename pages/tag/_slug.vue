@@ -9,8 +9,17 @@
                 <v-icon left>mdi-label</v-icon>
                 {{ tag.title }}
               </v-card-title>
-              <v-card-text v-if="tag.description">
-                {{ tag.description }}
+              <template v-if="isAdmin">
+                <v-divider />
+                <v-card-text>
+                  <v-btn outlined small :to="'/admin/tag/' + tag._id">
+                    Edit
+                  </v-btn>
+                </v-card-text>
+              </template>
+              <v-divider />
+              <v-card-text>
+                <bml :src="tag.content" />
               </v-card-text>
               <v-divider />
               <v-card-text>
@@ -70,17 +79,16 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import PostList from '~/components/PostList.vue'
 import Loading from '~/components/Loading.vue'
 import Sidebar from '~/components/Sidebar.vue'
+import Bml from '~/components/Bml.vue'
 
 export default Vue.extend({
   name: 'TagPage',
-  components: { PostList, Loading, Sidebar },
+  components: { PostList, Loading, Sidebar, Bml },
   async fetch() {
-    if (!this.tag._id) {
-      this.tag = await this.$http.$get(`/tag/${this.$route.params.slug}`)
-    }
     const data: any = await this.$http.$get('/post/', {
       searchParams: {
         page: this.curPage,
@@ -92,6 +100,12 @@ export default Vue.extend({
     this.postCount = data.total
     this.pageCount = Math.ceil(data.total / this.postPerPage)
   },
+  async asyncData(ctx) {
+    const tag = await ctx.$http.$get(`/tag/${ctx.route.params.slug}`)
+    return {
+      tag
+    }
+  },
   data() {
     return {
       posts: [],
@@ -101,6 +115,9 @@ export default Vue.extend({
       curPage: 1,
       tag: {} as any
     }
+  },
+  computed: {
+    ...mapGetters(['isAdmin'])
   },
   watch: {
     curPage() {

@@ -8,6 +8,13 @@ md.use(katex, { throwOnError: false, errorColor: ' #cc0000' })
 md.options.highlight = (code, lang) => {
   const prismLanguage = Prism.languages[lang]
   const className = `language-${lang}`
+
+  if (process.env.NODE_ENV === 'development' && !prismLanguage) {
+    throw new Error(
+      `Prism component for language "${lang}" was not found, did you forget to register it? See all available ones: https://cdn.jsdelivr.net/npm/prismjs/components/`
+    )
+  }
+
   const rendered = Prism.highlight(code, prismLanguage)
   return `<pre class="${className}"><code class="${className}">${rendered}</code></pre>`
 }

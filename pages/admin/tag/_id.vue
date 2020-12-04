@@ -9,6 +9,11 @@
                 <v-text-field :value="tag._id" disabled label="ID" />
                 <v-text-field v-model="tag.slug" label="Slug" />
                 <v-text-field v-model="tag.title" label="Title" />
+                <v-textarea
+                  v-model="tag.content"
+                  label="Content"
+                  class="code-editor"
+                />
               </v-card-text>
               <v-divider />
               <v-card-actions>
