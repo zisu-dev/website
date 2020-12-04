@@ -33,13 +33,6 @@ export default Vue.extend({
       direction: 'alternate',
       loop: true
     })
-    anime({
-      targets: this.$el.querySelectorAll('path'),
-      easing: 'easeInOutSine',
-      duration: 1500,
-      stroke: ['#4585f3', '#eb4134', '#fbba04', '#34aa51'],
-      loop: true
-    })
   }
 })
 </script>

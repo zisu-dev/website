@@ -1,72 +1,66 @@
 <template>
-  <v-row no-gutters>
+  <v-row justify="center">
     <v-col cols="12">
-      <v-row justify="center">
-        <v-col cols="12">
-          <v-card>
-            <v-card-actions>
-              <v-text-field
-                v-model.trim.lazy="searchInput"
-                label="Search"
-                placeholder="Type your query here"
-                append-icon="mdi-magnify"
-                clearable
-                @click:append="search = searchInput"
-                @keydown.enter="search = searchInput"
-              />
-            </v-card-actions>
-            <v-divider />
-            <v-card-text>
-              <code
-                >{{
-                  postCount
-                    ? `Showing ${(curPage - 1) * postPerPage + 1}-${Math.min(
-                        curPage * postPerPage,
-                        postCount
-                      )} of ${postCount} posts`
-                    : 'No posts found'
-                }}
-                {{ search ? 'with search ' + search : '' }}
-              </code>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-      <template v-if="$fetchState.pending">
-        <v-row justify="center">
-          <v-col cols="auto">
-            <loading />
-          </v-col>
-        </v-row>
-      </template>
-      <template v-else-if="$fetchState.error">
-        <v-row justify="center">
-          <v-col cols="auto">
-            <v-card class="text-center" flat>
-              <v-icon size="96px">mdi-alert-circle-outline</v-icon>
-              <v-card-title>An error occurred</v-card-title>
-              <v-card-text>
-                <code>{{ $fetchState.error.message }}</code>
-              </v-card-text>
-              <v-divider />
-              <v-card-actions>
-                <v-btn color="primary" outlined block @click="$fetch"
-                  >Reload</v-btn
-                >
-              </v-card-actions>
-            </v-card>
-          </v-col>
-        </v-row>
-      </template>
-      <template v-else>
-        <post-list :posts="posts" />
-        <v-row justify="center">
-          <v-col cols="auto">
-            <v-pagination v-model="curPage" :length="pageCount" />
-          </v-col>
-        </v-row>
-      </template>
+      <v-card>
+        <v-card-actions>
+          <v-text-field
+            v-model.trim.lazy="searchInput"
+            label="Search"
+            placeholder="Type your query here"
+            append-icon="mdi-magnify"
+            clearable
+            @click:append="search = searchInput"
+            @keydown.enter="search = searchInput"
+          />
+        </v-card-actions>
+        <v-divider />
+        <v-card-text>
+          <code
+            >{{
+              postCount
+                ? `Showing ${(curPage - 1) * postPerPage + 1}-${Math.min(
+                    curPage * postPerPage,
+                    postCount
+                  )} of ${postCount} posts`
+                : 'No posts found'
+            }}
+            {{ search ? 'with search ' + search : '' }}
+          </code>
+        </v-card-text>
+      </v-card>
     </v-col>
+    <template v-if="$fetchState.pending">
+      <v-col cols="12">
+        <v-row justify="center">
+          <loading />
+        </v-row>
+      </v-col>
+    </template>
+    <template v-else-if="$fetchState.error">
+      <v-col cols="12">
+        <v-card class="text-center" flat>
+          <v-icon size="96px">mdi-alert-circle-outline</v-icon>
+          <v-card-title>An error occurred</v-card-title>
+          <v-card-text>
+            <code>{{ $fetchState.error.message }}</code>
+          </v-card-text>
+          <v-divider />
+          <v-card-actions>
+            <v-btn color="primary" outlined block @click="$fetch">
+              Reload
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </template>
+    <template v-else>
+      <v-col cols="12">
+        <post-list :posts="posts" />
+      </v-col>
+      <v-col cols="12">
+        <v-pagination v-model="curPage" :length="pageCount" />
+      </v-col>
+    </template>
   </v-row>
 </template>
 
@@ -113,9 +107,6 @@ export default Vue.extend({
     search() {
       this.$fetch()
     }
-  },
-  created() {
-    this.$store.commit('scope:update', 'blog')
   },
   head() {
     return {
