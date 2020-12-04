@@ -1,4 +1,6 @@
-@import './markdown.scss';
+.theme--light {
+  @import './markdown.scss';
+}
 
 .bml-root {
   div:not(:first-child) {

@@ -57,10 +57,11 @@
 import Vue from 'vue'
 import Background from '~/components/Background.vue'
 import AppFooter from '~/components/AppFooter.vue'
+import AppBar from '~/components/AppBar.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Background, AppFooter },
+  components: { Background, AppFooter, AppBar },
   middleware: ['admin'],
   data() {
     return {

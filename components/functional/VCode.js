@@ -1,13 +1,5 @@
 import Prism from '~/utils/prism.ts'
 
-function assign(obj) {
-  for (let i = 1; i < arguments.length; i++) {
-    // eslint-disable-next-line guard-for-in, prefer-rest-params
-    for (const p in arguments[i]) obj[p] = arguments[i][p]
-  }
-  return obj
-}
-
 export default {
   name: 'VCode',
   functional: true,
@@ -42,9 +34,9 @@ export default {
     if (inline) {
       return h(
         'code',
-        assign({}, ctx.data, {
+        Object.assign({}, ctx.data, {
           class: [ctx.data.class, className],
-          domProps: assign({}, ctx.data.domProps, {
+          domProps: Object.assign({}, ctx.data.domProps, {
             innerHTML: Prism.highlight(code, prismLanguage)
           })
         })
@@ -53,7 +45,7 @@ export default {
 
     return h(
       'pre',
-      assign({}, ctx.data, {
+      Object.assign({}, ctx.data, {
         class: [ctx.data.class, className]
       }),
       [

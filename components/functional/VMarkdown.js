@@ -29,11 +29,14 @@ export default {
     }
   },
   render(h, ctx) {
-    return h('div', {
-      class: [ctx.data.class],
-      domProps: {
-        innerHTML: md.render(ctx.props.source)
-      }
-    })
+    return h(
+      'div',
+      Object.assign({}, ctx.data, {
+        class: [ctx.data.class, 'markdown-body'],
+        domProps: {
+          innerHTML: md.render(ctx.props.source)
+        }
+      })
+    )
   }
 }
