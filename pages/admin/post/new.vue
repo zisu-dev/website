@@ -10,7 +10,7 @@
                   v-model.number="post.priority"
                   label="Priority"
                   type="number"
-                  min="0"
+                  min="-1"
                   max="16"
                 />
                 <v-text-field v-model="post.slug" label="Slug" />
