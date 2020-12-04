@@ -2,6 +2,7 @@ import MarkdownIt from 'markdown-it'
 import katex from 'markdown-it-katex'
 import Prism from '~/utils/prism'
 import 'katex/dist/katex.min.css'
+import '~/assets/markdown.scss'
 
 const md = new MarkdownIt()
 md.use(katex, { throwOnError: false, errorColor: ' #cc0000' })
