@@ -12,7 +12,7 @@
               </v-card-title>
               <v-divider />
               <v-tabs>
-                <v-tab> Info </v-tab>
+                <v-tab>Info</v-tab>
                 <v-tab-item>
                   <v-list dense color="transparent">
                     <v-list-item>
@@ -48,7 +48,7 @@
                   </v-list>
                 </v-tab-item>
                 <template v-if="canManage">
-                  <v-tab> Edit </v-tab>
+                  <v-tab>Edit</v-tab>
                   <v-tab-item>
                     <v-card-text>
                       <v-text-field v-model="user.name" label="Name" />
@@ -67,6 +67,15 @@
                     <v-card-actions>
                       <v-spacer />
                       <v-btn color="primary" @click="submit">Submit</v-btn>
+                    </v-card-actions>
+                  </v-tab-item>
+                </template>
+                <template v-if="$store.getters.isAdmin">
+                  <v-tab>Admin</v-tab>
+                  <v-tab-item>
+                    <v-card-actions>
+                      <v-spacer />
+                      <v-btn color="error" @click="remove">Delete</v-btn>
                     </v-card-actions>
                   </v-tab-item>
                 </template>
@@ -117,6 +126,17 @@ export default Vue.extend({
         }
         await this.$http.$put(`/user/${this.$data.user._id}`, body)
         this.$toast.success({ title: 'Success' })
+      } catch (e) {
+        this.$toast.error({ title: 'Failed', message: e.message })
+      }
+      this.loading = false
+    },
+    async remove() {
+      this.loading = true
+      try {
+        await this.$http.$delete(`/user/${this.$data.user._id}`)
+        this.$toast.success({ title: 'Success' })
+        this.$router.replace('/admin/user')
       } catch (e) {
         this.$toast.error({ title: 'Failed', message: e.message })
       }

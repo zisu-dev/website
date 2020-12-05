@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="12" sm="7" md="8" lg="6">
+      <v-col cols="12" xl="6">
         <v-card>
           <v-card-title>Admin: Tags</v-card-title>
           <v-divider />
@@ -9,6 +9,24 @@
             <v-spacer />
             <v-btn outlined to="/admin/tag/new">New Tag</v-btn>
           </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col cols="12" xl="6">
+        <v-card>
+          <v-data-table
+            :headers="headers"
+            :items="tags"
+            :options.sync="tableOptions"
+            :server-items-length="tagCount"
+            :loading="$fetchState.pending"
+            dense
+          >
+            <template v-slot:[`item._id`]="{ item }">
+              <nuxt-link class="object-id" :to="'/admin/tag/' + item._id">
+                {{ item._id }}
+              </nuxt-link>
+            </template>
+          </v-data-table>
         </v-card>
       </v-col>
     </v-row>
@@ -20,6 +38,43 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AdminTagPage',
-  layout: 'admin'
+  layout: 'admin',
+  async fetch() {
+    const { page, itemsPerPage } = this.tableOptions
+    const searchParams: Record<string, any> = {
+      page,
+      per_page: itemsPerPage
+    }
+
+    const data: any = await this.$http.$get('/tag/', {
+      searchParams
+    })
+
+    this.tags = data.items
+    this.tagCount = data.total
+  },
+  data() {
+    return {
+      headers: [
+        { text: 'ID', value: '_id', sortable: false },
+        { text: 'Slug', value: 'slug', sortable: false },
+        { text: 'Title', value: 'title', sortable: false }
+      ],
+      tags: [],
+      tableOptions: {
+        page: 1,
+        itemsPerPage: 15
+      },
+      tagCount: 0
+    }
+  },
+  watch: {
+    options: {
+      handler() {
+        this.$fetch()
+      },
+      deep: true
+    }
+  }
 })
 </script>

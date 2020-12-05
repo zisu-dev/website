@@ -2,11 +2,7 @@
   <v-card>
     <v-card-title>
       <div>
-        <nuxt-link
-          class="title"
-          :to="`/post/${post.slug}`"
-          v-text="post.title"
-        />
+        <div class="title" v-text="post.title" />
         <div>
           <v-chip class="pa-1" small label color="transparent">
             <v-icon left>mdi-clock-outline</v-icon>
@@ -28,6 +24,8 @@
     <v-divider />
     <v-card-text>
       <bml :src="post.summary" />
+      <v-divider class="mb-2 mt-2" />
+      <bml :src="post.content" />
     </v-card-text>
     <v-divider />
     <div class="pl-1 pr-1">
@@ -48,8 +46,8 @@ import Bml from '~/components/Bml.vue'
 import TagChip from '~/components/TagChip.vue'
 
 export default Vue.extend({
-  name: 'PostListItem',
-  components: { TagChip, Bml },
+  name: 'Post',
+  components: { Bml, TagChip },
   props: {
     post: {
       type: Object,

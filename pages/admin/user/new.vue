@@ -5,10 +5,7 @@
         <v-row>
           <v-col cols="12">
             <v-card :loading="loading">
-              <v-card-text>
-                <v-text-field v-model="tag.slug" label="Slug" />
-                <v-text-field v-model="tag.title" label="Title" />
-              </v-card-text>
+              <v-card-text> Not implemented </v-card-text>
               <v-divider />
               <v-card-actions>
                 <v-spacer />
@@ -45,10 +42,9 @@ export default Vue.extend({
     async submit() {
       this.loading = true
       try {
-        const tag = this.$data.tag
-        const _id: string = await this.$http.$post(`/tag`, tag)
-        this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
-        this.$router.push('/admin/tag/' + _id)
+        throw await new Error('Not implemented')
+        // this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
+        // this.$router.push('/user/' + _id)
       } catch (e) {
         this.$toast.error({ title: 'Failed', message: e.message })
       }

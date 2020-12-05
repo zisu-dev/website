@@ -45,6 +45,8 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  layout: 'admin',
+  name: 'AdminPostNewPage',
   data() {
     return {
       loading: false,

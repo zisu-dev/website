@@ -1,9 +1,32 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols="12" sm="7" md="8" lg="6">
+      <v-col cols="12" xl="6">
         <v-card>
           <v-card-title>Admin: Users</v-card-title>
+          <v-divider />
+          <v-card-actions>
+            <v-spacer />
+            <v-btn outlined to="/admin/user/new">New User</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col cols="12" xl="6">
+        <v-card>
+          <v-data-table
+            :headers="headers"
+            :items="users"
+            :options.sync="tableOptions"
+            :server-items-length="userCount"
+            :loading="$fetchState.pending"
+            dense
+          >
+            <template v-slot:[`item._id`]="{ item }">
+              <nuxt-link class="object-id" :to="'/user/' + item._id">
+                {{ item._id }}
+              </nuxt-link>
+            </template>
+          </v-data-table>
         </v-card>
       </v-col>
     </v-row>
@@ -15,6 +38,44 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AdminUserPage',
-  layout: 'admin'
+  layout: 'admin',
+  async fetch() {
+    const { page, itemsPerPage } = this.tableOptions
+    const searchParams: Record<string, any> = {
+      page,
+      per_page: itemsPerPage
+    }
+
+    const data: any = await this.$http.$get('/user/', {
+      searchParams
+    })
+
+    this.users = data.items
+    this.userCount = data.total
+  },
+  data() {
+    return {
+      headers: [
+        { text: 'ID', value: '_id', sortable: false },
+        { text: 'Slug', value: 'slug', sortable: false },
+        { text: 'Name', value: 'name', sortable: false },
+        { text: 'Email', value: 'email', sortable: false }
+      ],
+      users: [],
+      tableOptions: {
+        page: 1,
+        itemsPerPage: 15
+      },
+      userCount: 0
+    }
+  },
+  watch: {
+    options: {
+      handler() {
+        this.$fetch()
+      },
+      deep: true
+    }
+  }
 })
 </script>
