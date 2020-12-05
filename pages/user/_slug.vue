@@ -9,6 +9,10 @@
                 <div>
                   <div class="title" v-text="user.name" />
                 </div>
+                <template v-if="isAdmin">
+                  <v-spacer />
+                  <v-chip color="error" outlined>Admin</v-chip>
+                </template>
               </v-card-title>
               <v-divider />
               <v-tabs>
@@ -70,12 +74,17 @@
                     </v-card-actions>
                   </v-tab-item>
                 </template>
-                <template v-if="$store.getters.isAdmin">
+                <template v-if="isAdmin">
                   <v-tab>Admin</v-tab>
                   <v-tab-item>
                     <v-card-actions>
                       <v-spacer />
-                      <v-btn color="error" @click="remove">Delete</v-btn>
+                      <v-btn
+                        color="error"
+                        :disabled="user.perm.admin"
+                        @click="remove"
+                        >Delete</v-btn
+                      >
                     </v-card-actions>
                   </v-tab-item>
                 </template>
@@ -90,6 +99,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
 export default Vue.extend({
   async asyncData(ctx) {
@@ -106,11 +116,9 @@ export default Vue.extend({
     }
   },
   computed: {
+    ...mapGetters(['isAdmin']),
     canManage() {
-      return (
-        this.$store.getters.isAdmin ||
-        this.$store.state.user?._id === this.$data.user._id
-      )
+      return this.isAdmin || this.$store.state.user?._id === this.$data.user._id
     }
   },
   methods: {
