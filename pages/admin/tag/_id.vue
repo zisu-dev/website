@@ -46,6 +46,9 @@ export default Vue.extend({
       newTag: null as any
     }
   },
+  created() {
+    this.$store.commit('scope:update', 'admin::tag')
+  },
   methods: {
     reset() {
       this.$router.go(0)

@@ -8,6 +8,11 @@
               <v-card-text>
                 <v-text-field v-model="tag.slug" label="Slug" />
                 <v-text-field v-model="tag.title" label="Title" />
+                <v-textarea
+                  v-model="tag.content"
+                  label="Content"
+                  class="code-editor"
+                />
               </v-card-text>
               <v-divider />
               <v-card-actions>
@@ -34,9 +39,13 @@ export default Vue.extend({
       loading: false,
       tag: {
         slug: '',
-        title: ''
+        title: '',
+        content: ''
       }
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'admin::tag')
   },
   methods: {
     reset() {

@@ -14,7 +14,7 @@
     <template v-if="isAdmin">
       <v-divider />
       <v-card-actions>
-        <v-chip small outlined :color="post.public ? 'success' : 'error'">
+        <v-chip small :color="post.public ? 'success' : 'error'">
           {{ post.public ? 'Public' : 'Private' }}
         </v-chip>
         <v-spacer />

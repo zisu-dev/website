@@ -5,14 +5,17 @@
         <v-row>
           <v-col cols="12">
             <v-card>
-              <v-card-title>
-                <div>
-                  <div class="title" v-text="user.name" />
-                </div>
-                <template v-if="isAdmin">
-                  <v-spacer />
-                  <v-chip color="error" outlined>Admin</v-chip>
-                </template>
+              <v-card-title class="pa-0">
+                <v-avatar class="ma-3">
+                  <v-img :src="avatar" />
+                </v-avatar>
+                <v-divider vertical />
+                <v-badge
+                  :content="userBadge"
+                  :color="user.perm.admin ? 'red' : 'blue'"
+                >
+                  <div class="ml-3 title" v-text="user.name" />
+                </v-badge>
               </v-card-title>
               <v-divider />
               <v-tabs>
@@ -100,6 +103,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import gravatar from 'gravatar'
 
 export default Vue.extend({
   async asyncData(ctx) {
@@ -116,9 +120,12 @@ export default Vue.extend({
     }
   },
   computed: {
-    ...mapGetters(['isAdmin']),
+    ...mapGetters(['isAdmin', 'userBadge']),
     canManage() {
       return this.isAdmin || this.$store.state.user?._id === this.$data.user._id
+    },
+    avatar() {
+      return gravatar.url(this.$data.user.email)
     }
   },
   methods: {

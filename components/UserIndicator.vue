@@ -13,7 +13,15 @@
           <v-icon>mdi-account</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{ user.name }}</v-list-item-title>
+          <v-badge
+            :content="userBadge"
+            :color="user.perm.admin ? 'red' : 'blue'"
+            inline
+          >
+            <v-list-item-title>
+              {{ user.name }}
+            </v-list-item-title>
+          </v-badge>
         </v-list-item-content>
       </v-list-item>
       <v-list-item v-if="user.perm.admin" to="/admin">
@@ -42,13 +50,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import gravatar from 'gravatar'
 
 export default Vue.extend({
   name: 'UserIndicator',
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    ...mapGetters(['userBadge'])
   },
   methods: {
     logout() {

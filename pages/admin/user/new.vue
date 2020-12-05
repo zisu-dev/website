@@ -35,6 +35,9 @@ export default Vue.extend({
       }
     }
   },
+  created() {
+    this.$store.commit('scope:update', 'admin::user')
+  },
   methods: {
     reset() {
       this.$router.go(0)

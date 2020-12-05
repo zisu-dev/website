@@ -28,6 +28,9 @@ export default Vue.extend({
     return {
       stat: {}
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'admin')
   }
 })
 </script>
