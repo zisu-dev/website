@@ -14,13 +14,7 @@ export default Vue.extend({
       return this.$route.path.split('/')[1] || 'index'
     },
     bg() {
-      // switch (this.scope) {
-      //   case 'index':
-      //     return 'https://i.loli.net/2020/10/03/sMTDHWquvjmNwG7.png'
-      //   default:
-      //     return 'https://i.loli.net/2020/11/21/H2hewskIoquRBzg.png'
-      // }
-      return 'https://i.loli.net/2020/11/21/H2hewskIoquRBzg.png'
+      return 'https://s3.ax1x.com/2020/12/06/DXKDj1.jpg'
     }
   }
 })
