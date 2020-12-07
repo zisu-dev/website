@@ -75,11 +75,13 @@
             </v-tab-item>
             <v-tab>Preview</v-tab>
             <v-tab-item>
-              <v-row justify="center" class="ma-1">
-                <v-col cols="12">
-                  <post :post="post" />
-                </v-col>
-              </v-row>
+              <v-card-text class="preview-background">
+                <v-row justify="center">
+                  <v-col cols="12">
+                    <post :post="post" />
+                  </v-col>
+                </v-row>
+              </v-card-text>
             </v-tab-item>
           </v-tabs>
           <v-dialog v-model="editPublished" width="unset">
@@ -234,3 +236,24 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.preview-background {
+  background: linear-gradient(-135deg, rgb(34, 76, 152) 10%, transparent),
+    repeating-linear-gradient(
+      45deg,
+      rgba(34, 76, 152, 1) 0%,
+      rgba(31, 48, 94, 0.6) 5%,
+      transparent 5%,
+      transparent 10%
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(34, 76, 152, 0.4) 0%,
+      rgba(31, 48, 94, 0.5) 5%,
+      transparent 5%,
+      transparent 10%
+    );
+  background-color: rgba(34, 76, 152, 0.25);
+}
+</style>

@@ -1,46 +1,14 @@
-.v-application code,
-.v-application kbd {
-  display: initial;
-  border: initial;
-  white-space: initial;
-  font-size: initial;
-  font-weight: initial;
-  padding: 0;
-}
-
-.v-application code {
-  background-color: initial !important;
-  -webkit-box-shadow: initial !important;
-  box-shadow: initial !important;
-}
-
-.v-application code:after,
-.v-application code:before,
-.v-application kbd:after,
-.v-application kbd:before {
-  content: none;
-}
-
 .acrylic {
   .v-app-bar,
   .v-footer,
   .v-card,
   .v-navigation-drawer,
-  .v-menu__content,
-  .v-pagination__navigation,
-  .v-pagination__item {
+  .v-menu__content {
     backdrop-filter: blur(10px);
   }
 
-  .v-tabs > .v-tabs-bar {
-    background: transparent !important;
-  }
-
-  .v-tabs-items {
-    background: transparent !important;
-  }
-
-  .v-data-table {
-    background: transparent !important;
+  .v-card,
+  .v-menu__content {
+    background-color: #ffffffc0;
   }
 }

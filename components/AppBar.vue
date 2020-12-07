@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app dark>
+  <v-app-bar app>
     <v-btn icon tile x-large @click="$emit('change', !value)">
       <v-avatar tile size="32">
         <v-img src="/logo.svg" class="logo" />
@@ -74,11 +74,10 @@ export default Vue.extend({
 </script>
 
 <style>
-.theme--dark .logo {
-  filter: invert(1);
+.theme--dark .site-title {
+  color: #fff;
 }
-
-.site-title {
-  color: #ffffff;
+.theme--light .site-title {
+  color: #000;
 }
 </style>
