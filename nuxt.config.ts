@@ -12,7 +12,7 @@ const config: NuxtConfig = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-  css: ['~/assets/vuetify.scss', '~/assets/global.scss'],
+  css: ['~/styles/vuetify.scss', '~/styles/global.scss'],
   plugins: [
     '~/plugins/init.ts',
     '~/plugins/bml.ts',
@@ -28,7 +28,7 @@ const config: NuxtConfig = {
     baseURL: process.env.API_ENDPOINT
   },
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/styles/variables.scss'],
     treeShake: true
   },
   build: {},

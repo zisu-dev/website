@@ -1,5 +1,5 @@
 <template>
-  <v-footer inset>
+  <v-footer>
     <v-row justify="end" no-gutters>
       <v-col cols="12" sm="auto" class="text-right">
         <v-btn text disabled class="text-none">
