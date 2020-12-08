@@ -42,7 +42,7 @@
       </v-list-item>
     </v-list>
   </v-menu>
-  <v-btn v-else outlined to="/login">
+  <v-btn v-else outlined to="/login" class="mr-4">
     <v-icon left>mdi-account-circle</v-icon>
     Login
   </v-btn>
