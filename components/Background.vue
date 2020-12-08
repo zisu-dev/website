@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img :src="bg" width="100%" />
+    <v-img :src="bg" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default Vue.extend({
     bg() {
       return this.$vuetify.theme.dark
         ? 'https://s3.ax1x.com/2020/12/06/DXKDj1.jpg'
-        : 'https://i.loli.net/2020/12/08/TN5h6g2Qx3lfbsJ.jpg'
+        : 'https://s3.ax1x.com/2020/12/08/rpmt3D.jpg'
     }
   }
 })
