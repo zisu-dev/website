@@ -43,6 +43,14 @@
             <v-list-item-title>Users</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/admin/meta">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>Metas</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main>
