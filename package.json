@@ -25,7 +25,8 @@
     "monaco-editor": "^0.21.2",
     "monaco-editor-webpack-plugin": "^2.0.0",
     "nuxt": "^2.14.6",
-    "prismjs": "^1.22.0"
+    "prismjs": "^1.22.0",
+    "webpack": "^4.5.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.6",
