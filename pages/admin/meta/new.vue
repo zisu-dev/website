@@ -7,11 +7,7 @@
             <v-card :loading="loading">
               <v-card-text>
                 <v-text-field v-model="meta.slug" label="Slug" />
-                <v-textarea
-                  v-model="meta.value"
-                  label="Value"
-                  class="code-editor"
-                />
+                <json-editor v-model="meta.value" />
               </v-card-text>
               <v-divider />
               <v-card-actions>
@@ -30,10 +26,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import JsonEditor from '~/components/JSONEditor.vue'
 
 export default Vue.extend({
   layout: 'admin',
   name: 'AdminMetaNewPage',
+  components: { JsonEditor },
   data() {
     return {
       loading: false,

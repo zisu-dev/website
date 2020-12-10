@@ -10,12 +10,7 @@
               :disabled="isSystem"
               label="Slug"
             />
-            <v-textarea
-              v-model="meta.value"
-              :disabled="isProtected"
-              label="Value"
-              class="code-editor"
-            />
+            <json-editor v-model="meta.value" />
           </v-card-text>
           <v-divider />
           <v-card-actions>
@@ -41,10 +36,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import JsonEditor from '~/components/JSONEditor.vue'
 
 export default Vue.extend({
   layout: 'admin',
   name: 'AdminMetaItemPage',
+  components: { JsonEditor },
   async asyncData(ctx) {
     const id = ctx.params.id
     const data: any = await ctx.$http.$get(`/meta/${id}`)

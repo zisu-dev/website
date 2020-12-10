@@ -1,0 +1,102 @@
+<template>
+  <div />
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  name: 'MonacoEditor',
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
+  props: {
+    theme: {
+      type: String,
+      default: ''
+    },
+    language: {
+      type: String,
+      required: true
+    },
+    readonly: {
+      type: Boolean
+    },
+    value: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      editor: null as any
+    }
+  },
+  mounted() {
+    this.initMonaco()
+    this.$on('hook:beforeDestroy', () => {
+      this.editor!.dispose()
+    })
+  },
+  methods: {
+    initMonaco() {
+      const options = {
+        value: this.value,
+        theme: this.theme || (this.$vuetify.theme.dark ? 'vs-dark' : 'vs'),
+        language: this.language,
+        automaticLayout: true,
+        readOnly: this.readonly
+      }
+      const monaco = require('monaco-editor')
+      this.editor = monaco.editor.create(this.$el as any, options)
+      this.$emit('editorDidMount', this.editor)
+      this.editor.onContextMenu((ev: any) => this.$emit('contextMenu', ev))
+      this.editor.onDidBlurEditorText(() => this.$emit('blurText'))
+      this.editor.onDidChangeConfiguration((ev: any) =>
+        this.$emit('configuration', ev)
+      )
+      this.editor.onDidChangeCursorPosition((ev: any) =>
+        this.$emit('position', ev)
+      )
+      this.editor.onDidChangeCursorSelection((ev: any) =>
+        this.$emit('selection', ev)
+      )
+      this.editor.onDidChangeModel((ev: any) => this.$emit('model', ev))
+      this.editor.onDidChangeModelContent((ev: any) => {
+        const value = this.editor!.getValue()
+        if (this.value !== value) {
+          this.$emit('change', value, ev)
+        }
+      })
+      this.editor.onDidChangeModelDecorations((ev: any) =>
+        this.$emit('modelDecorations', ev)
+      )
+      this.editor.onDidChangeModelLanguage((ev: any) =>
+        this.$emit('modelLanguage', ev)
+      )
+      this.editor.onDidChangeModelOptions((ev: any) =>
+        this.$emit('modelOptions', ev)
+      )
+      this.editor.onDidDispose(() => this.$emit('afterDispose'))
+      this.editor.onDidFocusEditorText(() => this.$emit('focusText'))
+      this.editor.onDidLayoutChange((ev: any) => this.$emit('layout', ev))
+      this.editor.onDidScrollChange((ev: any) => this.$emit('scroll', ev))
+      this.editor.onKeyDown((ev: any) => this.$emit('keydown', ev))
+      this.editor.onKeyUp((ev: any) => this.$emit('keyup', ev))
+      this.editor.onMouseDown((ev: any) => this.$emit('mouseDown', ev))
+      this.editor.onMouseLeave((ev: any) => this.$emit('mouseLeave', ev))
+      this.editor.onMouseMove((ev: any) => this.$emit('mouseMove', ev))
+      this.editor.onMouseUp((ev: any) => this.$emit('mouseUp', ev))
+    },
+
+    getEditor() {
+      return this.editor
+    },
+
+    focus() {
+      this.editor!.focus()
+    }
+  }
+})
+</script>

@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/types'
+import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin'
 
 const config: NuxtConfig = {
   target: 'server',
@@ -31,7 +32,9 @@ const config: NuxtConfig = {
     customVariables: ['~/styles/variables.scss'],
     treeShake: true
   },
-  build: {},
+  build: {
+    plugins: [new MonacoWebpackPlugin()]
+  },
   modern: true
 }
 
