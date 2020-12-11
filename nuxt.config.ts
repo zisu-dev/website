@@ -1,5 +1,15 @@
 import { NuxtConfig } from '@nuxt/types'
-import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin'
+import { NuxtOptionsBuild } from '@nuxt/types/config/build'
+
+function generateBuildConfig(): NuxtOptionsBuild | undefined {
+  if (process.env.VERCEL) {
+    return
+  }
+  const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  return {
+    plugins: [new MonacoWebpackPlugin()]
+  }
+}
 
 const config: NuxtConfig = {
   target: 'server',
@@ -32,9 +42,7 @@ const config: NuxtConfig = {
     customVariables: ['~/styles/variables.scss'],
     treeShake: true
   },
-  build: {
-    plugins: [new MonacoWebpackPlugin()]
-  },
+  build: generateBuildConfig(),
   modern: true
 }
 
