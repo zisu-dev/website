@@ -2,7 +2,8 @@ import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
 
 function generateBuildConfig(): NuxtOptionsBuild | undefined {
-  if (process.env.VERCEL) {
+  if (process.env.VERCEL && !process.env.CI) {
+    // Do not add webpack plugins when running on Vercel
     return
   }
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
