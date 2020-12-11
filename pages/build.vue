@@ -9,6 +9,7 @@
               :key="i"
               :href="info.link"
               target="_blank"
+              rel="noopener"
             >
               <v-list-item-content>
                 <v-list-item-title>{{ info.name }}</v-list-item-title>

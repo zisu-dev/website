@@ -11,6 +11,7 @@
               :key="i"
               :href="x.link"
               target="_blank"
+              rel="noopener"
             >
               <v-list-item-avatar>
                 <v-icon v-if="x.icon" size="48">{{ x.icon }}</v-icon>

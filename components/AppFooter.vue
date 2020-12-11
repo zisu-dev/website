@@ -13,6 +13,7 @@
               icon
               href="https://github.com/zzs-web/website/blob/master/LICENSE"
               target="_blank"
+              rel="noopener"
               v-on="on"
             >
               <v-icon>mdi-certificate</v-icon>
@@ -26,6 +27,7 @@
               icon
               href="https://creativecommons.org/licenses/by-sa/"
               target="_blank"
+              rel="noopener"
               v-on="on"
             >
               <v-icon>mdi-creative-commons</v-icon>

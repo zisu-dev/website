@@ -29,7 +29,11 @@
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list color="transparent">
-            <v-list-item href="https://proxy.zhangzisu.cn/" target="_blank">
+            <v-list-item
+              href="https://proxy.zhangzisu.cn/"
+              target="_blank"
+              rel="noopener"
+            >
               <v-list-item-content>
                 <v-list-item-title>Proxy</v-list-item-title>
                 <v-list-item-subtitle>
@@ -37,7 +41,11 @@
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item href="https://status.zhangzisu.cn/" target="_blank">
+            <v-list-item
+              href="https://status.zhangzisu.cn/"
+              target="_blank"
+              rel="noopener"
+            >
               <v-list-item-content>
                 <v-list-item-title>Status</v-list-item-title>
                 <v-list-item-subtitle>
@@ -53,7 +61,11 @@
           <v-card-title>Contact</v-card-title>
           <v-divider />
           <v-list color="transparent">
-            <v-list-item href="https://twitter.com/zzisu03" target="_blank">
+            <v-list-item
+              href="https://twitter.com/zzisu03"
+              target="_blank"
+              rel="noopener"
+            >
               <v-list-item-avatar>
                 <v-icon color="#1DA1F2">mdi-twitter</v-icon>
               </v-list-item-avatar>
@@ -61,7 +73,11 @@
                 <v-list-item-title>zzisu03</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item href="https://t.me/zhangzisu" target="_blank">
+            <v-list-item
+              href="https://t.me/zhangzisu"
+              target="_blank"
+              rel="noopener"
+            >
               <v-list-item-avatar>
                 <v-icon color="#2CA5E0">mdi-telegram</v-icon>
               </v-list-item-avatar>
@@ -69,7 +85,7 @@
                 <v-list-item-title>zhangzisu</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item href="mailto:i@zzs1.cn" target="_blank">
+            <v-list-item href="mailto:i@zzs1.cn" target="_blank" rel="noopener">
               <v-list-item-avatar>
                 <v-icon>mdi-email</v-icon>
               </v-list-item-avatar>
@@ -77,7 +93,11 @@
                 <v-list-item-title>i@zzs1.cn</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-list-item href="https://github.com/zzisu" target="_blank">
+            <v-list-item
+              href="https://github.com/zzisu"
+              target="_blank"
+              rel="noopener"
+            >
               <v-list-item-avatar>
                 <v-icon color="#181717">mdi-github</v-icon>
               </v-list-item-avatar>
