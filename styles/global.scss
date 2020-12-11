@@ -21,3 +21,9 @@
   font-size: 0.8em;
   font-family: 'Courier New', Courier, monospace;
 }
+
+.editor {
+  height: 500px;
+  resize: vertical;
+  overflow: scroll hidden;
+}

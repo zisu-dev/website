@@ -19,17 +19,17 @@
                 />
                 <v-text-field v-model="post.slug" label="Slug" />
                 <v-text-field v-model="post.title" label="Title" />
-                <v-textarea
+                <v-card-subtitle>Summary</v-card-subtitle>
+                <monaco-editor
                   v-model="post.summary"
-                  label="Summary"
-                  class="code-editor"
-                  :hint="'Text count: ' + post.summary.length"
+                  language="txt"
+                  class="editor"
                 />
-                <v-textarea
+                <v-card-subtitle>Content</v-card-subtitle>
+                <monaco-editor
                   v-model="post.content"
-                  label="Content"
-                  class="code-editor"
-                  :hint="'Text count: ' + post.content.length"
+                  language="txt"
+                  class="editor"
                 />
                 <v-text-field
                   :value="new Date(post.published).toLocaleString()"
@@ -118,6 +118,7 @@
 import Vue from 'vue'
 import TagAutocomplete from '~/components/TagAutocomplete.vue'
 import Post from '~/components/Post.vue'
+import MonacoEditor from '~/components/MonacoEditor.vue'
 import {
   toISODateString,
   toISOTimeString,
@@ -128,7 +129,7 @@ import {
 export default Vue.extend({
   layout: 'admin',
   name: 'AdminPostItemPage',
-  components: { TagAutocomplete, Post },
+  components: { TagAutocomplete, Post, MonacoEditor },
   async asyncData(ctx) {
     const id = ctx.params.id
     const data: any = await ctx.$http.$get(`/post/${id}`)

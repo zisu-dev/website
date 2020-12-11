@@ -1,5 +1,5 @@
 <template>
-  <monaco-editor v-model="json" language="json" style="height: 500px" />
+  <monaco-editor v-model="json" language="json" class="editor" />
 </template>
 
 <script lang="ts">

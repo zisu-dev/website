@@ -12,18 +12,21 @@
                   type="number"
                   min="-1"
                   max="16"
+                  :hint="priorityHint"
                 />
                 <v-text-field v-model="post.slug" label="Slug" />
                 <v-text-field v-model="post.title" label="Title" />
-                <v-textarea
+                <v-card-subtitle>Summary</v-card-subtitle>
+                <monaco-editor
                   v-model="post.summary"
-                  label="Summary"
-                  class="code-editor"
+                  language="txt"
+                  class="editor"
                 />
-                <v-textarea
+                <v-card-subtitle>Content</v-card-subtitle>
+                <monaco-editor
                   v-model="post.content"
-                  label="Content"
-                  class="code-editor"
+                  language="txt"
+                  class="editor"
                 />
               </v-card-text>
               <v-divider />
@@ -43,10 +46,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import MonacoEditor from '~/components/MonacoEditor.vue'
 
 export default Vue.extend({
   layout: 'admin',
   name: 'AdminPostNewPage',
+  components: { MonacoEditor },
   data() {
     return {
       loading: false,
@@ -59,6 +64,14 @@ export default Vue.extend({
         published: Date.now(),
         public: false
       }
+    }
+  },
+  computed: {
+    priorityHint() {
+      if (this.$data.post.priority === -1)
+        return "Page (won't display in post list)"
+      if (this.$data.post.priority === 0) return 'Common Post'
+      return 'Prioritized Post'
     }
   },
   created() {

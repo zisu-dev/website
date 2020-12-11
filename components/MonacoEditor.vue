@@ -30,7 +30,27 @@ export default Vue.extend({
   },
   data() {
     return {
-      editor: null as any
+      editor: null as any,
+      monaco: null as any
+    }
+  },
+  watch: {
+    value(val: string) {
+      if (val !== this.editor.getValue()) {
+        this.editor.setValue(val)
+      }
+    },
+    language(val: string) {
+      const model = this.editor.getModel()
+      if (model) {
+        this.monaco.editor.setModelLanguage(model, val)
+      }
+    },
+    theme(val: string) {
+      this.monaco.editor.setTheme(val)
+    },
+    readonly(val: boolean) {
+      this.editor.updateOptions({ readOnly: val })
     }
   },
   mounted() {
@@ -48,8 +68,8 @@ export default Vue.extend({
         automaticLayout: true,
         readOnly: this.readonly
       }
-      const monaco = require('monaco-editor')
-      this.editor = monaco.editor.create(this.$el as any, options)
+      this.monaco = require('monaco-editor')
+      this.editor = this.monaco.editor.create(this.$el as any, options)
       this.$emit('editorDidMount', this.editor)
       this.editor.onContextMenu((ev: any) => this.$emit('contextMenu', ev))
       this.editor.onDidBlurEditorText(() => this.$emit('blurText'))
@@ -90,7 +110,7 @@ export default Vue.extend({
       this.editor.onMouseUp((ev: any) => this.$emit('mouseUp', ev))
     },
 
-    getEditor() {
+    getEditor(): any {
       return this.editor
     },
 
