@@ -76,7 +76,7 @@ export default Vue.extend({
         await this.$http.$put(`/meta/${this.$data.meta._id}`, meta)
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -87,7 +87,7 @@ export default Vue.extend({
         this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/meta')
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }

@@ -60,7 +60,7 @@
                     <v-card-text>
                       <v-text-field v-model="user.name" label="Name" />
                       <v-text-field
-                        v-model="user.email"
+                        v-model.lazy="user.email"
                         label="Email"
                         type="email"
                       />
@@ -171,7 +171,7 @@ export default Vue.extend({
         await this.$http.$put(`/user/${this.$data.user._id}`, body)
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -182,7 +182,7 @@ export default Vue.extend({
         this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/user')
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -194,7 +194,7 @@ export default Vue.extend({
           delete this.$data.user.oauth.github
           this.$toast.success({ title: 'Success' })
         } catch (e) {
-          this.$toast.error({ title: 'Failed', message: e.message })
+          this.$toast.$error(e)
         }
       } else {
         open()

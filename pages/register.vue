@@ -19,6 +19,16 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
+            <v-btn
+              v-if="githubEnabled"
+              color="#181717"
+              outlined
+              :disabled="loading"
+              @click="githubOpen"
+            >
+              <v-icon left>mdi-github</v-icon>
+              Github
+            </v-btn>
             <v-btn color="primary" :loading="loading" @click="submit">
               Submit
             </v-btn>
@@ -31,6 +41,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
   name: 'RegisterPage',
@@ -38,16 +49,46 @@ export default Vue.extend({
     return {
       loading: false,
       login: '',
-      pass: ''
+      pass: '',
+      githubEnabled: enabled
+    }
+  },
+  mounted() {
+    const githubState = getState()
+    if (githubState) {
+      const { code, state } = this.$route.query
+      if (githubState === state) {
+        this.githubLogin(code, state)
+      } else {
+        this.$router.replace('/')
+      }
     }
   },
   methods: {
     async submit() {
       this.loading = true
       try {
-        throw await new Error('Not implemented')
+        throw await new Error('Only Github OAuth is currently supported')
       } catch (e) {
-        this.$toast.error({ title: 'Register failed', message: e.message })
+        this.$toast.$error(e)
+      }
+      this.loading = false
+    },
+    githubOpen() {
+      open()
+    },
+    async githubLogin(code: string, state: string) {
+      this.loading = true
+      try {
+        const body = { code, state }
+        const res: any = await this.$http.$post('/oauth/github/register', body)
+        this.$cookies.set('token', res.token)
+        this.$store.commit(':login', res)
+        this.$http.setToken(res.token, 'Bearer')
+        this.$toast.success({ title: `Welcome ${res.user.name}` })
+        this.$router.push(`/user/${res.user._id}`)
+      } catch (e) {
+        this.$toast.$error(e)
       }
       this.loading = false
     }

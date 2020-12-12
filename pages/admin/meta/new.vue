@@ -57,7 +57,7 @@ export default Vue.extend({
         this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
         this.$router.push('/admin/meta/' + _id)
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }

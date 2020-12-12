@@ -79,7 +79,7 @@ export default Vue.extend({
         this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push('/')
       } catch (e) {
-        this.$toast.error({ title: 'Login failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -97,7 +97,7 @@ export default Vue.extend({
         this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push('/')
       } catch (e) {
-        this.$toast.error({ title: 'Login failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }

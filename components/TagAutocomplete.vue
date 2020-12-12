@@ -43,7 +43,7 @@ export default Vue.extend({
         const res: any = await this.$http.$get('/tag')
         this.items = res.items
       } catch (e) {
-        this.$toast.error({ title: 'Error', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }

@@ -188,7 +188,7 @@ export default Vue.extend({
         await this.$http.$put(`/post/${this.$data.post._id}`, post)
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -204,7 +204,7 @@ export default Vue.extend({
         this.newTag = null
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -219,7 +219,7 @@ export default Vue.extend({
         }
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -230,7 +230,7 @@ export default Vue.extend({
         this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/post')
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }

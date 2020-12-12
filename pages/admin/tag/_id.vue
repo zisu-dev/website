@@ -59,7 +59,7 @@ export default Vue.extend({
         await this.$http.$put(`/tag/${this.$data.tag._id}`, tag)
         this.$toast.success({ title: 'Success' })
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     },
@@ -70,7 +70,7 @@ export default Vue.extend({
         this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/tag')
       } catch (e) {
-        this.$toast.error({ title: 'Failed', message: e.message })
+        this.$toast.$error(e)
       }
       this.loading = false
     }
