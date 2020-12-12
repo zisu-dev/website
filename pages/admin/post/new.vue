@@ -33,8 +33,12 @@
               <v-card-actions>
                 <v-switch v-model="post.public" label="Public" />
                 <v-spacer />
-                <v-btn color="error" @click="reset">Reset</v-btn>
-                <v-btn color="primary" @click="submit">Create</v-btn>
+                <v-btn :disabled="loading" color="error" @click="reset">
+                  Reset
+                </v-btn>
+                <v-btn :disabled="loading" color="primary" @click="submit">
+                  Create
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>

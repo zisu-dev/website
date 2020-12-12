@@ -43,10 +43,22 @@
               <v-card-actions>
                 <v-switch v-model="post.public" label="Public" />
                 <v-spacer />
-                <v-btn color="success" :to="'/post/' + post.slug">View</v-btn>
-                <v-btn color="warning" @click="reset">Reset</v-btn>
-                <v-btn color="primary" @click="submit">Update</v-btn>
-                <v-btn color="error" @click="remove">Delete</v-btn>
+                <v-btn
+                  :disabled="loading"
+                  color="success"
+                  :to="'/post/' + post.slug"
+                >
+                  View
+                </v-btn>
+                <v-btn :disabled="loading" color="warning" @click="reset">
+                  Reset
+                </v-btn>
+                <v-btn :disabled="loading" color="primary" @click="submit">
+                  Update
+                </v-btn>
+                <v-btn :disabled="loading" color="error" @click="remove">
+                  Delete
+                </v-btn>
               </v-card-actions>
             </v-tab-item>
             <v-tab>Tags</v-tab>

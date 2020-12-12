@@ -20,11 +20,21 @@
               :disabled="isProtected"
             />
             <v-spacer />
-            <v-btn color="warning" @click="reset">Reset</v-btn>
-            <v-btn color="primary" :disabled="isProtected" @click="submit">
+            <v-btn :disabled="loading" color="warning" @click="reset">
+              Reset
+            </v-btn>
+            <v-btn
+              color="primary"
+              :disabled="isProtected || loading"
+              @click="submit"
+            >
               Update
             </v-btn>
-            <v-btn color="error" :disabled="isSystem" @click="remove">
+            <v-btn
+              color="error"
+              :disabled="isSystem || loading"
+              @click="remove"
+            >
               Delete
             </v-btn>
           </v-card-actions>

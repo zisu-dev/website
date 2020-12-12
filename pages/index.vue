@@ -29,6 +29,12 @@
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list color="transparent">
+            <v-list-item to="/blog">
+              <v-list-item-content>
+                <v-list-item-title>Blog</v-list-item-title>
+                <v-list-item-subtitle>ZZisu.dev blog</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
             <v-list-item
               href="https://proxy.zhangzisu.cn/"
               target="_blank"
@@ -38,18 +44,6 @@
                 <v-list-item-title>Proxy</v-list-item-title>
                 <v-list-item-subtitle>
                   ZhangZisu.CN Proxy Services
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item
-              href="https://status.zhangzisu.cn/"
-              target="_blank"
-              rel="noopener"
-            >
-              <v-list-item-content>
-                <v-list-item-title>Status</v-list-item-title>
-                <v-list-item-subtitle>
-                  ZhangZisu.CN Status
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>

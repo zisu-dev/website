@@ -19,6 +19,14 @@
             <v-list-item-title>Posts</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/about">
+          <v-list-item-avatar tile size="24">
+            <v-icon>mdi-information-outline</v-icon>
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>About</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item to="/build">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-rocket</v-icon>

@@ -10,6 +10,10 @@
           </v-chip>
         </div>
       </div>
+      <template v-if="post.priority > 0">
+        <v-spacer />
+        <v-chip color="red" outlined>Pinned</v-chip>
+      </template>
     </v-card-title>
     <template v-if="isAdmin">
       <v-divider />
