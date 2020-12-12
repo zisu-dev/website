@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ zIndex }">
     <v-img :src="bg" />
   </div>
 </template>
@@ -17,6 +17,9 @@ export default Vue.extend({
       return this.$vuetify.theme.dark
         ? 'https://s3.ax1x.com/2020/12/06/DXKDj1.jpg'
         : 'https://s3.ax1x.com/2020/12/08/rpmt3D.jpg'
+    },
+    zIndex() {
+      return this.$store.state.zen ? 0 : -1
     }
   }
 })
@@ -24,7 +27,6 @@ export default Vue.extend({
 
 <style scoped>
 div {
-  z-index: -1;
   position: fixed;
   width: 100%;
   height: 100%;

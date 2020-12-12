@@ -25,7 +25,11 @@ const config: NuxtConfig = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   css: ['~/styles/vuetify.scss', '~/styles/global.scss'],
-  plugins: ['~/plugins/init.ts', '~/plugins/toast.client.ts'],
+  plugins: [
+    '~/plugins/init.ts',
+    '~/plugins/toast.client.ts',
+    '~/plugins/shortcuts.client.ts'
+  ],
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
   modules: [
     '@nuxt/http',

@@ -9,7 +9,8 @@ export const state = () => ({
   acrylic: true,
   token: null as string | null,
   user: null as Record<string, any> | null,
-  initialized: false
+  initialized: false,
+  zen: false
 })
 
 type RootState = ReturnType<typeof state>
@@ -34,6 +35,9 @@ export const mutations: MutationTree<RootState> = {
   },
   'user:update'(state: RootState, user: any) {
     state.user = user
+  },
+  'zen:update'(state: RootState, zen: boolean) {
+    state.zen = zen
   },
   ':initialize'(state: RootState) {
     state.initialized = true

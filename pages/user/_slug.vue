@@ -82,7 +82,7 @@
                       <v-btn
                         v-if="githubEnabled"
                         color="#181717"
-                        outlined
+                        dark
                         :disabled="loading"
                         @click="oAuthGithub"
                       >
