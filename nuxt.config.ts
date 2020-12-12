@@ -30,10 +30,14 @@ const config: NuxtConfig = {
   modules: [
     '@nuxt/http',
     // '@nuxtjs/pwa',
+    '@nuxtjs/gtm',
     'cookie-universal-nuxt'
   ],
   http: {
     baseURL: process.env.API_ENDPOINT
+  },
+  gtm: {
+    id: process.env.GTM_ID
   },
   vuetify: {
     customVariables: ['~/styles/variables.scss'],
