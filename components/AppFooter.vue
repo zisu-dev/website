@@ -1,40 +1,50 @@
 <template>
   <v-footer>
-    <v-row justify="end" no-gutters>
-      <v-col cols="12" sm="auto" class="text-right">
-        <v-btn text disabled class="text-none">
-          &copy; {{ new Date().getFullYear() }} ZhangZisu
-        </v-btn>
-      </v-col>
-      <v-col cols="auto">
-        <v-tooltip top>
-          <template v-slot:activator="{ on }">
+    <v-row no-gutters>
+      <v-col cols="12">
+        <v-row justify="end">
+          <v-col cols="auto">
             <v-btn
-              icon
+              outlined
+              small
+              href="https://stats.zzisu.dev"
+              target="_blank"
+              rel="noopener"
+              color="green"
+            >
+              <v-icon left>mdi-circle-outline</v-icon>
+              stats
+            </v-btn>
+            <v-btn
+              outlined
+              small
               href="https://github.com/zzs-web/website/blob/master/LICENSE"
               target="_blank"
               rel="noopener"
-              v-on="on"
+              color="blue"
             >
-              <v-icon>mdi-certificate</v-icon>
+              <v-icon left>mdi-certificate</v-icon>
+              MIT
             </v-btn>
-          </template>
-          <span>MIT</span>
-        </v-tooltip>
-        <v-tooltip top>
-          <template v-slot:activator="{ on }">
             <v-btn
-              icon
+              outlined
+              small
               href="https://creativecommons.org/licenses/by-sa/"
               target="_blank"
               rel="noopener"
-              v-on="on"
+              color="orange"
             >
-              <v-icon>mdi-creative-commons</v-icon>
+              <v-icon left>mdi-creative-commons</v-icon>
+              BY-SA
             </v-btn>
-          </template>
-          <span>BY-SA</span>
-        </v-tooltip>
+          </v-col>
+        </v-row>
+        <v-divider />
+        <v-row justify="center" no-gutters>
+          <div class="text-overline">
+            &copy; {{ new Date().getFullYear() }} ZhangZisu
+          </div>
+        </v-row>
       </v-col>
     </v-row>
   </v-footer>

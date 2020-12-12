@@ -33,6 +33,9 @@ const config: NuxtConfig = {
     '@nuxtjs/gtm',
     'cookie-universal-nuxt'
   ],
+  env: {
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
+  },
   http: {
     baseURL: process.env.API_ENDPOINT
   },

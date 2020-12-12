@@ -19,9 +19,19 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
-            <v-btn color="primary" :loading="loading" @click="submit"
-              >Submit</v-btn
+            <v-btn
+              v-if="githubEnabled"
+              color="#181717"
+              outlined
+              :disabled="loading"
+              @click="githubOpen"
             >
+              <v-icon left>mdi-github</v-icon>
+              Github
+            </v-btn>
+            <v-btn color="primary" :loading="loading" @click="submit">
+              Submit
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -31,6 +41,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
   name: 'LoginPage',
@@ -38,7 +49,19 @@ export default Vue.extend({
     return {
       loading: false,
       login: '',
-      pass: ''
+      pass: '',
+      githubEnabled: enabled
+    }
+  },
+  mounted() {
+    const githubState = getState()
+    if (githubState) {
+      const { code, state } = this.$route.query
+      if (githubState === state) {
+        this.githubLogin(code, state)
+      } else {
+        this.$router.replace('/')
+      }
     }
   },
   methods: {
@@ -50,6 +73,24 @@ export default Vue.extend({
           pass: this.pass
         }
         const res: any = await this.$http.$post('/login', body)
+        this.$cookies.set('token', res.token)
+        this.$store.commit(':login', res)
+        this.$http.setToken(res.token, 'Bearer')
+        this.$toast.success({ title: `Welcome ${res.user.name}` })
+        this.$router.push('/')
+      } catch (e) {
+        this.$toast.error({ title: 'Login failed', message: e.message })
+      }
+      this.loading = false
+    },
+    githubOpen() {
+      open()
+    },
+    async githubLogin(code: string, state: string) {
+      this.loading = true
+      try {
+        const body = { code, state }
+        const res: any = await this.$http.$post('/oauth/github/login', body)
         this.$cookies.set('token', res.token)
         this.$store.commit(':login', res)
         this.$http.setToken(res.token, 'Bearer')

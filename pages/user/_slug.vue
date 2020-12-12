@@ -4,7 +4,7 @@
       <v-col xs="12" md="8" lg="6">
         <v-row>
           <v-col cols="12">
-            <v-card>
+            <v-card :loading="loading">
               <v-card-title class="pa-0">
                 <v-avatar class="ma-3">
                   <v-img :src="avatar" />
@@ -76,6 +76,21 @@
                       <v-btn color="primary" @click="submit">Submit</v-btn>
                     </v-card-actions>
                   </v-tab-item>
+                  <v-tab>OAuth</v-tab>
+                  <v-tab-item>
+                    <v-card-text>
+                      <v-btn
+                        v-if="githubEnabled"
+                        color="#181717"
+                        outlined
+                        :disabled="loading"
+                        @click="oAuthGithub"
+                      >
+                        <v-icon left>mdi-github</v-icon>
+                        {{ user.oauth.github ? 'Unlink' : 'Link' }}
+                      </v-btn>
+                    </v-card-text>
+                  </v-tab-item>
                 </template>
                 <template v-if="isAdmin">
                   <v-tab>Admin</v-tab>
@@ -86,8 +101,9 @@
                         color="error"
                         :disabled="user.perm.admin"
                         @click="remove"
-                        >Delete</v-btn
                       >
+                        Delete
+                      </v-btn>
                     </v-card-actions>
                   </v-tab-item>
                 </template>
@@ -104,13 +120,15 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import gravatar from 'gravatar'
+import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
   async asyncData(ctx) {
     const slug = ctx.params.slug
     const data: any = await ctx.$http.$get(`/user/${slug}`)
     return {
-      user: data
+      user: data,
+      githubEnabled: enabled
     }
   },
   data() {
@@ -126,6 +144,17 @@ export default Vue.extend({
     },
     avatar() {
       return gravatar.url(this.$data.user.email)
+    }
+  },
+  mounted() {
+    const githubState = getState()
+    if (githubState) {
+      const { code, state } = this.$route.query
+      if (githubState === state) {
+        this.githubLink(code, state)
+      } else {
+        this.$router.replace('/')
+      }
     }
   },
   methods: {
@@ -155,6 +184,33 @@ export default Vue.extend({
       } catch (e) {
         this.$toast.error({ title: 'Failed', message: e.message })
       }
+      this.loading = false
+    },
+    async oAuthGithub() {
+      this.loading = true
+      if (this.$data.user.oauth.github) {
+        try {
+          await this.$http.$post(`/oauth/github/unlink`)
+          delete this.$data.user.oauth.github
+          this.$toast.success({ title: 'Success' })
+        } catch (e) {
+          this.$toast.error({ title: 'Failed', message: e.message })
+        }
+      } else {
+        open()
+      }
+      this.loading = false
+    },
+    async githubLink(code: string, state: string) {
+      this.loading = true
+      try {
+        const body = { code, state }
+        await this.$http.$post('/oauth/github/link', body)
+        this.$toast.success({ title: `Link success` })
+      } catch (e) {
+        this.$toast.error({ title: 'Link failed', message: e.message })
+      }
+      this.$router.go(0)
       this.loading = false
     }
   },
