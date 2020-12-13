@@ -1,14 +1,14 @@
 <template>
   <v-menu v-if="user" offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn icon v-bind="attrs" :to="'/user/' + user.slug" v-on="on">
+      <v-btn icon v-bind="attrs" v-on="on">
         <v-avatar size="32">
           <v-img :src="getAvatar(user.email)" />
         </v-avatar>
       </v-btn>
     </template>
     <v-list dense>
-      <v-list-item>
+      <v-list-item :to="'/user/' + user.slug">
         <v-list-item-icon>
           <v-icon>mdi-account</v-icon>
         </v-list-item-icon>

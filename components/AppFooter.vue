@@ -5,50 +5,17 @@
         <v-row justify="end">
           <v-col cols="auto">
             <v-btn
-              outlined
+              v-for="(badge, i) in badges"
+              :key="i"
+              :href="badge.href"
+              :color="badge.color"
               small
-              :href="
-                'https://github.com/zzs-web/website/commit/' + build.git.hash
-              "
+              outlined
               target="_blank"
               rel="noopener"
-              color="#F05032"
             >
-              <v-icon left>mdi-git</v-icon>
-              {{ build.git.hash }}
-            </v-btn>
-            <v-btn
-              outlined
-              small
-              href="https://stats.zzisu.dev"
-              target="_blank"
-              rel="noopener"
-              color="green"
-            >
-              <v-icon left>mdi-circle-outline</v-icon>
-              stats
-            </v-btn>
-            <v-btn
-              outlined
-              small
-              href="https://github.com/zzs-web/website/blob/master/LICENSE"
-              target="_blank"
-              rel="noopener"
-              color="blue"
-            >
-              <v-icon left>mdi-certificate</v-icon>
-              MIT
-            </v-btn>
-            <v-btn
-              outlined
-              small
-              href="https://creativecommons.org/licenses/by-sa/"
-              target="_blank"
-              rel="noopener"
-              color="orange"
-            >
-              <v-icon left>mdi-creative-commons</v-icon>
-              BY-SA
+              <v-icon left v-text="badge.icon" />
+              {{ badge.text }}
             </v-btn>
           </v-col>
         </v-row>
@@ -70,7 +37,33 @@ export default Vue.extend({
   name: 'AppFooter',
   data() {
     return {
-      build: BUILD
+      build: BUILD,
+      badges: [
+        {
+          href: 'https://github.com/zzs-web/website/commit/' + BUILD.git.hash,
+          color: '#F05032',
+          icon: 'mdi-git',
+          text: BUILD.git.hash
+        },
+        {
+          href: 'https://stats.zzisu.dev',
+          color: 'green',
+          icon: 'mdi-circle-outline',
+          text: 'stats'
+        },
+        {
+          href: 'https://github.com/zzs-web/website/blob/master/LICENSE',
+          color: 'blue',
+          icon: 'mdi-certificate',
+          text: 'MIT'
+        },
+        {
+          href: 'https://creativecommons.org/licenses/by-sa',
+          color: '#EF9421',
+          icon: 'mdi-creative-commons',
+          text: 'BY-SA'
+        }
+      ]
     }
   }
 })
