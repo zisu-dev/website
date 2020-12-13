@@ -29,7 +29,7 @@
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list color="transparent">
-            <v-list-item to="/blog">
+            <v-list-item to="/post">
               <v-list-item-content>
                 <v-list-item-title>Blog</v-list-item-title>
                 <v-list-item-subtitle>ZZisu.dev blog</v-list-item-subtitle>
