@@ -24,6 +24,7 @@
                   v-model="post.summary"
                   language="txt"
                   class="editor"
+                  style="height: 300px"
                 />
                 <v-card-subtitle>Content</v-card-subtitle>
                 <monaco-editor

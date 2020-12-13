@@ -1,5 +1,5 @@
 <template>
-  <v-app class="acrylic">
+  <v-app class="acrylic" style="min-width: 640px">
     <app-bar v-model="drawer" />
     <v-navigation-drawer v-model="drawer" app>
       <v-list nav>

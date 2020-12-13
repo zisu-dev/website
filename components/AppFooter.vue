@@ -7,6 +7,19 @@
             <v-btn
               outlined
               small
+              :href="
+                'https://github.com/zzs-web/website/commit/' + build.git.hash
+              "
+              target="_blank"
+              rel="noopener"
+              color="#F05032"
+            >
+              <v-icon left>mdi-git</v-icon>
+              {{ build.git.hash }}
+            </v-btn>
+            <v-btn
+              outlined
+              small
               href="https://stats.zzisu.dev"
               target="_blank"
               rel="noopener"
@@ -54,6 +67,11 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'AppFooter'
+  name: 'AppFooter',
+  data() {
+    return {
+      build: BUILD
+    }
+  }
 })
 </script>

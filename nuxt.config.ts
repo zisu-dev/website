@@ -1,5 +1,17 @@
+import cp from 'child_process'
 import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
+
+function run(cmd: string) {
+  return cp.execSync(cmd).toString().trim()
+}
+
+function getGitInfo() {
+  return {
+    branch: run('git rev-parse --abbrev-ref HEAD'),
+    hash: run('git rev-parse --short HEAD')
+  }
+}
 
 function generateBuildConfig(): NuxtOptionsBuild | undefined {
   if (process.env.VERCEL && !process.env.CI) {
@@ -7,8 +19,17 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
     return
   }
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  const { DefinePlugin } = require('webpack')
   return {
-    plugins: [new MonacoWebpackPlugin()]
+    plugins: [
+      new MonacoWebpackPlugin(),
+      new DefinePlugin({
+        BUILD: JSON.stringify({
+          git: getGitInfo(),
+          time: Date.now()
+        })
+      })
+    ]
   }
 }
 
