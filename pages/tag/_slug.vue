@@ -37,8 +37,10 @@
         </v-row>
         <template v-if="$fetchState.pending">
           <v-row justify="center">
-            <v-col cols="auto">
-              <loading />
+            <v-col cols="12">
+              <v-card>
+                <v-skeleton-loader type="article" />
+              </v-card>
             </v-col>
           </v-row>
         </template>
@@ -81,13 +83,12 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import PostList from '~/components/PostList.vue'
-import Loading from '~/components/Loading.vue'
 import Sidebar from '~/components/Sidebar.vue'
 import Bml from '~/components/Bml.vue'
 
 export default Vue.extend({
   name: 'TagPage',
-  components: { PostList, Loading, Sidebar, Bml },
+  components: { PostList, Sidebar, Bml },
   async fetch() {
     const data: any = await this.$http.$get('/post/', {
       searchParams: {

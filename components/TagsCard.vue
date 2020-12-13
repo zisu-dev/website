@@ -2,7 +2,10 @@
   <v-card>
     <v-card-title>Tags</v-card-title>
     <v-divider />
-    <template v-if="tags">
+    <template v-if="$fetchState.pending">
+      <v-skeleton-loader type="text@3" />
+    </template>
+    <template v-else-if="tags">
       <tag-chip
         v-for="(tag, i) in tags"
         :key="'t' + i"

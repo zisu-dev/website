@@ -76,10 +76,13 @@
           <v-card-title>Powered By</v-card-title>
           <v-divider />
           <v-card-text class="text-center">
-            <v-icon color="#339933">mdi-nodejs</v-icon>
-            <v-icon color="#8DD6F9">mdi-webpack</v-icon>
-            <v-icon color="#4FC08D">mdi-vuejs</v-icon>
-            <v-icon color="#1867C0">mdi-vuetify</v-icon>
+            <v-icon
+              v-for="(power, i) of powers"
+              :key="i"
+              :color="power.color"
+              large
+              v-text="power.icon"
+            />
           </v-card-text>
         </v-card>
       </v-col>
@@ -112,6 +115,13 @@ export default Vue.extend({
           'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?logo=netlify&style=flat-square'
         ]
       }
+    ],
+    powers: [
+      { color: '#339933', icon: 'mdi-nodejs' },
+      { color: '#8DD6F9', icon: 'mdi-webpack' },
+      { color: '#4FC08D', icon: 'mdi-vuejs' },
+      { color: '#00C58E', icon: 'mdi-nuxt' },
+      { color: '#1867C0', icon: 'mdi-vuetify' }
     ],
     build: BUILD
   }),

@@ -31,9 +31,9 @@
     </v-col>
     <template v-if="$fetchState.pending">
       <v-col cols="12">
-        <v-row justify="center">
-          <loading />
-        </v-row>
+        <v-card>
+          <v-skeleton-loader type="article" />
+        </v-card>
       </v-col>
     </template>
     <template v-else-if="$fetchState.error">
@@ -67,11 +67,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostList from '~/components/PostList.vue'
-import Loading from '~/components/Loading.vue'
 
 export default Vue.extend({
   name: 'PostPage',
-  components: { PostList, Loading },
+  components: { PostList },
   async fetch() {
     const searchParams: Record<string, any> = {
       page: this.curPage,
