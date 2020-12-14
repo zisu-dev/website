@@ -190,7 +190,7 @@ export default Vue.extend({
       this.loading = true
       if (this.$data.user.oauth.github) {
         try {
-          await this.$http.$post(`/oauth/github/unlink`)
+          await this.$http.$post(`/oauth/github/unlink/${this.$data.user._id}`)
           delete this.$data.user.oauth.github
           this.$toast.success({ title: 'Success' })
         } catch (e) {
@@ -205,7 +205,10 @@ export default Vue.extend({
       this.loading = true
       try {
         const body = { code, state }
-        await this.$http.$post('/oauth/github/link', body)
+        this.$data.user.oauth.github = await this.$http.$post(
+          `/oauth/github/link/${this.$data.user._id}`,
+          body
+        )
         this.$toast.success({ title: `Link success` })
       } catch (e) {
         this.$toast.error({ title: 'Link failed', message: e.message })
