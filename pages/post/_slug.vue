@@ -1,7 +1,17 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <post :post="post" />
+      <template v-if="$fetchState.pending">
+        <v-card>
+          <v-skeleton-loader type="article" />
+        </v-card>
+      </template>
+      <template v-else-if="$fetchState.error">
+        <error-card :error="$fetchState.error" @reload="$fetch" />
+      </template>
+      <template v-else>
+        <post :post="post" />
+      </template>
     </v-col>
   </v-row>
 </template>
@@ -9,14 +19,20 @@
 <script lang="ts">
 import Vue from 'vue'
 import Post from '~/components/Post.vue'
+import ErrorCard from '~/components/ErrorCard.vue'
 
 export default Vue.extend({
-  components: { Post },
-  async asyncData(ctx) {
-    const slug = ctx.params.slug
-    const data: any = await ctx.$http.$get(`/post/${slug}`)
+  components: { Post, ErrorCard },
+  async fetch() {
+    const slug = this.$route.params.slug
+    this.post = await this.$http.$get(`/post/${slug}`)
+    if (this.post.priority < 0) {
+      this.$router.replace(`/${this.post.slug}`)
+    }
+  },
+  data() {
     return {
-      post: data
+      post: {} as any
     }
   },
   head() {
