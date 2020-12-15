@@ -1,6 +1,7 @@
 import cp from 'child_process'
 import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
+import { NuxtOptionsModule } from '@nuxt/types/config/module'
 
 function run(cmd: string) {
   return cp.execSync(cmd).toString().trim()
@@ -33,8 +34,21 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
   }
 }
 
+function generateModulesConfig(): NuxtOptionsModule[] | undefined {
+  const options = [
+    '@nuxt/http',
+    'cookie-universal-nuxt'
+    // '@nuxtjs/pwa',
+  ]
+  if (process.env.GTM_ID) {
+    options.push('@nuxtjs/gtm')
+  }
+  return options
+}
+
 const config: NuxtConfig = {
   target: 'server',
+  modern: true,
   head: {
     titleTemplate: '%s - ZZisu.dev',
     title: 'ZZisu.dev',
@@ -52,17 +66,11 @@ const config: NuxtConfig = {
     '~/plugins/shortcuts.client.ts'
   ],
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
-  modules: [
-    '@nuxt/http',
-    // '@nuxtjs/pwa',
-    '@nuxtjs/gtm',
-    'cookie-universal-nuxt'
-  ],
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
   },
   http: {
-    baseURL: process.env.API_ENDPOINT
+    baseURL: process.env.API_ENDPOINT || 'https://cms.zzisu.dev'
   },
   gtm: {
     id: process.env.GTM_ID
@@ -72,7 +80,7 @@ const config: NuxtConfig = {
     treeShake: true
   },
   build: generateBuildConfig(),
-  modern: true
+  modules: generateModulesConfig()
 }
 
 export default config
