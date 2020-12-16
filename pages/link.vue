@@ -7,7 +7,7 @@
           <v-divider />
           <v-list color="transparent">
             <v-list-item
-              v-for="(x, i) in links"
+              v-for="(x, i) of links"
               :key="i"
               :href="x.link"
               target="_blank"

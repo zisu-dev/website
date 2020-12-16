@@ -62,7 +62,7 @@
           <v-divider />
           <v-list>
             <v-list-item
-              v-for="(contact, i) in contacts"
+              v-for="(contact, i) of contacts"
               :key="i"
               :href="contact.href"
               target="_blank"

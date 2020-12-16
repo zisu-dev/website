@@ -43,7 +43,7 @@
           <v-divider />
           <v-list color="transparent">
             <v-list-item
-              v-for="(info, i) in infos"
+              v-for="(info, i) of infos"
               :key="i"
               :href="info.link"
               target="_blank"
@@ -60,7 +60,7 @@
               </v-list-item-content>
               <v-list-item-action>
                 <v-row dense>
-                  <v-col v-for="(badge, j) in info.badges" :key="j">
+                  <v-col v-for="(badge, j) of info.badges" :key="j">
                     <v-img :src="badge + '&t=' + t" />
                   </v-col>
                 </v-row>

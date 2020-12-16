@@ -7,7 +7,7 @@
     </template>
     <template v-else-if="tags">
       <tag-chip
-        v-for="(tag, i) in tags"
+        v-for="(tag, i) of tags"
         :key="'t' + i"
         class="ma-1"
         :tag="tag"

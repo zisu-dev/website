@@ -67,7 +67,7 @@
               <v-card-text>Total tags: {{ post.tags.length }}</v-card-text>
               <v-divider />
               <v-list dense color="transparent">
-                <v-list-item v-for="(tag, i) in post.tags" :key="i">
+                <v-list-item v-for="(tag, i) of post.tags" :key="i">
                   <v-list-item-content>
                     <v-list-item-title>{{ tag.title }}</v-list-item-title>
                   </v-list-item-content>

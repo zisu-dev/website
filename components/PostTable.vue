@@ -17,7 +17,7 @@
       </template>
       <template v-slot:[`item.tags`]="{ item }">
         <tag-chip
-          v-for="(tag, i) in item.tags"
+          v-for="(tag, i) of item.tags"
           :key="i"
           class="ma-1"
           :tag="tag"

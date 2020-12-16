@@ -1,6 +1,6 @@
 <template>
   <div class="bml-root">
-    <block v-for="(block, i) in content" :key="i" :block="block" />
+    <block v-for="(block, i) of content" :key="i" :block="block" />
   </div>
 </template>
 

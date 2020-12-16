@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col v-for="(post, i) in posts" :key="i" cols="12">
+    <v-col v-for="(post, i) of posts" :key="i" cols="12">
       <post-list-item :post="post" />
     </v-col>
   </v-row>

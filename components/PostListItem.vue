@@ -36,7 +36,7 @@
     <v-divider />
     <div class="pl-1 pr-1">
       <tag-chip
-        v-for="(tag, i) in post.tags"
+        v-for="(tag, i) of post.tags"
         :key="i"
         class="ma-1"
         :tag="tag"

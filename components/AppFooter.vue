@@ -5,7 +5,7 @@
         <v-row justify="end">
           <v-col cols="auto">
             <v-btn
-              v-for="(badge, i) in badges"
+              v-for="(badge, i) of badges"
               :key="i"
               :href="badge.href"
               :color="badge.color"
