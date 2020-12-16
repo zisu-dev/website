@@ -27,7 +27,6 @@ import PostTable from '~/components/PostTable.vue'
 
 export default Vue.extend({
   name: 'AdminPostPage',
-  layout: 'admin',
   components: { PostTable },
   created() {
     this.$store.commit('scope:update', 'admin::post')

@@ -49,7 +49,6 @@ import Vue from 'vue'
 import JsonEditor from '~/components/JSONEditor.vue'
 
 export default Vue.extend({
-  layout: 'admin',
   name: 'AdminMetaItemPage',
   components: { JsonEditor },
   async asyncData(ctx) {

@@ -39,7 +39,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  layout: 'admin',
   name: 'AdminTagItemPage',
   async asyncData(ctx) {
     const id = ctx.params.id

@@ -11,6 +11,54 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-group v-if="isAdmin">
+          <template v-slot:activator>
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-cog</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-title>Admin</v-list-item-title>
+          </template>
+          <v-list-item to="/admin" exact>
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-view-dashboard</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Admin Home</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/admin/post">
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-post</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/admin/tag">
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-tag</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Tags</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/admin/user">
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Users</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/admin/meta">
+            <v-list-item-avatar tile size="24">
+              <v-icon>mdi-cog</v-icon>
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>Metas</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
         <v-list-item to="/post">
           <v-list-item-avatar tile size="24">
             <v-icon>mdi-format-list-text</v-icon>
@@ -55,6 +103,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 import Background from '~/components/Background.vue'
 import AppBar from '~/components/AppBar.vue'
 import AppFooter from '~/components/AppFooter.vue'
@@ -83,6 +132,9 @@ export default Vue.extend({
         }
       }
     }
+  },
+  computed: {
+    ...mapGetters(['isAdmin'])
   }
 })
 </script>

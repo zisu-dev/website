@@ -54,7 +54,6 @@ import Vue from 'vue'
 import MonacoEditor from '~/components/MonacoEditor.vue'
 
 export default Vue.extend({
-  layout: 'admin',
   name: 'AdminPostNewPage',
   components: { MonacoEditor },
   data() {

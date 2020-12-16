@@ -38,7 +38,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AdminTagPage',
-  layout: 'admin',
   async fetch() {
     const { page, itemsPerPage } = this.tableOptions
     const searchParams: Record<string, any> = {

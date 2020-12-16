@@ -27,7 +27,7 @@ export default Vue.extend({
     const slug = this.$route.params.slug
     this.post = await this.$http.$get(`/post/${slug}`)
     if (this.post.priority < 0) {
-      this.$router.replace(`/${this.post.slug}`)
+      this.$nuxt.context.redirect(`/${this.post.slug}`)
     }
   },
   data() {

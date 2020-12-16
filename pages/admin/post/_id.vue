@@ -140,7 +140,6 @@ import {
 } from '~/utils/dates'
 
 export default Vue.extend({
-  layout: 'admin',
   name: 'AdminPostItemPage',
   components: { TagAutocomplete, Post, MonacoEditor },
   async asyncData(ctx) {

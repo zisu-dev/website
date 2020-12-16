@@ -19,7 +19,6 @@ import Prism from '~/components/functional/VCode'
 
 export default Vue.extend({
   name: 'AdminHomePage',
-  layout: 'admin',
   components: { Prism },
   async fetch() {
     this.stat = await this.$http.$get('/admin/stat')
