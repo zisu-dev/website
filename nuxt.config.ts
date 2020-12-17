@@ -22,7 +22,13 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
   }
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
   const { DefinePlugin } = require('webpack')
-  const pkg = require(path.join(__dirname, 'package.json'))
+
+  // Workaround for vercel build
+  const pkgPath = process.env.VERCEL
+    ? path.join(__dirname, '..', 'package.json')
+    : path.join(__dirname, 'package.json')
+  const pkg = require(pkgPath)
+
   return {
     plugins: [
       new MonacoWebpackPlugin(),
