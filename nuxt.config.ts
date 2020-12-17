@@ -1,4 +1,5 @@
 import cp from 'child_process'
+import path from 'path'
 import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
 import { NuxtOptionsModule } from '@nuxt/types/config/module'
@@ -21,7 +22,7 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
   }
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
   const { DefinePlugin } = require('webpack')
-  const pkg = require('./package.json')
+  const pkg = require(path.join(__dirname, 'package.json'))
   return {
     plugins: [
       new MonacoWebpackPlugin(),
