@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TagChip from '~/components/TagChip.vue'
+import TagChip from '~/components/tag/TagChip.vue'
 
 export default Vue.extend({
   components: {

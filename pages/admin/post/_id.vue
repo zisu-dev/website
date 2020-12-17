@@ -129,7 +129,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TagAutocomplete from '~/components/TagAutocomplete.vue'
+import TagAutocomplete from '~/components/tag/TagAutocomplete.vue'
 import Post from '~/components/post/Post.vue'
 import MonacoEditor from '~/components/MonacoEditor.vue'
 import {
