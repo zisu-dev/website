@@ -11,7 +11,7 @@ import Vue from 'vue'
 import TagsCard from '~/components/tag/TagsCard.vue'
 
 export default Vue.extend({
-  name: 'Sidebar',
+  name: 'PostSidebar',
   components: { TagsCard }
 })
 </script>

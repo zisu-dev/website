@@ -5,7 +5,7 @@
         <nuxt-child />
       </v-col>
       <v-col cols="12" sm="5" md="4" lg="3">
-        <sidebar />
+        <post-sidebar />
       </v-col>
     </v-row>
   </v-container>
@@ -13,11 +13,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Sidebar from '~/components/Sidebar.vue'
+import PostSidebar from '~/components/post/PostSidebar.vue'
 
 export default Vue.extend({
   name: 'PostPage',
-  components: { Sidebar },
+  components: { PostSidebar },
   created() {
     this.$store.commit('scope:update', 'blog')
   },

@@ -73,7 +73,7 @@
         </template>
       </v-col>
       <v-col cols="12" sm="5" md="4" lg="3">
-        <sidebar />
+        <post-sidebar />
       </v-col>
     </v-row>
   </v-container>
@@ -83,12 +83,12 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import PostList from '~/components/post/PostList.vue'
-import Sidebar from '~/components/Sidebar.vue'
+import PostSidebar from '~/components/post/PostSidebar.vue'
 import Bml from '~/components/Bml.vue'
 
 export default Vue.extend({
   name: 'TagPage',
-  components: { PostList, Sidebar, Bml },
+  components: { PostList, PostSidebar, Bml },
   async fetch() {
     const data: any = await this.$http.$get('/post/', {
       searchParams: {
