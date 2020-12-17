@@ -66,7 +66,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostList from '~/components/PostList.vue'
+import PostList from '~/components/post/PostList.vue'
 
 export default Vue.extend({
   name: 'PostPage',

@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostListItem from '~/components/PostListItem.vue'
+import PostListItem from '~/components/post/PostListItem.vue'
 
 export default Vue.extend({
   name: 'PostList',

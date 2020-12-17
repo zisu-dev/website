@@ -82,7 +82,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import PostList from '~/components/PostList.vue'
+import PostList from '~/components/post/PostList.vue'
 import Sidebar from '~/components/Sidebar.vue'
 import Bml from '~/components/Bml.vue'
 
