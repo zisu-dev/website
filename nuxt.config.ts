@@ -1,5 +1,6 @@
 import cp from 'child_process'
 import path from 'path'
+import fs from 'fs'
 import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
 import { NuxtOptionsModule } from '@nuxt/types/config/module'
@@ -15,6 +16,13 @@ function getGitInfo() {
   }
 }
 
+function findPackage() {
+  let cur = __dirname
+  const name = 'package.json'
+  while (!fs.existsSync(path.join(cur, name))) cur = path.join(cur, '..')
+  return require(path.join(cur, name))
+}
+
 function generateBuildConfig(): NuxtOptionsBuild | undefined {
   if (process.env.VERCEL && !process.env.CI) {
     // Do not add webpack plugins when running on Vercel
@@ -23,11 +31,7 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
   const { DefinePlugin } = require('webpack')
 
-  // Workaround for vercel build
-  const pkgPath = process.env.VERCEL
-    ? path.join(__dirname, '..', 'package.json')
-    : path.join(__dirname, 'package.json')
-  const pkg = require(pkgPath)
+  const pkg = findPackage()
 
   return {
     plugins: [
