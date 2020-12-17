@@ -15,9 +15,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import Background from '~/components/Background.vue'
-import AppBar from '~/components/AppBar.vue'
-import AppFooter from '~/components/AppFooter.vue'
-import AppNav from '~/components/AppNav.vue'
+import AppBar from '~/components/app/AppBar.vue'
+import AppFooter from '~/components/app/AppFooter.vue'
+import AppNav from '~/components/app/AppNav.vue'
 
 export default Vue.extend({
   name: 'App',

@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import AdminNav from '~/components/AdminNav.vue'
+import AdminNav from '~/components/admin/AdminNav.vue'
 
 export default Vue.extend({
   name: 'AppNav',
