@@ -8,20 +8,20 @@
       <nuxt />
     </v-main>
     <app-footer />
-    <background />
+    <app-bg />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Background from '~/components/Background.vue'
 import AppBar from '~/components/app/AppBar.vue'
 import AppFooter from '~/components/app/AppFooter.vue'
+import AppBg from '~/components/app/AppBg.vue'
 import AppNav from '~/components/app/AppNav.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Background, AppBar, AppFooter, AppNav },
+  components: { AppBg, AppBar, AppFooter, AppNav },
   data() {
     return {
       drawer: null

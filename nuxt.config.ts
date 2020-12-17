@@ -21,13 +21,15 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
   }
   const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
   const { DefinePlugin } = require('webpack')
+  const pkg = require('./package.json')
   return {
     plugins: [
       new MonacoWebpackPlugin(),
       new DefinePlugin({
         BUILD: JSON.stringify({
           git: getGitInfo(),
-          time: Date.now()
+          time: Date.now(),
+          version: pkg.version
         })
       })
     ]

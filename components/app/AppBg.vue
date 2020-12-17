@@ -8,14 +8,14 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'Background',
+  name: 'AppBg',
   computed: {
     scope() {
       return this.$route.path.split('/')[1] || 'index'
     },
     bg() {
       return this.$vuetify.theme.dark
-        ? 'https://s3.ax1x.com/2020/12/06/DXKDj1.jpg'
+        ? 'https://s3.ax1x.com/2020/12/17/r8hg5q.png'
         : 'https://s3.ax1x.com/2020/12/08/rpmt3D.jpg'
     },
     zIndex() {

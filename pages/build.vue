@@ -8,6 +8,16 @@
           <v-list color="transparent">
             <v-list-item>
               <v-list-item-avatar>
+                <v-icon color="#CB3837">mdi-package-variant</v-icon>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>
+                  <code>{{ build.version }}</code>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-avatar>
                 <v-icon color="#F05032">mdi-git</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
