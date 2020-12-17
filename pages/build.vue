@@ -113,8 +113,8 @@ export default Vue.extend({
         description: 'www.zzisu.dev',
         link: '/',
         badges: [
-          'https://img.shields.io/github/deployments/zzisu/website/Production?label=Deployment&logo=vercel&style=flat-square',
-          'https://img.shields.io/github/workflow/status/zzs-web/website/ci?logo=github&style=flat-square'
+          'https://img.shields.io/github/deployments/zzisu/website/Production?label=&logo=vercel&style=flat-square',
+          'https://img.shields.io/github/workflow/status/zzs-web/website/ci?label=&logo=github&style=flat-square'
         ]
       },
       {
