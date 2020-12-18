@@ -46,7 +46,8 @@ function generateBuildConfig(): NuxtOptionsBuild | undefined {
         BUILD: JSON.stringify({
           git: getGitInfo(),
           time: Date.now(),
-          version: pkg.version
+          version: pkg.version,
+          node: process.version
         })
       })
     ]
