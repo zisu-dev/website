@@ -28,7 +28,6 @@
       "@nuxt/types",
       "@nuxt/vue-app",
       "@nuxt/http",
-      "@nuxtjs/gtm",
       "@nuxtjs/pwa",
       "@nuxtjs/vuetify",
       "cookie-universal-nuxt"
