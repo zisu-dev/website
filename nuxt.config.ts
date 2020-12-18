@@ -5,6 +5,9 @@ import { NuxtConfig } from '@nuxt/types'
 import { NuxtOptionsBuild } from '@nuxt/types/config/build'
 import { NuxtOptionsModule } from '@nuxt/types/config/module'
 
+const APP_NAME = 'ZZisu.dev'
+const APP_DESC = 'ZZisu.dev'
+
 function run(cmd: string) {
   return cp.execSync(cmd).toString().trim()
 }
@@ -94,6 +97,19 @@ const config: NuxtConfig = {
   vuetify: {
     customVariables: ['~/styles/variables.scss'],
     treeShake: true
+  },
+  pwa: {
+    meta: {
+      name: APP_NAME,
+      description: APP_DESC,
+      theme_color: '#3498db'
+    },
+    manifest: {
+      name: APP_NAME,
+      short_name: APP_NAME,
+      description: APP_DESC,
+      background_color: '#2c3e50'
+    }
   },
   build: generateBuildConfig(),
   modules: generateModulesConfig()
