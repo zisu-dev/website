@@ -1,6 +1,6 @@
 <template>
   <v-list-group>
-    <template v-slot:activator>
+    <template #activator>
       <v-list-item-avatar tile size="24">
         <v-icon>mdi-hammer-wrench</v-icon>
       </v-list-item-avatar>

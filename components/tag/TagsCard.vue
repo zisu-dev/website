@@ -24,14 +24,14 @@ export default Vue.extend({
   components: {
     TagChip
   },
-  async fetch() {
-    const data: any = await this.$http.$get('/tag')
-    this.tags = data.items
-  },
   data() {
     return {
       tags: []
     }
+  },
+  async fetch() {
+    const data: any = await this.$http.$get('/tag')
+    this.tags = data.items
   }
 })
 </script>

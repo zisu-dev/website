@@ -18,13 +18,13 @@ import PostSidebar from '~/components/post/PostSidebar.vue'
 export default Vue.extend({
   name: 'PostPage',
   components: { PostSidebar },
-  created() {
-    this.$store.commit('scope:update', 'blog')
-  },
   head() {
     return {
       title: 'Posts'
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'blog')
   }
 })
 </script>

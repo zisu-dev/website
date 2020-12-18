@@ -71,6 +71,17 @@ import PostList from '~/components/post/PostList.vue'
 export default Vue.extend({
   name: 'PostPage',
   components: { PostList },
+  data() {
+    return {
+      posts: [],
+      postCount: 0,
+      pageCount: 1,
+      postPerPage: 15,
+      curPage: 1,
+      search: '',
+      searchInput: ''
+    }
+  },
   async fetch() {
     const searchParams: Record<string, any> = {
       page: this.curPage,
@@ -88,15 +99,9 @@ export default Vue.extend({
     this.postCount = data.total
     this.pageCount = Math.ceil(data.total / this.postPerPage)
   },
-  data() {
+  head() {
     return {
-      posts: [],
-      postCount: 0,
-      pageCount: 1,
-      postPerPage: 15,
-      curPage: 1,
-      search: '',
-      searchInput: ''
+      title: 'Posts'
     }
   },
   watch: {
@@ -105,11 +110,6 @@ export default Vue.extend({
     },
     search() {
       this.$fetch()
-    }
-  },
-  head() {
-    return {
-      title: 'Posts'
     }
   }
 })

@@ -45,12 +45,23 @@ import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
   name: 'RegisterPage',
+  middleware(ctx) {
+    const { store, redirect } = ctx
+    if (store.state.token) {
+      return redirect('/')
+    }
+  },
   data() {
     return {
       loading: false,
       login: '',
       pass: '',
       githubEnabled: enabled
+    }
+  },
+  head() {
+    return {
+      title: 'Register'
     }
   },
   mounted() {
@@ -91,17 +102,6 @@ export default Vue.extend({
         this.$toast.$error(e)
       }
       this.loading = false
-    }
-  },
-  head() {
-    return {
-      title: 'Register'
-    }
-  },
-  middleware(ctx) {
-    const { store, redirect } = ctx
-    if (store.state.token) {
-      return redirect('/')
     }
   }
 })

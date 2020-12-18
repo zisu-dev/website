@@ -57,13 +57,13 @@ export default Vue.extend({
       ]
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'friend links')
-  },
   head() {
     return {
       title: 'Friend Links'
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'friend links')
   }
 })
 </script>

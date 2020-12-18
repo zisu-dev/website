@@ -20,13 +20,13 @@ import Prism from '~/components/functional/VCode'
 export default Vue.extend({
   name: 'AdminHomePage',
   components: { Prism },
-  async fetch() {
-    this.stat = await this.$http.$get('/admin/stat')
-  },
   data() {
     return {
       stat: {}
     }
+  },
+  async fetch() {
+    this.stat = await this.$http.$get('/admin/stat')
   },
   created() {
     this.$store.commit('scope:update', 'admin')

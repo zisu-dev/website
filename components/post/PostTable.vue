@@ -10,12 +10,12 @@
       :loading="$fetchState.pending"
       dense
     >
-      <template v-slot:[`item._id`]="{ item }">
+      <template #[`item._id`]="{ item }">
         <nuxt-link class="object-id" :to="'/admin/post/' + item._id">
           {{ item._id }}
         </nuxt-link>
       </template>
-      <template v-slot:[`item.tags`]="{ item }">
+      <template #[`item.tags`]="{ item }">
         <tag-chip
           v-for="(tag, i) of item.tags"
           :key="i"
@@ -42,20 +42,6 @@ export default Vue.extend({
       type: Boolean
     }
   },
-  async fetch() {
-    const { page, itemsPerPage } = this.postsTableOpt
-    const searchParams: Record<string, any> = {
-      page,
-      per_page: itemsPerPage
-    }
-
-    const data: any = await this.$http.$get(this.page ? '/page/' : '/post', {
-      searchParams
-    })
-
-    this.posts = data.items
-    this.postCount = data.total
-  },
   data() {
     return {
       headers: [
@@ -71,6 +57,20 @@ export default Vue.extend({
       },
       postCount: 0
     }
+  },
+  async fetch() {
+    const { page, itemsPerPage } = this.postsTableOpt
+    const searchParams: Record<string, any> = {
+      page,
+      per_page: itemsPerPage
+    }
+
+    const data: any = await this.$http.$get(this.page ? '/page/' : '/post', {
+      searchParams
+    })
+
+    this.posts = data.items
+    this.postCount = data.total
   },
   watch: {
     options: {

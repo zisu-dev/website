@@ -17,7 +17,7 @@
     <user-indicator />
     <v-divider vertical />
     <v-tooltip bottom>
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn icon v-on="on" @click="changeTheme">
           <v-icon v-text="themeIcon[theme]" />
         </v-btn>

@@ -137,6 +137,11 @@ export default Vue.extend({
       loading: false
     }
   },
+  head() {
+    return {
+      title: 'User: ' + this.$data.user.name
+    }
+  },
   computed: {
     ...mapGetters(['isAdmin', 'userBadge']),
     canManage() {
@@ -215,11 +220,6 @@ export default Vue.extend({
       }
       this.$router.go(0)
       this.loading = false
-    }
-  },
-  head() {
-    return {
-      title: 'User: ' + this.$data.user.name
     }
   }
 })

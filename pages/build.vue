@@ -135,13 +135,13 @@ export default Vue.extend({
     ],
     build: BUILD
   }),
-  created() {
-    this.$store.commit('scope:update', 'build info')
-  },
   head() {
     return {
       title: 'Build Info'
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'build info')
   }
 })
 </script>

@@ -21,17 +21,17 @@
             :loading="$fetchState.pending"
             dense
           >
-            <template v-slot:[`item._id`]="{ item }">
+            <template #[`item._id`]="{ item }">
               <nuxt-link class="object-id" :to="'/admin/meta/' + item._id">
                 {{ item._id }}
               </nuxt-link>
             </template>
-            <template v-slot:[`item.slug`]="{ item }">
+            <template #[`item.slug`]="{ item }">
               <span class="object-id">
                 {{ item.slug }}
               </span>
             </template>
-            <template v-slot:[`item.public`]="{ item }">
+            <template #[`item.public`]="{ item }">
               <v-icon v-if="item.public" color="green">mdi-lock-open</v-icon>
               <v-icon v-else color="red">mdi-lock</v-icon>
             </template>
@@ -47,20 +47,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AdminMetaPage',
-  async fetch() {
-    const { page, itemsPerPage } = this.tableOptions
-    const searchParams: Record<string, any> = {
-      page,
-      per_page: itemsPerPage
-    }
-
-    const data: any = await this.$http.$get('/meta/', {
-      searchParams
-    })
-
-    this.metas = data.items
-    this.metaCount = data.total
-  },
   data() {
     return {
       headers: [
@@ -75,6 +61,20 @@ export default Vue.extend({
       },
       metaCount: 0
     }
+  },
+  async fetch() {
+    const { page, itemsPerPage } = this.tableOptions
+    const searchParams: Record<string, any> = {
+      page,
+      per_page: itemsPerPage
+    }
+
+    const data: any = await this.$http.$get('/meta/', {
+      searchParams
+    })
+
+    this.metas = data.items
+    this.metaCount = data.total
   },
   watch: {
     options: {

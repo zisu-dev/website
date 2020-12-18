@@ -21,7 +21,7 @@
             :loading="$fetchState.pending"
             dense
           >
-            <template v-slot:[`item._id`]="{ item }">
+            <template #[`item._id`]="{ item }">
               <nuxt-link class="object-id" :to="'/user/' + item._id">
                 {{ item._id }}
               </nuxt-link>
@@ -38,20 +38,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'AdminUserPage',
-  async fetch() {
-    const { page, itemsPerPage } = this.tableOptions
-    const searchParams: Record<string, any> = {
-      page,
-      per_page: itemsPerPage
-    }
-
-    const data: any = await this.$http.$get('/user/', {
-      searchParams
-    })
-
-    this.users = data.items
-    this.userCount = data.total
-  },
   data() {
     return {
       headers: [
@@ -67,6 +53,20 @@ export default Vue.extend({
       },
       userCount: 0
     }
+  },
+  async fetch() {
+    const { page, itemsPerPage } = this.tableOptions
+    const searchParams: Record<string, any> = {
+      page,
+      per_page: itemsPerPage
+    }
+
+    const data: any = await this.$http.$get('/user/', {
+      searchParams
+    })
+
+    this.users = data.items
+    this.userCount = data.total
   },
   watch: {
     options: {

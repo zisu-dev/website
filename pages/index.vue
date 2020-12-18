@@ -116,13 +116,13 @@ export default Vue.extend({
       ]
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'index')
-  },
   head() {
     return {
       title: 'Index'
     }
+  },
+  created() {
+    this.$store.commit('scope:update', 'index')
   }
 })
 </script>

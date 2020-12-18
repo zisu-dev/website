@@ -17,10 +17,13 @@ function getGitInfo() {
 }
 
 function findPackage() {
-  let cur = __dirname
   const name = 'package.json'
-  while (!fs.existsSync(path.join(cur, name))) cur = path.join(cur, '..')
-  return require(path.join(cur, name))
+  if (process.env.VERCEL) {
+    let cur = __dirname
+    while (!fs.existsSync(path.join(cur, name))) cur = path.join(cur, '..')
+    return require(path.join(cur, name))
+  }
+  return require(path.join(__dirname, name))
 }
 
 function generateBuildConfig(): NuxtOptionsBuild | undefined {
@@ -78,7 +81,7 @@ const config: NuxtConfig = {
     '~/plugins/toast.client.ts',
     '~/plugins/shortcuts.client.ts'
   ],
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
   env: {
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
   },

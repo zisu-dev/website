@@ -45,12 +45,23 @@ import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
   name: 'LoginPage',
+  middleware(ctx) {
+    const { store, redirect } = ctx
+    if (store.state.token) {
+      return redirect('/')
+    }
+  },
   data() {
     return {
       loading: false,
       login: '',
       pass: '',
       githubEnabled: enabled
+    }
+  },
+  head() {
+    return {
+      title: 'Login'
     }
   },
   mounted() {
@@ -100,17 +111,6 @@ export default Vue.extend({
         this.$toast.$error(e)
       }
       this.loading = false
-    }
-  },
-  head() {
-    return {
-      title: 'Login'
-    }
-  },
-  middleware(ctx) {
-    const { store, redirect } = ctx
-    if (store.state.token) {
-      return redirect('/')
     }
   }
 })

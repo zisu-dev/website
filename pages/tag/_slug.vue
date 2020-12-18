@@ -89,18 +89,6 @@ import Bml from '~/components/Bml.vue'
 export default Vue.extend({
   name: 'TagPage',
   components: { PostList, PostSidebar, Bml },
-  async fetch() {
-    const data: any = await this.$http.$get('/post/', {
-      searchParams: {
-        page: this.curPage,
-        per_page: this.postPerPage,
-        tag: this.tag._id
-      }
-    })
-    this.posts = data.items
-    this.postCount = data.total
-    this.pageCount = Math.ceil(data.total / this.postPerPage)
-  },
   async asyncData(ctx) {
     const tag = await ctx.$http.$get(`/tag/${ctx.route.params.slug}`)
     return {
@@ -117,17 +105,29 @@ export default Vue.extend({
       tag: {} as any
     }
   },
+  async fetch() {
+    const data: any = await this.$http.$get('/post/', {
+      searchParams: {
+        page: this.curPage,
+        per_page: this.postPerPage,
+        tag: this.tag._id
+      }
+    })
+    this.posts = data.items
+    this.postCount = data.total
+    this.pageCount = Math.ceil(data.total / this.postPerPage)
+  },
+  head() {
+    return {
+      title: 'Tag: ' + this.$data.tag.title
+    }
+  },
   computed: {
     ...mapGetters(['isAdmin'])
   },
   watch: {
     curPage() {
       this.$fetch()
-    }
-  },
-  head() {
-    return {
-      title: 'Tag: ' + this.$data.tag.title
     }
   }
 })
