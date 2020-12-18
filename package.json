@@ -1,5 +1,5 @@
 {
-  "name": "zzs-web",
+  "name": "ZZisu.dev",
   "version": "1.0.1",
   "private": true,
   "scripts": {
@@ -35,7 +35,6 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/pwa": "^3.3.2",
     "@nuxtjs/vuetify": "^1.11.2",
-    "@types/animejs": "^3.1.2",
     "@types/gravatar": "^1.8.1",
     "@types/mousetrap": "^1.6.5",
     "@types/prismjs": "^1.16.2",
@@ -50,5 +49,9 @@
     "prettier": "^2.2.1",
     "sass": "^1.29.0",
     "sass-loader": "^8.0.2"
-  }
+  },
+  "description": "ZZisu.dev",
+  "repository": "git@github.com:zzs-web/website.git",
+  "author": "ZhangZisu <i@zzs1.cn>",
+  "license": "MIT"
 }
