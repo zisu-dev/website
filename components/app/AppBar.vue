@@ -2,7 +2,7 @@
   <v-app-bar app>
     <v-btn icon tile x-large @click="$emit('change', !value)">
       <v-avatar tile size="32">
-        <img src="~/assets/logo.svg" />
+        <img src="~/assets/logo.svg" alt="site logo" />
       </v-avatar>
     </v-btn>
     <v-btn text x-large class="pa-0 text-left" disabled>
