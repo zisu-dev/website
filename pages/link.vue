@@ -13,7 +13,7 @@
               target="_blank"
               rel="noopener"
             >
-              <v-list-item-avatar>
+              <v-list-item-avatar tile size="24">
                 <v-icon v-if="x.icon" size="48">{{ x.icon }}</v-icon>
                 <v-img v-else-if="x.avatar" :src="x.avatar" />
                 <v-icon v-else size="48">{{ mdiAccountCircle }}</v-icon>

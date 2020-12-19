@@ -4,19 +4,24 @@
       <v-col cols="12">
         <v-row justify="end">
           <v-col cols="auto">
-            <v-btn
-              v-for="(badge, i) of badges"
-              :key="i"
-              :href="badge.href"
-              :color="badge.color"
-              small
-              outlined
-              target="_blank"
-              rel="noopener"
-            >
-              <v-icon left>{{ badge.icon }}</v-icon>
-              {{ badge.text }}
-            </v-btn>
+            <template v-for="(badge, i) of badges">
+              <v-hover v-slot="{ hover }" :key="i">
+                <v-btn
+                  :href="badge.href"
+                  :color="badge.color"
+                  small
+                  depressed
+                  tile
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <v-icon :left="hover">{{ badge.icon }}</v-icon>
+                  <template v-if="hover">
+                    {{ badge.text }}
+                  </template>
+                </v-btn>
+              </v-hover>
+            </template>
           </v-col>
         </v-row>
         <v-divider />

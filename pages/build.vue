@@ -7,7 +7,7 @@
           <v-divider />
           <v-list color="transparent">
             <v-list-item v-for="(build, i) of builds" :key="i">
-              <v-list-item-avatar>
+              <v-list-item-avatar tile size="24">
                 <v-icon :color="build.color">{{ build.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
@@ -36,7 +36,7 @@
               target="_blank"
               rel="noopener"
             >
-              <v-list-item-avatar>
+              <v-list-item-avatar tile size="24">
                 <v-icon>{{ info.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
