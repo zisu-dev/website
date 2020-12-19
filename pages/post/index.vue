@@ -7,7 +7,7 @@
             v-model.trim.lazy="searchInput"
             label="Search"
             placeholder="Type your query here"
-            append-icon="mdi-magnify"
+            :append-icon="mdiMagnify"
             clearable
             @click:append="search = searchInput"
             @keydown.enter="search = searchInput"
@@ -38,19 +38,7 @@
     </template>
     <template v-else-if="$fetchState.error">
       <v-col cols="12">
-        <v-card class="text-center" flat>
-          <v-icon size="96px">mdi-alert-circle-outline</v-icon>
-          <v-card-title>An error occurred</v-card-title>
-          <v-card-text>
-            <code>{{ $fetchState.error.message }}</code>
-          </v-card-text>
-          <v-divider />
-          <v-card-actions>
-            <v-btn color="primary" outlined block @click="$fetch">
-              Reload
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+        <error-card :error="$fetchState.error" @reload="$fetch" />
       </v-col>
     </template>
     <template v-else>
@@ -66,11 +54,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiMagnify } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
+import ErrorCard from '~/components/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'PostPage',
-  components: { PostList },
+  components: { PostList, ErrorCard },
   data() {
     return {
       posts: [],
@@ -79,7 +69,8 @@ export default Vue.extend({
       postPerPage: 15,
       curPage: 1,
       search: '',
-      searchInput: ''
+      searchInput: '',
+      mdiMagnify
     }
   },
   async fetch() {
@@ -101,7 +92,7 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: 'Posts'
+      title: 'Index'
     }
   },
   watch: {

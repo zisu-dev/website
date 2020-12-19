@@ -87,7 +87,9 @@ const config: NuxtConfig = {
   ],
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
   env: {
-    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || ''
+    GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || '',
+    BG_LIGHT: process.env.BG_LIGHT || '',
+    BG_DARK: process.env.BG_DARK || ''
   },
   http: {
     baseURL: process.env.API_ENDPOINT || 'https://cms.zzisu.dev'
@@ -97,7 +99,12 @@ const config: NuxtConfig = {
   },
   vuetify: {
     customVariables: ['~/styles/variables.scss'],
-    treeShake: true
+    treeShake: true,
+    defaultAssets: false,
+    icons: {
+      iconfont: 'mdiSvg',
+      values: {}
+    }
   },
   pwa: {
     meta: {

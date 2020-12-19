@@ -9,7 +9,7 @@
         />
         <div>
           <v-chip class="pa-1" small label color="transparent">
-            <v-icon left>mdi-clock-outline</v-icon>
+            <v-icon left>{{ mdiClockOutline }}</v-icon>
             {{ new Date(post.published).toLocaleString() }}
           </v-chip>
         </div>
@@ -48,6 +48,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import { mdiClockOutline } from '@mdi/js'
 import Bml from '~/components/Bml.vue'
 import TagChip from '~/components/tag/TagChip.vue'
 
@@ -58,6 +59,11 @@ export default Vue.extend({
     post: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      mdiClockOutline
     }
   },
   computed: {

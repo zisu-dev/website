@@ -5,13 +5,14 @@
     outlined
     small
   >
-    <v-icon v-if="!noIcon" left>mdi-label</v-icon>
+    <v-icon v-if="!noIcon" left>{{ mdiLabel }}</v-icon>
     {{ tag.title }}
   </v-chip>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiLabel } from '@mdi/js'
 
 export default Vue.extend({
   name: 'TagChip',
@@ -25,6 +26,11 @@ export default Vue.extend({
     },
     admin: {
       type: Boolean
+    }
+  },
+  data() {
+    return {
+      mdiLabel
     }
   }
 })

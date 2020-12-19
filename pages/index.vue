@@ -29,28 +29,13 @@
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list>
-            <v-list-item to="/post">
+            <v-list-item v-for="(link, i) in links" :key="i" v-bind="link.link">
               <v-list-item-avatar>
-                <v-icon>mdi-format-list-text</v-icon>
+                <v-icon>{{ link.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>Blog</v-list-item-title>
-                <v-list-item-subtitle>ZZisu.dev blog</v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item
-              href="https://proxy.zhangzisu.cn/"
-              target="_blank"
-              rel="noopener"
-            >
-              <v-list-item-avatar tile>
-                <v-icon>mdi-web</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>Proxy</v-list-item-title>
-                <v-list-item-subtitle>
-                  ZhangZisu.CN Proxy Services
-                </v-list-item-subtitle>
+                <v-list-item-title>{{ link.title }}</v-list-item-title>
+                <v-list-item-subtitle>{{ link.subtitle }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
@@ -84,33 +69,60 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {
+  mdiEmail,
+  mdiFormatListText,
+  mdiGithub,
+  mdiTelegram,
+  mdiTwitter,
+  mdiWeb
+} from '@mdi/js'
+
 export default Vue.extend({
   name: 'IndexPage',
   data() {
     return {
+      links: [
+        {
+          link: { to: '/post' },
+          icon: mdiFormatListText,
+          title: 'Blog',
+          subtitle: 'ZZisu.dev blog'
+        },
+        {
+          link: {
+            href: 'https://proxy.zhangzisu.cn/',
+            target: '_blank',
+            rel: 'noopener'
+          },
+          icon: mdiWeb,
+          title: 'Proxy',
+          subtitle: 'ZhangZisu.CN Proxy Services'
+        }
+      ],
       contacts: [
         {
           href: 'https://twitter.com/zzisu03',
           color: '#1DA1F2',
-          icon: 'mdi-twitter',
+          icon: mdiTwitter,
           text: 'zzisu03'
         },
         {
           href: 'https://t.me/zhangzisu',
           color: '#2CA5E0',
-          icon: 'mdi-telegram',
+          icon: mdiTelegram,
           text: 'zhangzisu'
         },
         {
           href: 'mailto:i@zzs1.cn',
           color: 'blue',
-          icon: 'mdi-email',
+          icon: mdiEmail,
           text: 'i@zzs1.cn'
         },
         {
           href: 'https://github.com/zzisu',
           color: '#181717',
-          icon: 'mdi-github',
+          icon: mdiGithub,
           text: 'zzisu'
         }
       ]

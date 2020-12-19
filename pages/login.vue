@@ -8,7 +8,7 @@
             <v-spacer />
             <v-btn outlined to="/register">
               Register
-              <v-icon right>mdi-account-plus</v-icon>
+              <v-icon right>{{ mdiAccountPlus }}</v-icon>
             </v-btn>
           </v-card-title>
           <v-divider />
@@ -26,7 +26,7 @@
               :disabled="loading"
               @click="githubOpen"
             >
-              <v-icon left>mdi-github</v-icon>
+              <v-icon left>{{ mdiGithub }}</v-icon>
               Github
             </v-btn>
             <v-btn color="primary" :loading="loading" @click="submit">
@@ -41,6 +41,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiAccountPlus, mdiGithub } from '@mdi/js'
 import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
@@ -56,7 +57,9 @@ export default Vue.extend({
       loading: false,
       login: '',
       pass: '',
-      githubEnabled: enabled
+      githubEnabled: enabled,
+      mdiAccountPlus,
+      mdiGithub
     }
   },
   head() {

@@ -14,7 +14,7 @@
               target="_blank"
               rel="noopener"
             >
-              <v-icon left v-text="badge.icon" />
+              <v-icon left>{{ badge.icon }}</v-icon>
               {{ badge.text }}
             </v-btn>
           </v-col>
@@ -32,6 +32,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {
+  mdiCertificate,
+  mdiCircleOutline,
+  mdiCreativeCommons,
+  mdiGit
+} from '@mdi/js'
 
 export default Vue.extend({
   name: 'AppFooter',
@@ -42,25 +48,25 @@ export default Vue.extend({
         {
           href: 'https://github.com/zzs-web/website/commit/' + BUILD.git.hash,
           color: '#F05032',
-          icon: 'mdi-git',
+          icon: mdiGit,
           text: BUILD.git.hash
         },
         {
           href: 'https://stats.zzisu.dev',
           color: 'green',
-          icon: 'mdi-circle-outline',
+          icon: mdiCircleOutline,
           text: 'stats'
         },
         {
           href: 'https://github.com/zzs-web/website/blob/master/LICENSE',
           color: 'blue',
-          icon: 'mdi-certificate',
+          icon: mdiCertificate,
           text: 'MIT'
         },
         {
           href: 'https://creativecommons.org/licenses/by-sa',
           color: '#EF9421',
-          icon: 'mdi-creative-commons',
+          icon: mdiCreativeCommons,
           text: 'BY-SA'
         }
       ]

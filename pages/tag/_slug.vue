@@ -6,7 +6,7 @@
           <v-col cols="12">
             <v-card>
               <v-card-title>
-                <v-icon left>mdi-label</v-icon>
+                <v-icon left>{{ mdiLabel }}</v-icon>
                 {{ tag.title }}
               </v-card-title>
               <template v-if="isAdmin">
@@ -47,19 +47,7 @@
         <template v-else-if="$fetchState.error">
           <v-row justify="center">
             <v-col cols="auto">
-              <v-card class="text-center" flat>
-                <v-icon size="96px">mdi-alert-circle-outline</v-icon>
-                <v-card-title>An error occurred</v-card-title>
-                <v-card-text>
-                  <code>{{ $fetchState.error.message }}</code>
-                </v-card-text>
-                <v-divider />
-                <v-card-actions>
-                  <v-btn color="primary" outlined block @click="load"
-                    >Reload</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
+              <error-card :error="$fetchState.error" @reload="$fetch" />
             </v-col>
           </v-row>
         </template>
@@ -82,13 +70,15 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import { mdiLabel } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
 import PostSidebar from '~/components/post/PostSidebar.vue'
 import Bml from '~/components/Bml.vue'
+import ErrorCard from '~/components/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'TagPage',
-  components: { PostList, PostSidebar, Bml },
+  components: { PostList, PostSidebar, Bml, ErrorCard },
   async asyncData(ctx) {
     const tag = await ctx.$http.$get(`/tag/${ctx.route.params.slug}`)
     return {
@@ -102,7 +92,8 @@ export default Vue.extend({
       pageCount: 1,
       postPerPage: 15,
       curPage: 1,
-      tag: {} as any
+      tag: {} as any,
+      mdiLabel
     }
   },
   async fetch() {

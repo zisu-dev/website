@@ -2,7 +2,7 @@
   <v-list-group>
     <template #activator>
       <v-list-item-avatar tile size="24">
-        <v-icon>mdi-hammer-wrench</v-icon>
+        <v-icon>{{ mdiHammerWrench }}</v-icon>
       </v-list-item-avatar>
       <v-list-item-title class="text-overline">Admin</v-list-item-title>
     </template>
@@ -13,7 +13,7 @@
       :exact="link.exact"
     >
       <v-list-item-avatar tile size="24">
-        <v-icon v-text="link.icon" />
+        <v-icon>{{ link.icon }}</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="text-overline" v-text="link.text" />
@@ -24,17 +24,27 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import {
+  mdiAccount,
+  mdiCog,
+  mdiHammerWrench,
+  mdiPost,
+  mdiTag,
+  mdiViewDashboard
+} from '@mdi/js'
+
 export default Vue.extend({
   name: 'AdminNav',
   data() {
     return {
       links: [
-        { to: '/', icon: 'mdi-view-dashboard', text: 'Dashboard', exact: true },
-        { to: '/post', icon: 'mdi-post', text: 'Posts' },
-        { to: '/tag', icon: 'mdi-tag', text: 'Tags' },
-        { to: '/user', icon: 'mdi-account', text: 'Users' },
-        { to: '/meta', icon: 'mdi-cog', text: 'Metas' }
-      ]
+        { to: '/', icon: mdiViewDashboard, text: 'Dashboard', exact: true },
+        { to: '/post', icon: mdiPost, text: 'Posts' },
+        { to: '/tag', icon: mdiTag, text: 'Tags' },
+        { to: '/user', icon: mdiAccount, text: 'Users' },
+        { to: '/meta', icon: mdiCog, text: 'Metas' }
+      ],
+      mdiHammerWrench
     }
   }
 })

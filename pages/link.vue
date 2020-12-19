@@ -16,7 +16,7 @@
               <v-list-item-avatar>
                 <v-icon v-if="x.icon" size="48">{{ x.icon }}</v-icon>
                 <v-img v-else-if="x.avatar" :src="x.avatar" />
-                <v-icon v-else size="48">mdi-account-circle</v-icon>
+                <v-icon v-else size="48">{{ mdiAccountCircle }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>{{ x.name }}</v-list-item-title>
@@ -31,6 +31,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiAccountCircle } from '@mdi/js'
 
 export default Vue.extend({
   name: 'LinkPage',
@@ -54,7 +55,8 @@ export default Vue.extend({
           name: 'Mo Yi',
           link: 'https://moyi.ml/'
         }
-      ]
+      ],
+      mdiAccountCircle
     }
   },
   head() {

@@ -36,7 +36,7 @@
                   :value="new Date(post.published).toLocaleString()"
                   label="Published at"
                   readonly
-                  append-icon="mdi-pencil"
+                  :append-icon="mdiPencil"
                   @click:append="editPublished = true"
                 />
               </v-card-text>
@@ -73,7 +73,7 @@
                   </v-list-item-content>
                   <v-list-item-action>
                     <v-icon color="error" @click="deleteTag(tag)">
-                      mdi-delete
+                      {{ mdiDelete }}
                     </v-icon>
                   </v-list-item-action>
                 </v-list-item>
@@ -129,6 +129,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiDelete, mdiPencil } from '@mdi/js'
 import TagAutocomplete from '~/components/tag/TagAutocomplete.vue'
 import Post from '~/components/post/Post.vue'
 import MonacoEditor from '~/components/MonacoEditor.vue'
@@ -153,7 +154,9 @@ export default Vue.extend({
     return {
       loading: false,
       newTag: null as any,
-      editPublished: false
+      editPublished: false,
+      mdiDelete,
+      mdiPencil
     }
   },
   computed: {

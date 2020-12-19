@@ -20,7 +20,7 @@ export default Vue.extend({
   components: { PostSidebar },
   head() {
     return {
-      title: 'Posts'
+      titleTemplate: '%s - Blog - ZZisu.dev'
     }
   },
   created() {

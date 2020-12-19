@@ -15,8 +15,8 @@ export default Vue.extend({
     },
     bg() {
       return this.$vuetify.theme.dark
-        ? 'https://s3.ax1x.com/2020/12/17/r8hg5q.png'
-        : 'https://s3.ax1x.com/2020/12/08/rpmt3D.jpg'
+        ? process.env.BG_DARK
+        : process.env.BG_LIGHT
     },
     zIndex() {
       return this.$store.state.zen ? 0 : -1
@@ -32,5 +32,20 @@ div {
   height: 100%;
   transition: 0.1s;
   background-position: center center;
+  background-image: linear-gradient(-45deg, rgb(34, 76, 152) 10%, transparent),
+    repeating-linear-gradient(
+      0deg,
+      rgba(34, 76, 152, 1) 0px,
+      rgba(31, 48, 94, 0.6) 50px,
+      transparent 50px,
+      transparent 100px
+    ),
+    repeating-linear-gradient(
+      -90deg,
+      rgba(34, 76, 152, 0.4) 0px,
+      rgba(31, 48, 94, 0.5) 50px,
+      transparent 50px,
+      transparent 100px
+    );
 }
 </style>

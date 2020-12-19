@@ -2,7 +2,7 @@
   <v-list nav dense>
     <v-list-item v-for="(link, i) of links" :key="i" :to="link.to">
       <v-list-item-avatar tile size="24">
-        <v-icon v-text="link.icon" />
+        <v-icon>{{ link.icon }}</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
         <v-list-item-title class="text-overline" v-text="link.text" />
@@ -18,6 +18,13 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
+import {
+  mdiFormatListText,
+  mdiHome,
+  mdiInformationOutline,
+  mdiLink,
+  mdiRocket
+} from '@mdi/js'
 import AdminNav from '~/components/admin/AdminNav.vue'
 
 export default Vue.extend({
@@ -26,11 +33,11 @@ export default Vue.extend({
   data() {
     return {
       links: [
-        { to: '/', icon: 'mdi-home', text: 'Home' },
-        { to: '/post', icon: 'mdi-format-list-text', text: 'Blog' },
-        { to: '/about', icon: 'mdi-information-outline', text: 'About' },
-        { to: '/build', icon: 'mdi-rocket', text: 'Build Info' },
-        { to: '/link', icon: 'mdi-link', text: 'Friend Links' }
+        { to: '/', icon: mdiHome, text: 'Home' },
+        { to: '/post', icon: mdiFormatListText, text: 'Blog' },
+        { to: '/about', icon: mdiInformationOutline, text: 'About' },
+        { to: '/build', icon: mdiRocket, text: 'Build Info' },
+        { to: '/link', icon: mdiLink, text: 'Friend Links' }
       ]
     }
   },

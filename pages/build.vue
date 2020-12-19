@@ -6,39 +6,16 @@
           <v-card-title>Build details</v-card-title>
           <v-divider />
           <v-list color="transparent">
-            <v-list-item>
+            <v-list-item v-for="(build, i) of builds" :key="i">
               <v-list-item-avatar>
-                <v-icon color="#CB3837">mdi-package-variant</v-icon>
+                <v-icon :color="build.color">{{ build.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>
-                  <code>{{ build.version }}</code>
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-avatar>
-                <v-icon color="#F05032">mdi-git</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <code>{{ build.git.hash }}</code>
+                  <code>{{ build.title }}</code>
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                  <code>{{ build.git.branch }}</code>
-                </v-list-item-subtitle>
-              </v-list-item-content>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-avatar>
-                <v-icon>mdi-clock-outline</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <code>{{ new Date(build.time).toLocaleDateString() }}</code>
-                </v-list-item-title>
-                <v-list-item-subtitle>
-                  <code>{{ new Date(build.time).toLocaleTimeString() }}</code>
+                  <code>{{ build.subtitle }}</code>
                 </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -60,13 +37,13 @@
               rel="noopener"
             >
               <v-list-item-avatar>
-                <v-icon>mdi-web</v-icon>
+                <v-icon>{{ info.icon }}</v-icon>
               </v-list-item-avatar>
               <v-list-item-content>
                 <v-list-item-title>{{ info.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{
-                  info.description
-                }}</v-list-item-subtitle>
+                <v-list-item-subtitle>
+                  {{ info.description }}
+                </v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
                 <v-row dense>
@@ -91,8 +68,9 @@
               :key="i"
               :color="power.color"
               large
-              v-text="power.icon"
-            />
+            >
+              {{ power.icon }}
+            </v-icon>
           </v-card-text>
         </v-card>
       </v-col>
@@ -102,11 +80,36 @@
 
 <script>
 import Vue from 'vue'
+import {
+  mdiBookClockOutline,
+  mdiGit,
+  mdiNodejs,
+  mdiNuxt,
+  mdiPackageVariant,
+  mdiVuejs,
+  mdiVuetify,
+  mdiWeb,
+  mdiWebpack
+} from '@mdi/js'
 
 export default Vue.extend({
   name: 'Build',
   data: () => ({
     t: 0,
+    builds: [
+      { color: '#CB3837', icon: mdiPackageVariant, title: BUILD.version },
+      {
+        color: '#F05032',
+        icon: mdiGit,
+        title: BUILD.git.hash,
+        subtitle: BUILD.git.branch
+      },
+      {
+        icon: mdiBookClockOutline,
+        title: new Date(BUILD.time).toLocaleDateString(),
+        subtitle: new Date(BUILD.time).toLocaleTimeString()
+      }
+    ],
     infos: [
       {
         name: 'Website',
@@ -115,7 +118,8 @@ export default Vue.extend({
         badges: [
           'https://img.shields.io/github/deployments/zzisu/website/Production?label=&logo=vercel&style=flat-square',
           'https://img.shields.io/github/workflow/status/zzs-web/website/ci?label=&logo=github&style=flat-square'
-        ]
+        ],
+        icon: mdiWeb
       },
       {
         name: 'Proxy',
@@ -123,17 +127,17 @@ export default Vue.extend({
         link: 'https://proxy.zhangzisu.cn',
         badges: [
           'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square'
-        ]
+        ],
+        icon: mdiWeb
       }
     ],
     powers: [
-      { color: '#339933', icon: 'mdi-nodejs' },
-      { color: '#8DD6F9', icon: 'mdi-webpack' },
-      { color: '#4FC08D', icon: 'mdi-vuejs' },
-      { color: '#00C58E', icon: 'mdi-nuxt' },
-      { color: '#1867C0', icon: 'mdi-vuetify' }
-    ],
-    build: BUILD
+      { color: '#339933', icon: mdiNodejs },
+      { color: '#8DD6F9', icon: mdiWebpack },
+      { color: '#4FC08D', icon: mdiVuejs },
+      { color: '#00C58E', icon: mdiNuxt },
+      { color: '#1867C0', icon: mdiVuetify }
+    ]
   }),
   head() {
     return {

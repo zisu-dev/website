@@ -4,7 +4,7 @@
       <v-col cols="6">
         <v-card class="text-center" flat>
           <template v-if="error.statusCode === 404">
-            <v-icon size="96px">mdi-map-marker-question-outline</v-icon>
+            <v-icon size="96px">{{ mdiMapMarkerQuestionOutline }}</v-icon>
             <v-card-text>
               <span class="text-h4">{{ pageNotFound }}</span>
               <br />
@@ -12,7 +12,7 @@
             </v-card-text>
           </template>
           <template v-else>
-            <v-icon size="96px">mdi-alert-circle-outline</v-icon>
+            <v-icon size="96px">{{ mdiAlertCircleOutline }}</v-icon>
             <v-card-text>
               <span class="text-h4">{{ otherError }}</span>
               <br />
@@ -38,8 +38,11 @@
   </v-container>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import { mdiMapMarkerQuestionOutline, mdiAlertCircleOutline } from '@mdi/js'
+
+export default Vue.extend({
   layout: 'empty',
   props: {
     error: {
@@ -50,17 +53,19 @@ export default {
   data() {
     return {
       pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
+      otherError: 'An error occurred',
+      mdiAlertCircleOutline,
+      mdiMapMarkerQuestionOutline
     }
   },
   head() {
-    const title =
+    const title: string =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
     return {
       title
     }
   }
-}
+})
 </script>
 
 <style scoped>

@@ -32,8 +32,10 @@
               </span>
             </template>
             <template #[`item.public`]="{ item }">
-              <v-icon v-if="item.public" color="green">mdi-lock-open</v-icon>
-              <v-icon v-else color="red">mdi-lock</v-icon>
+              <v-icon v-if="item.public" color="green">
+                {{ mdiLockOpen }}
+              </v-icon>
+              <v-icon v-else color="red">{{ mdiLock }}</v-icon>
             </template>
           </v-data-table>
         </v-card>
@@ -44,6 +46,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiLockOpen, mdiLock } from '@mdi/js'
 
 export default Vue.extend({
   name: 'AdminMetaPage',
@@ -59,7 +62,9 @@ export default Vue.extend({
         page: 1,
         itemsPerPage: 15
       },
-      metaCount: 0
+      metaCount: 0,
+      mdiLockOpen,
+      mdiLock
     }
   },
   async fetch() {

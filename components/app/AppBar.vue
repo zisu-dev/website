@@ -19,7 +19,7 @@
     <v-tooltip bottom>
       <template #activator="{ on }">
         <v-btn icon v-on="on" @click="changeTheme">
-          <v-icon v-text="themeIcon[theme]" />
+          <v-icon>{{ themeIcon[theme] }}</v-icon>
         </v-btn>
       </template>
       <span>Theme: {{ theme }}</span>
@@ -31,6 +31,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import { mdiBrightness4, mdiBrightness5, mdiBrightnessAuto } from '@mdi/js'
 import UserIndicator from '~/components/UserIndicator.vue'
 
 export default Vue.extend({
@@ -46,9 +47,9 @@ export default Vue.extend({
     return {
       drawer: null,
       themeIcon: {
-        auto: 'mdi-brightness-auto',
-        light: 'mdi-brightness-5',
-        dark: 'mdi-brightness-4'
+        auto: mdiBrightnessAuto,
+        light: mdiBrightness5,
+        dark: mdiBrightness4
       }
     }
   },

@@ -5,6 +5,9 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  middleware: ['admin']
+  middleware: ['admin'],
+  head: {
+    titleTemplate: '%s - Admin - ZZisu.dev'
+  }
 })
 </script>

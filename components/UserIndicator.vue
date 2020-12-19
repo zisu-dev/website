@@ -10,7 +10,7 @@
     <v-list dense>
       <v-list-item :to="'/user/' + user.slug">
         <v-list-item-icon>
-          <v-icon>mdi-account</v-icon>
+          <v-icon>{{ mdiAccount }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-badge
@@ -26,7 +26,7 @@
       </v-list-item>
       <v-list-item v-if="user.perm.admin" to="/admin">
         <v-list-item-icon>
-          <v-icon>mdi-cog</v-icon>
+          <v-icon>{{ mdiCog }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>Admin</v-list-item-title>
@@ -34,7 +34,7 @@
       </v-list-item>
       <v-list-item @click="logout">
         <v-list-item-icon>
-          <v-icon>mdi-exit-to-app</v-icon>
+          <v-icon>{{ mdiExitToApp }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>Logout</v-list-item-title>
@@ -43,7 +43,7 @@
     </v-list>
   </v-menu>
   <v-btn v-else outlined to="/login" class="mr-4">
-    <v-icon left>mdi-account-circle</v-icon>
+    <v-icon left>{{ mdiAccountCircle }}</v-icon>
     Login
   </v-btn>
 </template>
@@ -52,9 +52,18 @@
 import Vue from 'vue'
 import { mapState, mapGetters } from 'vuex'
 import gravatar from 'gravatar'
+import { mdiAccount, mdiCog, mdiExitToApp, mdiAccountCircle } from '@mdi/js'
 
 export default Vue.extend({
   name: 'UserIndicator',
+  data() {
+    return {
+      mdiAccount,
+      mdiCog,
+      mdiExitToApp,
+      mdiAccountCircle
+    }
+  },
   computed: {
     ...mapState(['user']),
     ...mapGetters(['userBadge'])

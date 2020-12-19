@@ -1,6 +1,6 @@
 <template>
   <v-card class="text-center" flat>
-    <v-icon size="96px">mdi-alert-circle-outline</v-icon>
+    <v-icon size="96px">{{ mdiAlertCircleOutline }}</v-icon>
     <v-card-text>
       <span class="text-h4">An error occurred</span>
       <br />
@@ -17,12 +17,19 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mdiAlertCircleOutline } from '@mdi/js'
+
 export default Vue.extend({
   name: 'ErrorCard',
   props: {
     error: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      mdiAlertCircleOutline
     }
   }
 })

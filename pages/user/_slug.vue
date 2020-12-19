@@ -24,7 +24,7 @@
                   <v-list dense color="transparent">
                     <v-list-item>
                       <v-list-item-icon>
-                        <v-icon>mdi-identifier</v-icon>
+                        <v-icon>{{ mdiIdentifier }}</v-icon>
                       </v-list-item-icon>
                       <v-list-item-content>
                         <v-list-item-title>
@@ -34,7 +34,7 @@
                     </v-list-item>
                     <v-list-item>
                       <v-list-item-icon>
-                        <v-icon>mdi-pound</v-icon>
+                        <v-icon>{{ mdiPound }}</v-icon>
                       </v-list-item-icon>
                       <v-list-item-content>
                         <v-list-item-title>
@@ -44,7 +44,7 @@
                     </v-list-item>
                     <v-list-item>
                       <v-list-item-icon>
-                        <v-icon>mdi-email</v-icon>
+                        <v-icon>{{ mdiEmail }}</v-icon>
                       </v-list-item-icon>
                       <v-list-item-content>
                         <v-list-item-title>
@@ -86,7 +86,7 @@
                         :disabled="loading"
                         @click="oAuthGithub"
                       >
-                        <v-icon left>mdi-github</v-icon>
+                        <v-icon left>{{ mdiGithub }}</v-icon>
                         {{ user.oauth.github ? 'Unlink' : 'Link' }}
                       </v-btn>
                     </v-card-text>
@@ -120,6 +120,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import gravatar from 'gravatar'
+import { mdiIdentifier, mdiPound, mdiEmail, mdiGithub } from '@mdi/js'
 import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
@@ -134,7 +135,11 @@ export default Vue.extend({
   data() {
     return {
       pass: '',
-      loading: false
+      loading: false,
+      mdiIdentifier,
+      mdiPound,
+      mdiEmail,
+      mdiGithub
     }
   },
   head() {
