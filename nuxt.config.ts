@@ -119,6 +119,9 @@ const config: NuxtConfig = {
       background_color: '#2c3e50'
     }
   },
+  loading: {
+    color: '#3498db'
+  },
   build: generateBuildConfig(),
   modules: generateModulesConfig()
 }

@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center" align="center">
       <v-col cols="6">
-        <v-card class="text-center" flat>
+        <v-card class="text-center">
           <template v-if="error.statusCode === 404">
             <v-icon size="96px">{{ mdiMapMarkerQuestionOutline }}</v-icon>
             <v-card-text>
@@ -23,12 +23,12 @@
           <v-card-actions>
             <v-row>
               <v-col cols="12" lg="6">
-                <v-btn color="success" outlined block @click="$router.go(-1)">
+                <v-btn color="success" block @click="$router.go(-1)">
                   Go Back
                 </v-btn>
               </v-col>
               <v-col cols="12" lg="6">
-                <v-btn color="primary" outlined block to="/">Go Home</v-btn>
+                <v-btn color="primary" block to="/">Go Home</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>

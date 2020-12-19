@@ -8,7 +8,12 @@ declare module 'vue/types/vue' {
   }
 }
 
-function $error(e: Error) {
+async function $error(e: Error | Record<string, any>) {
+  if ('response' in e) {
+    const { message } = await e.response.json()
+    iziToast.error({ title: 'Failed', message })
+    return
+  }
   iziToast.error({ title: 'Failed', message: e.message })
 }
 

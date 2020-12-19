@@ -3,7 +3,7 @@
     <v-card-title>Tags</v-card-title>
     <v-divider />
     <template v-if="$fetchState.pending">
-      <v-skeleton-loader type="text@3" />
+      <v-skeleton-loader type="article" />
     </template>
     <template v-else-if="tags">
       <tag-chip
