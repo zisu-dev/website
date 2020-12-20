@@ -1371,6 +1371,7 @@ $color-ansi-cyan-bright: #b3f0ff;
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
+  background-color: $color-markdown-code-bg;
   border-radius: 6px;
 }
 
@@ -1403,7 +1404,6 @@ $color-ansi-cyan-bright: #b3f0ff;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: $color-bg-tertiary;
   border-radius: 6px;
 }
 
