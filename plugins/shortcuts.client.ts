@@ -3,6 +3,10 @@ import Mousetrap from 'mousetrap'
 
 const plugin: Plugin = (ctx) => {
   Mousetrap.bind('ctrl+k z', () => {
+    ctx.$toast.info({
+      title: 'Zen',
+      message: ctx.store.state.zen ? 'Disabled' : 'Enabled'
+    })
     ctx.store.commit('zen:update', !ctx.store.state.zen)
   })
 }

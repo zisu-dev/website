@@ -19,7 +19,7 @@ export default Vue.extend({
         : process.env.BG_LIGHT
     },
     zIndex() {
-      return this.$store.state.zen ? 0 : -1
+      return this.$store.state.zen ? 6 : -1
     }
   }
 })
