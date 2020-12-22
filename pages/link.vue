@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col v-for="(x, i) of links" :key="i" xs="6" md="4" lg="3">
+      <v-col v-for="(x, i) of links" :key="i" cols="6" sm="4" md="3" xl="2">
         <v-card :href="x.link" target="_blank" rel="noopener" hover>
           <v-img
             :src="screenshotUrl(x.link)"
@@ -62,7 +62,7 @@ export default Vue.extend({
   },
   methods: {
     screenshotUrl(link: string) {
-      return `https://cdn.staticaly.com/screenshot/full=true/${
+      return `https://statically.zzisu.dev/screenshot/full=true/${
         link.match(/^https?:\/\/(.+)$/)![1]
       }`
     }

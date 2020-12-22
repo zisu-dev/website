@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col xs="12" md="8" lg="6" xl="4">
+      <v-col cols="12" md="8" lg="6" xl="4">
         <v-card>
           <v-card-title>Build details</v-card-title>
           <v-divider />
@@ -24,7 +24,7 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-col xs="12" md="8" lg="6" xl="4">
+      <v-col cols="12" md="8" lg="6" xl="4">
         <v-card>
           <v-card-title>CI/CD</v-card-title>
           <v-divider />
@@ -58,7 +58,7 @@
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-col xs="12" md="8" lg="6" xl="4">
+      <v-col cols="12" md="8" lg="6" xl="4">
         <v-card>
           <v-card-title>Powered By</v-card-title>
           <v-divider />
