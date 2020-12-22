@@ -1,28 +1,21 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <v-col xs="12" sm="8" md="6" lg="4" xl="3">
-        <v-card>
-          <v-card-title>Links</v-card-title>
-          <v-divider />
-          <v-list color="transparent">
-            <v-list-item
-              v-for="(x, i) of links"
-              :key="i"
-              :href="x.link"
-              target="_blank"
-              rel="noopener"
-            >
-              <v-list-item-avatar tile size="24">
-                <v-icon v-if="x.icon" size="48">{{ x.icon }}</v-icon>
-                <v-img v-else-if="x.avatar" :src="x.avatar" />
-                <v-icon v-else size="48">{{ mdiAccountCircle }}</v-icon>
-              </v-list-item-avatar>
-              <v-list-item-content>
-                <v-list-item-title>{{ x.name }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
+      <v-col v-for="(x, i) of links" :key="i" xs="6" md="4" lg="3">
+        <v-card :href="x.link" target="_blank" rel="noopener" hover>
+          <v-img
+            :src="screenshotUrl(x.link)"
+            height="200px"
+            class="align-end white--text"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+          >
+            <v-card-title>
+              <v-avatar v-if="x.avatar" class="mr-4">
+                <v-img :src="x.avatar" />
+              </v-avatar>
+              {{ x.name }}
+            </v-card-title>
+          </v-img>
         </v-card>
       </v-col>
     </v-row>
@@ -66,6 +59,13 @@ export default Vue.extend({
   },
   created() {
     this.$store.commit('scope:update', 'friend links')
+  },
+  methods: {
+    screenshotUrl(link: string) {
+      return `https://cdn.staticaly.com/screenshot/full=true/${
+        link.match(/^https?:\/\/(.+)$/)![1]
+      }`
+    }
   }
 })
 </script>
