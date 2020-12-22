@@ -116,6 +116,9 @@
                       label="Published"
                       type="number"
                     />
+                    <v-btn color="primary" @click="post.published = Date.now()">
+                      Now
+                    </v-btn>
                   </v-card-text>
                 </v-tab-item>
               </v-tabs>
