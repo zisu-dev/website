@@ -18,6 +18,11 @@
           </v-card-text>
           <v-divider />
           <v-card-actions>
+            <v-select
+              v-model="session"
+              :items="['1d', '30d']"
+              label="Session"
+            />
             <v-spacer />
             <v-btn
               v-if="githubEnabled"
@@ -57,6 +62,7 @@ export default Vue.extend({
       loading: false,
       login: '',
       pass: '',
+      session: '1d',
       githubEnabled: enabled,
       mdiAccountPlus,
       mdiGithub
@@ -84,7 +90,8 @@ export default Vue.extend({
       try {
         const body = {
           login: this.login,
-          pass: this.pass
+          pass: this.pass,
+          expires: this.session
         }
         const res: any = await this.$http.$post('/login', body)
         this.$cookies.set('token', res.token)
