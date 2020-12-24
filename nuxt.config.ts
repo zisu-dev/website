@@ -83,7 +83,8 @@ const config: NuxtConfig = {
   plugins: [
     '~/plugins/init.ts',
     '~/plugins/toast.client.ts',
-    '~/plugins/shortcuts.client.ts'
+    '~/plugins/shortcuts.client.ts',
+    '~/plugins/swc.client.ts'
   ],
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify', '@nuxtjs/pwa'],
   env: {
