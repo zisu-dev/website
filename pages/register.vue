@@ -42,6 +42,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiLoginVariant, mdiGithub } from '@mdi/js'
+import jwtDecode from 'jwt-decode'
 import { enabled, open, getState } from '~/utils/github'
 
 export default Vue.extend({
@@ -96,15 +97,19 @@ export default Vue.extend({
       try {
         const body = { code, state }
         const res: any = await this.$http.$post('/oauth/github/register', body)
-        this.$cookies.set('token', res.token)
+        this.setToken(res.token)
         this.$store.commit(':login', res)
-        this.$http.setToken(res.token, 'Bearer')
         this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push(`/user/${res.user._id}`)
       } catch (e) {
         this.$toast.$error(e)
       }
       this.loading = false
+    },
+    setToken(token: string) {
+      const { exp } = jwtDecode(token) as any
+      this.$cookies.set('token', token, { expires: new Date(exp * 1000) })
+      this.$http.setToken(token, 'Bearer')
     }
   }
 })

@@ -67,7 +67,7 @@ export default Vue.extend({
       }
     },
     setTheme(theme: string) {
-      this.$cookies.set('theme', theme)
+      this.$cookies.set('theme', theme, { expires: new Date(2147483647000) })
       this.$store.commit('theme:update', theme)
     }
   }
