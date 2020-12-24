@@ -118,6 +118,24 @@ const config: NuxtConfig = {
       short_name: APP_NAME,
       description: APP_DESC,
       background_color: '#2c3e50'
+    },
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: '^https:\\/\\/fonts\\.googleapis\\.com',
+          handler: 'StaleWhileRevalidate',
+          strategyOptions: {
+            cacheName: 'google-fonts-stylesheets'
+          }
+        },
+        {
+          urlPattern: '^https:\\/\\/fonts\\.gstatic\\.com',
+          handler: 'StaleWhileRevalidate',
+          strategyOptions: {
+            cacheName: 'google-fonts-webfonts'
+          }
+        }
+      ]
     }
   },
   loading: {
