@@ -25,6 +25,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mdiAccountCircle } from '@mdi/js'
+import { screenshot } from '~/utils/statically'
 
 export default Vue.extend({
   name: 'LinkPage',
@@ -62,9 +63,7 @@ export default Vue.extend({
   },
   methods: {
     screenshotUrl(link: string) {
-      return `https://statically.zzisu.dev/screenshot/full=true/${
-        link.match(/^https?:\/\/(.+)$/)![1]
-      }`
+      return screenshot(link)
     }
   }
 })
