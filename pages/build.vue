@@ -126,7 +126,7 @@ export default Vue.extend({
         description: 'proxy.zhangzisu.cn',
         link: 'https://proxy.zhangzisu.cn',
         badges: [
-          'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square'
+          'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square&logoColor=FFF'
         ],
         icon: mdiWeb
       }

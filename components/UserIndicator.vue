@@ -51,8 +51,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState, mapGetters } from 'vuex'
-import gravatar from 'gravatar'
 import { mdiAccount, mdiCog, mdiExitToApp, mdiAccountCircle } from '@mdi/js'
+import { getAvatar } from '~/utils/avatar'
 
 export default Vue.extend({
   name: 'UserIndicator',
@@ -76,9 +76,7 @@ export default Vue.extend({
       this.$toast.success({ title: 'Bye' })
       this.$router.push('/')
     },
-    getAvatar(email: string) {
-      return gravatar.url(email)
-    }
+    getAvatar
   }
 })
 </script>

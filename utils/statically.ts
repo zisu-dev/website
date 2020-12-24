@@ -1,5 +1,10 @@
 const STATICALLY_BASE = 'https://statically.zzisu.dev'
 
+function parse(url: string) {
+  const [, host, path] = url.match(/^(?:https?:)?\/\/([^/]+)(\/.*)?$/i)!
+  return { host, path }
+}
+
 function cvt(params: Record<string, any> | undefined) {
   if (!params) return ''
   const keys = Object.keys(params)
@@ -8,17 +13,15 @@ function cvt(params: Record<string, any> | undefined) {
 }
 
 interface IImgParams {
-  device?: 'mobile'
-  full?: true
+  h?: number
+  w?: number
+  f?: 'auto'
+  q?: number
 }
 
 export function img(url: string, params?: IImgParams) {
-  try {
-    const u = new URL(url)
-    return `${STATICALLY_BASE}/img/${u.host}${cvt(params)}${u.pathname}`
-  } catch (e) {
-    return ''
-  }
+  const { host, path } = parse(url)
+  return `${STATICALLY_BASE}/img/${host}${cvt(params)}${path}`
 }
 
 interface IScreenshotParams {
@@ -27,10 +30,6 @@ interface IScreenshotParams {
 }
 
 export function screenshot(url: string, params?: IScreenshotParams) {
-  try {
-    const u = new URL(url)
-    return `${STATICALLY_BASE}/screenshot${cvt(params)}/${u.host}${u.pathname}`
-  } catch (e) {
-    return ''
-  }
+  const { host, path } = parse(url)
+  return `${STATICALLY_BASE}/screenshot${cvt(params)}/${host}${path}`
 }

@@ -122,6 +122,20 @@ const config: NuxtConfig = {
     workbox: {
       runtimeCaching: [
         {
+          urlPattern: '^https:\\/\\/statically\\.zzisu\\.dev',
+          handler: 'NetworkFirst',
+          strategyOptions: {
+            cacheName: 'statically'
+          }
+        },
+        {
+          urlPattern: '^https:\\/\\/cms\\.zzisu\\.dev',
+          handler: 'NetworkFirst',
+          strategyOptions: {
+            cacheName: 'zcms'
+          }
+        },
+        {
           urlPattern: '^https:\\/\\/fonts\\.googleapis\\.com',
           handler: 'StaleWhileRevalidate',
           strategyOptions: {
@@ -133,6 +147,13 @@ const config: NuxtConfig = {
           handler: 'StaleWhileRevalidate',
           strategyOptions: {
             cacheName: 'google-fonts-webfonts'
+          }
+        },
+        {
+          urlPattern: '^https:\\/\\/(.*\\.gravatar\\.com|img\\.shields\\.io)',
+          handler: 'NetworkFirst',
+          strategyOptions: {
+            cacheName: '3rd-img'
           }
         }
       ]
