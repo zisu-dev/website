@@ -23,7 +23,8 @@ import {
   mdiHome,
   mdiInformationOutline,
   mdiLink,
-  mdiRocketLaunch
+  mdiRocketLaunch,
+  mdiUpdate
 } from '@mdi/js'
 import AdminNav from '~/components/admin/AdminNav.vue'
 
@@ -36,6 +37,7 @@ export default Vue.extend({
         { to: '/', icon: mdiHome, text: 'Home' },
         { to: '/post', icon: mdiFormatListText, text: 'Blog' },
         { to: '/about', icon: mdiInformationOutline, text: 'About' },
+        { to: '/changelog', icon: mdiUpdate, text: 'Changelog' },
         { to: '/build', icon: mdiRocketLaunch, text: 'Build Info' },
         { to: '/link', icon: mdiLink, text: 'Friend Links' }
       ]

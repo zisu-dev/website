@@ -1,27 +1,24 @@
 <template>
   <v-container class="home">
     <v-row justify="center">
-      <v-col cols="12" lg="6" xl="4">
-        <v-card color="#1976D2c0" dark>
-          <v-card-title>
-            <div class="fill-width">
-              <div
-                class="text-uppercase font-italic font-weight-light subtitle-1"
-              >
-                Welcome TO
+      <v-col cols="12">
+        <v-card
+          color="transparent"
+          style="backdrop-filter: none"
+          flat
+          class="text-center"
+        >
+          <v-row justify="center" align="center">
+            <v-col cols="auto">
+              <div class="text-h3">
+                <code>ZZisu.dev</code>
               </div>
-              <div class="text-right display-1">
-                ZZisu.dev<br />
-                <span class="text-overline font-weight-light">
-                  formerly zhangzisu.cn
-                </span>
-              </div>
-            </div>
-          </v-card-title>
-          <v-divider />
-          <v-card-text class="text-center">
+            </v-col>
+          </v-row>
+          <v-card-text class="text-h6">
             <code>Code is philosophy</code>
           </v-card-text>
+          <v-divider />
         </v-card>
       </v-col>
       <v-col cols="12" lg="6" xl="4">
