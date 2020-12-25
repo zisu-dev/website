@@ -111,7 +111,7 @@ const config: NuxtConfig = {
     meta: {
       name: APP_NAME,
       description: APP_DESC,
-      theme_color: '#3498db'
+      theme_color: '#2c3e50'
     },
     manifest: {
       name: APP_NAME,
