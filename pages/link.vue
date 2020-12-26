@@ -1,7 +1,10 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col v-for="(x, i) of links" :key="i" cols="6" sm="4" md="3" xl="2">
+    <v-row v-for="(row, i) of rows" :key="i" justify="center">
+      <v-col cols="12">
+        <div class="text-center text-h6">{{ row.name }}</div>
+      </v-col>
+      <v-col v-for="(x, j) of row.links" :key="j" cols="6" sm="4" md="3" xl="2">
         <v-card :href="x.link" target="_blank" rel="noopener" hover>
           <v-img
             :src="screenshotUrl(x.link)"
@@ -19,6 +22,10 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-divider />
+    <v-row justify="center">
+      <v-col cols="auto">Want to add yours? Please contact me :D</v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -31,23 +38,45 @@ export default Vue.extend({
   name: 'LinkPage',
   data() {
     return {
-      links: [
+      rows: [
         {
-          avatar:
-            'https://www.gravatar.com/avatar/6563066d6b1ac788fca3a8033c382c46',
-          name: 'skylee',
-          link: 'https://skylee.xyz/'
+          name: 'Friends',
+          links: [
+            {
+              avatar:
+                'https://www.gravatar.com/avatar/6563066d6b1ac788fca3a8033c382c46',
+              name: 'skylee',
+              link: 'https://skylee.xyz/'
+            },
+            {
+              avatar:
+                'https://cdn.jsdelivr.net/gh/ZigZagK/jsDelivrCDN@latest/usr/uploads/2018/07/176242131.png',
+              name: 'ZigZagK',
+              link: 'https://zigzagk.top/'
+            },
+            {
+              avatar: 'https://q1.qlogo.cn/g?b=qq&nk=1254846416&s=640',
+              name: 'Mo Yi',
+              link: 'https://moyi.ml/'
+            }
+          ]
         },
         {
-          avatar:
-            'https://cdn.jsdelivr.net/gh/ZigZagK/jsDelivrCDN@latest/usr/uploads/2018/07/176242131.png',
-          name: 'ZigZagK',
-          link: 'https://zigzagk.top/'
-        },
-        {
-          avatar: 'https://q1.qlogo.cn/g?b=qq&nk=1254846416&s=640',
-          name: 'Mo Yi',
-          link: 'https://moyi.ml/'
+          name: 'Useful websites',
+          links: [
+            {
+              name: 'Anime Sharing',
+              link: 'http://www.anime-sharing.com'
+            },
+            {
+              name: '轻小说文库',
+              link: 'https://www.wenku8.net/index.php'
+            },
+            {
+              name: 'nyaa',
+              link: 'https://nyaa.si'
+            }
+          ]
         }
       ],
       mdiAccountCircle
@@ -55,7 +84,7 @@ export default Vue.extend({
   },
   head() {
     return {
-      title: 'Friend Links'
+      title: 'Links'
     }
   },
   created() {

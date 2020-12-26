@@ -1,6 +1,6 @@
 <template>
   <div :style="{ zIndex }">
-    <v-img :src="bg" />
+    <img :src="bg" crossorigin="anonymous" />
   </div>
 </template>
 

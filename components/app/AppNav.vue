@@ -39,7 +39,7 @@ export default Vue.extend({
         { to: '/about', icon: mdiInformationOutline, text: 'About' },
         { to: '/changelog', icon: mdiUpdate, text: 'Changelog' },
         { to: '/build', icon: mdiRocketLaunch, text: 'Build Info' },
-        { to: '/link', icon: mdiLink, text: 'Friend Links' }
+        { to: '/link', icon: mdiLink, text: 'Links' }
       ]
     }
   },
