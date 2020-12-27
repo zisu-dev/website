@@ -15,15 +15,10 @@
     </v-btn>
     <v-spacer />
     <user-indicator />
-    <v-divider vertical />
-    <v-tooltip bottom>
-      <template #activator="{ on }">
-        <v-btn icon v-on="on" @click="changeTheme">
-          <v-icon>{{ themeIcon[theme] }}</v-icon>
-        </v-btn>
-      </template>
-      <span>Theme: {{ theme }}</span>
-    </v-tooltip>
+    <v-divider vertical inset />
+    <v-btn icon @click="settingsDrawer">
+      <v-icon>{{ mdiCog }}</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -31,7 +26,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { mdiBrightness4, mdiBrightness5, mdiBrightnessAuto } from '@mdi/js'
+import { mdiCog } from '@mdi/js'
 import UserIndicator from '~/components/UserIndicator.vue'
 
 export default Vue.extend({
@@ -46,29 +41,18 @@ export default Vue.extend({
   data() {
     return {
       drawer: null,
-      themeIcon: {
-        auto: mdiBrightnessAuto,
-        light: mdiBrightness5,
-        dark: mdiBrightness4
-      }
+      mdiCog
     }
   },
   computed: {
-    ...mapState(['scope', 'theme'])
+    ...mapState(['scope'])
   },
   methods: {
-    changeTheme() {
-      if (this.theme === 'auto') {
-        this.setTheme('light')
-      } else if (this.theme === 'light') {
-        this.setTheme('dark')
-      } else {
-        this.setTheme('auto')
-      }
-    },
-    setTheme(theme: string) {
-      this.$cookies.set('theme', theme, { expires: new Date(2147483647000) })
-      this.$store.commit('theme:update', theme)
+    settingsDrawer() {
+      this.$store.commit(
+        'settingsDrawer:update',
+        !this.$store.state.settingsDrawer
+      )
     }
   }
 })

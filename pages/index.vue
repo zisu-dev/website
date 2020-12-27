@@ -11,11 +11,20 @@
               <code>> {{ motto }}</code>
               <code class="blink">|</code>
             </v-card-text>
+            <v-divider />
+            <v-card-text class="text-center text-overline pa-1">
+              <v-btn outlined small @click="scroll">
+                <v-icon left>{{ mdiArrowDown }}</v-icon>
+                Scroll to see more
+              </v-btn>
+            </v-card-text>
           </div>
         </v-card>
       </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
-        <v-card class="fill-height">
+        <v-card ref="next">
           <v-card-title>Next</v-card-title>
           <v-divider />
           <v-list>
@@ -31,8 +40,10 @@
           </v-list>
         </v-card>
       </v-col>
+    </v-row>
+    <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
-        <v-card class="fill-height">
+        <v-card>
           <v-card-title>Contact</v-card-title>
           <v-divider />
           <v-card-text>
@@ -61,7 +72,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mdiFormatListText, mdiWeb } from '@mdi/js'
+import { mdiFormatListText, mdiWeb, mdiArrowDown } from '@mdi/js'
 import { wait } from '~/utils/misc'
 
 export default Vue.extend({
@@ -134,7 +145,9 @@ export default Vue.extend({
         }
       ],
       mottos: ['Code is philosophy'],
-      motto: ''
+      motto: '',
+
+      mdiArrowDown
     }
   },
   head() {
@@ -158,6 +171,9 @@ export default Vue.extend({
         this.motto += c
         await wait(100)
       }
+    },
+    scroll() {
+      this.$vuetify.goTo(this.$refs.next)
     }
   }
 })
@@ -170,10 +186,6 @@ export default Vue.extend({
 }
 
 .brand-card-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   background-color: #4d4d4fab;
 }
 

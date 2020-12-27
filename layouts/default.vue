@@ -4,6 +4,7 @@
     <v-navigation-drawer v-model="drawer" app>
       <app-nav />
     </v-navigation-drawer>
+    <app-settings-drawer />
     <v-main>
       <nuxt />
     </v-main>
@@ -18,10 +19,11 @@ import AppBar from '~/components/app/AppBar.vue'
 import AppFooter from '~/components/app/AppFooter.vue'
 import AppBg from '~/components/app/AppBg.vue'
 import AppNav from '~/components/app/AppNav.vue'
+import AppSettingsDrawer from '~/components/app/AppSettingsDrawer.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { AppBg, AppBar, AppFooter, AppNav },
+  components: { AppBg, AppBar, AppFooter, AppNav, AppSettingsDrawer },
   data() {
     return {
       drawer: null
