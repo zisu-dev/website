@@ -16,9 +16,11 @@
       </v-btn>
     </v-toolbar>
     <v-divider />
-    <theme />
-    <v-divider />
-    <storage />
+    <client-only>
+      <theme />
+      <v-divider />
+      <storage />
+    </client-only>
   </v-navigation-drawer>
 </template>
 
