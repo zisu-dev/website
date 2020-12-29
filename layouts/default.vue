@@ -1,10 +1,12 @@
 <template>
   <v-app :class="{ acrylic: $store.state.acrylic }">
     <app-bar v-model="drawer" />
-    <v-navigation-drawer v-model="drawer" app>
-      <app-nav />
-    </v-navigation-drawer>
-    <app-settings-drawer />
+    <client-only>
+      <v-navigation-drawer v-model="drawer" app>
+        <app-nav />
+      </v-navigation-drawer>
+      <app-settings-drawer />
+    </client-only>
     <v-main>
       <nuxt />
     </v-main>
