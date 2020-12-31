@@ -19,6 +19,8 @@
     <theme />
     <v-divider />
     <storage />
+    <v-divider />
+    <version />
   </v-navigation-drawer>
 </template>
 
@@ -27,10 +29,11 @@ import Vue from 'vue'
 import { mdiClose } from '@mdi/js'
 import Theme from '~/components/app/settings/Theme.vue'
 import Storage from '~/components/app/settings/Storage.vue'
+import Version from '~/components/app/settings/Version.vue'
 
 export default Vue.extend({
   name: 'AppSettingsDrawer',
-  components: { Theme, Storage },
+  components: { Theme, Storage, Version },
   data() {
     return {
       mdiClose

@@ -78,7 +78,7 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 import {
   mdiBookClockOutline,
@@ -94,51 +94,53 @@ import {
 
 export default Vue.extend({
   name: 'Build',
-  data: () => ({
-    t: 0,
-    builds: [
-      { color: '#CB3837', icon: mdiPackageVariant, title: BUILD.version },
-      {
-        color: '#F05032',
-        icon: mdiGit,
-        title: BUILD.git.hash,
-        subtitle: BUILD.git.branch
-      },
-      {
-        icon: mdiBookClockOutline,
-        title: new Date(BUILD.time).toLocaleDateString(),
-        subtitle: new Date(BUILD.time).toLocaleTimeString()
-      }
-    ],
-    infos: [
-      {
-        name: 'Website',
-        description: 'www.zzisu.dev',
-        link: '/',
-        badges: [
-          'https://img.shields.io/github/deployments/zzisu/website/Production?label=&logo=vercel&style=flat-square',
-          'https://img.shields.io/github/workflow/status/zzs-web/website/ci?label=&logo=github&style=flat-square'
-        ],
-        icon: mdiWeb
-      },
-      {
-        name: 'Proxy',
-        description: 'proxy.zhangzisu.cn',
-        link: 'https://proxy.zhangzisu.cn',
-        badges: [
-          'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square&logoColor=FFF'
-        ],
-        icon: mdiWeb
-      }
-    ],
-    powers: [
-      { color: '#339933', icon: mdiNodejs },
-      { color: '#8DD6F9', icon: mdiWebpack },
-      { color: '#4FC08D', icon: mdiVuejs },
-      { color: '#00C58E', icon: mdiNuxt },
-      { color: '#1867C0', icon: mdiVuetify }
-    ]
-  }),
+  data() {
+    return {
+      t: 0,
+      builds: [
+        { color: '#CB3837', icon: mdiPackageVariant, title: BUILD.version },
+        {
+          color: '#F05032',
+          icon: mdiGit,
+          title: BUILD.git.hash,
+          subtitle: BUILD.git.branch
+        },
+        {
+          icon: mdiBookClockOutline,
+          title: new Date(BUILD.time).toLocaleDateString(),
+          subtitle: new Date(BUILD.time).toLocaleTimeString()
+        }
+      ],
+      infos: [
+        {
+          name: 'Website',
+          description: 'www.zzisu.dev',
+          link: '/',
+          badges: [
+            'https://img.shields.io/github/deployments/zzisu/website/Production?label=&logo=vercel&style=flat-square',
+            'https://img.shields.io/github/workflow/status/zzs-web/website/ci?label=&logo=github&style=flat-square'
+          ],
+          icon: mdiWeb
+        },
+        {
+          name: 'Proxy',
+          description: 'proxy.zhangzisu.cn',
+          link: 'https://proxy.zhangzisu.cn',
+          badges: [
+            'https://img.shields.io/netlify/4d380063-9f4b-4a33-8092-df8026fa7570?label=&logo=netlify&style=flat-square&logoColor=FFF'
+          ],
+          icon: mdiWeb
+        }
+      ],
+      powers: [
+        { color: '#339933', icon: mdiNodejs },
+        { color: '#8DD6F9', icon: mdiWebpack },
+        { color: '#4FC08D', icon: mdiVuejs },
+        { color: '#00C58E', icon: mdiNuxt },
+        { color: '#1867C0', icon: mdiVuetify }
+      ]
+    }
+  },
   head() {
     return {
       title: 'Build Info'

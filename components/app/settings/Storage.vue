@@ -9,7 +9,11 @@
     </template>
     <template v-else>
       <v-progress-linear :value="used" />
-      <span class="text-overline">Used: {{ usage }}/{{ quota }}</span>
+      <div class="text-overline usage-info py-2">
+        Used: {{ usage }}/{{ quota }}
+        <br />
+        Cached Requests: {{ cachedReqs }}
+      </div>
     </template>
     <v-btn block color="primary" depressed :loading="cleaning" @click="clear">
       Clear storage
@@ -19,7 +23,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { formatDataSize } from '~/utils/misc'
+import { formatDataSize, wait } from '~/utils/misc'
 
 export default Vue.extend({
   name: 'Storage',
@@ -28,7 +32,8 @@ export default Vue.extend({
       quota: '',
       usage: '',
       used: 0,
-      cleaning: false
+      cleaning: false,
+      cachedReqs: 0
     }
   },
   async fetch() {
@@ -36,6 +41,13 @@ export default Vue.extend({
     this.quota = formatDataSize(res.quota || 0)
     this.usage = formatDataSize(res.usage || 0)
     this.used = res.usage && res.quota ? (res.usage / res.quota) * 100 : 0
+    const cacheKeys = await caches.keys()
+    this.cachedReqs = 0
+    for (const key of cacheKeys) {
+      const cache = await caches.open(key)
+      const reqs = await cache.keys()
+      this.cachedReqs += reqs.length
+    }
   },
   fetchOnServer: false,
   methods: {
@@ -46,6 +58,7 @@ export default Vue.extend({
         for (const key of cacheKeys) {
           await caches.delete(key)
         }
+        await wait(500)
         this.$toast.success({ title: 'Success', message: 'All cache cleared' })
       } catch (e) {
         this.$toast.$error(e)
@@ -56,3 +69,9 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+.usage-info {
+  line-height: 1.5;
+}
+</style>
