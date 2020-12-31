@@ -16,11 +16,13 @@
       </v-btn>
     </v-toolbar>
     <v-divider />
-    <theme />
-    <v-divider />
-    <storage />
-    <v-divider />
-    <version />
+    <template v-if="settingsDrawer">
+      <theme />
+      <v-divider />
+      <storage />
+      <v-divider />
+      <version />
+    </template>
   </v-navigation-drawer>
 </template>
 

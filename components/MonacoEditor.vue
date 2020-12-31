@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { MonarchDefination } from '~/utils/bml'
 
 export default Vue.extend({
   name: 'MonacoEditor',
@@ -31,7 +32,7 @@ export default Vue.extend({
   data() {
     return {
       editor: null as any,
-      monaco: null as any
+      monaco: {} as typeof import('monaco-editor')
     }
   },
   watch: {
@@ -69,6 +70,11 @@ export default Vue.extend({
         readOnly: this.readonly
       }
       this.monaco = require('monaco-editor')
+      this.monaco.languages.register({ id: 'bml' })
+      this.monaco.languages.setMonarchTokensProvider(
+        'bml',
+        MonarchDefination as any
+      )
       this.editor = this.monaco.editor.create(this.$el as any, options)
       this.$emit('editorDidMount', this.editor)
       this.editor.onContextMenu((ev: any) => this.$emit('contextMenu', ev))

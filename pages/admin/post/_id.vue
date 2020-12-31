@@ -47,7 +47,7 @@
               <v-tab-item>
                 <monaco-editor
                   v-model="post.summary"
-                  language="txt"
+                  language="bml"
                   class="editor"
                 />
               </v-tab-item>
@@ -55,7 +55,7 @@
               <v-tab-item>
                 <monaco-editor
                   v-model="post.content"
-                  language="txt"
+                  language="bml"
                   class="editor"
                 />
               </v-tab-item>
