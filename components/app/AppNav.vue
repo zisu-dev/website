@@ -1,6 +1,6 @@
 <template>
   <v-list nav dense>
-    <v-list-item v-for="(link, i) of links" :key="i" :to="link.to">
+    <v-list-item v-for="(link, i) of links" :key="i" :to="link.to" nuxt>
       <v-list-item-avatar tile size="24">
         <v-icon>{{ link.icon }}</v-icon>
       </v-list-item-avatar>

@@ -7,7 +7,7 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
-            <v-btn outlined to="/admin/user/new">New User</v-btn>
+            <v-btn outlined to="/admin/user/new" nuxt>New User</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -22,7 +22,7 @@
             dense
           >
             <template #[`item._id`]="{ item }">
-              <nuxt-link class="object-id" :to="'/user/' + item._id">
+              <nuxt-link class="object-id" :to="'/user/' + item._id" nuxt>
                 {{ item._id }}
               </nuxt-link>
             </template>

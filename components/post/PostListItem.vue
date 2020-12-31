@@ -1,10 +1,11 @@
 <template>
-  <v-card>
+  <v-card :outlined="outlined">
     <v-card-title>
       <div>
         <nuxt-link
           class="title"
           :to="`/post/${post.slug}`"
+          nuxt
           v-text="post.title"
         />
         <div>
@@ -26,7 +27,7 @@
           {{ post.public ? 'Public' : 'Private' }}
         </v-chip>
         <v-spacer />
-        <v-btn outlined small :to="'/admin/post/' + post._id">Edit</v-btn>
+        <v-btn outlined small :to="'/admin/post/' + post._id" nuxt>Edit</v-btn>
       </v-card-actions>
     </template>
     <v-divider />
@@ -59,6 +60,9 @@ export default Vue.extend({
     post: {
       type: Object,
       required: true
+    },
+    outlined: {
+      type: Boolean
     }
   },
   data() {

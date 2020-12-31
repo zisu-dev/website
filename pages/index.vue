@@ -43,6 +43,11 @@
     </v-row>
     <v-row justify="center">
       <v-col cols="12" lg="6" xl="4">
+        <recent-posts />
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" lg="6" xl="4">
         <v-card>
           <v-card-title>Contact</v-card-title>
           <v-divider />
@@ -82,9 +87,11 @@
 import Vue from 'vue'
 import { mdiFormatListText, mdiWeb, mdiArrowDown } from '@mdi/js'
 import { wait } from '~/utils/misc'
+import RecentPosts from '~/components/post/RecentPosts.vue'
 
 export default Vue.extend({
   name: 'IndexPage',
+  components: { RecentPosts },
   data() {
     return {
       links: [

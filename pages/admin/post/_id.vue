@@ -48,6 +48,7 @@
                   :disabled="loading"
                   color="success"
                   :to="'/post/' + post.slug"
+                  nuxt
                 >
                   View
                 </v-btn>

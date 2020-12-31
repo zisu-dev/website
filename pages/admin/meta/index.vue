@@ -7,7 +7,7 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
-            <v-btn outlined to="/admin/meta/new">New Meta Item</v-btn>
+            <v-btn outlined to="/admin/meta/new" nuxt>New Meta Item</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -22,7 +22,7 @@
             dense
           >
             <template #[`item._id`]="{ item }">
-              <nuxt-link class="object-id" :to="'/admin/meta/' + item._id">
+              <nuxt-link class="object-id" :to="'/admin/meta/' + item._id" nuxt>
                 {{ item._id }}
               </nuxt-link>
             </template>

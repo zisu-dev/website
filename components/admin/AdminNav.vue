@@ -11,6 +11,7 @@
       :key="i"
       :to="'/admin' + link.to"
       :exact="link.exact"
+      nuxt
     >
       <v-list-item-avatar tile size="24">
         <v-icon>{{ link.icon }}</v-icon>

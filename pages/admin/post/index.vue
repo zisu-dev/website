@@ -7,7 +7,7 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
-            <v-btn outlined to="/admin/post/new">New Post</v-btn>
+            <v-btn outlined to="/admin/post/new" nuxt>New Post</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

@@ -12,7 +12,7 @@
               <template v-if="isAdmin">
                 <v-divider />
                 <v-card-text>
-                  <v-btn outlined small :to="'/admin/tag/' + tag._id">
+                  <v-btn outlined small :to="'/admin/tag/' + tag._id" nuxt>
                     Edit
                   </v-btn>
                 </v-card-text>

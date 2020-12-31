@@ -28,7 +28,7 @@
                 </v-btn>
               </v-col>
               <v-col cols="12" lg="6">
-                <v-btn color="primary" block to="/">Go Home</v-btn>
+                <v-btn color="primary" block to="/" nuxt>Go Home</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>

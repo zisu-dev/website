@@ -1,7 +1,7 @@
 <template>
-  <v-row>
+  <v-row dense>
     <v-col v-for="(post, i) of posts" :key="i" cols="12">
-      <post-list-item :post="post" />
+      <post-list-item :outlined="outlined" :post="post" />
     </v-col>
   </v-row>
 </template>
@@ -17,6 +17,9 @@ export default Vue.extend({
     posts: {
       type: Array,
       required: true
+    },
+    outlined: {
+      type: Boolean
     }
   }
 })

@@ -4,6 +4,7 @@
     :to="(admin ? '/admin/tag/' : '/tag/') + tag.slug"
     outlined
     small
+    nuxt
   >
     <v-icon v-if="!noIcon" left>{{ mdiLabel }}</v-icon>
     {{ tag.title }}

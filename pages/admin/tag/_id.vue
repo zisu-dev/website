@@ -16,7 +16,12 @@
           <v-divider />
           <v-card-actions>
             <v-spacer />
-            <v-btn :disabled="loading" color="success" :to="'/tag/' + tag.slug">
+            <v-btn
+              :disabled="loading"
+              color="success"
+              :to="'/tag/' + tag.slug"
+              nuxt
+            >
               View
             </v-btn>
             <v-btn :disabled="loading" color="warning" @click="reset">

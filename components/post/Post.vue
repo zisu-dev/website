@@ -22,7 +22,7 @@
           {{ post.public ? 'Public' : 'Private' }}
         </v-chip>
         <v-spacer />
-        <v-btn outlined small :to="'/admin/post/' + post._id">Edit</v-btn>
+        <v-btn outlined small :to="'/admin/post/' + post._id" nuxt>Edit</v-btn>
       </v-card-actions>
     </template>
     <v-divider />

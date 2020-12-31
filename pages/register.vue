@@ -6,7 +6,7 @@
           <v-card-title>
             Register
             <v-spacer />
-            <v-btn outlined to="/login">
+            <v-btn outlined to="/login" nuxt>
               Login
               <v-icon right>{{ mdiLoginVariant }}</v-icon>
             </v-btn>

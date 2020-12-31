@@ -8,7 +8,7 @@
       </v-btn>
     </template>
     <v-list dense>
-      <v-list-item :to="'/user/' + user.slug">
+      <v-list-item :to="'/user/' + user.slug" nuxt>
         <v-list-item-icon>
           <v-icon>{{ mdiAccount }}</v-icon>
         </v-list-item-icon>
@@ -24,7 +24,7 @@
           </v-badge>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item v-if="user.perm.admin" to="/admin">
+      <v-list-item v-if="user.perm.admin" to="/admin" nuxt>
         <v-list-item-icon>
           <v-icon>{{ mdiCog }}</v-icon>
         </v-list-item-icon>
@@ -42,7 +42,7 @@
       </v-list-item>
     </v-list>
   </v-menu>
-  <v-btn v-else text to="/login">
+  <v-btn v-else text to="/login" nuxt>
     <v-icon left>{{ mdiAccountCircle }}</v-icon>
     Login
   </v-btn>
