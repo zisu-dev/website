@@ -3,8 +3,8 @@
     <v-row justify="center">
       <v-col cols="12">
         <v-card :loading="loading">
-          <v-tabs vertical>
-            <v-tab>Edit</v-tab>
+          <v-tabs>
+            <v-tab>Meta</v-tab>
             <v-tab-item>
               <v-card-text>
                 <v-text-field :value="post._id" disabled label="ID" />
@@ -19,30 +19,21 @@
                 />
                 <v-text-field v-model="post.slug" label="Slug" />
                 <v-text-field v-model="post.title" label="Title" />
-                <v-card-subtitle>Summary</v-card-subtitle>
-                <monaco-editor
-                  v-model="post.summary"
-                  language="txt"
-                  class="editor"
-                  style="height: 300px"
-                />
-                <v-card-subtitle>Content</v-card-subtitle>
-                <monaco-editor
-                  v-model="post.content"
-                  language="txt"
-                  class="editor"
-                />
-                <v-text-field
-                  :value="new Date(post.published).toLocaleString()"
-                  label="Published at"
-                  readonly
-                  :append-icon="mdiPencil"
-                  @click:append="editPublished = true"
-                />
+                <v-row dense>
+                  <v-col cols="6">
+                    <date-editor
+                      v-model="post.published"
+                      label="Published at"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <date-editor v-model="post.updated" label="Last edit at" />
+                  </v-col>
+                </v-row>
+                <v-switch v-model="post.public" label="Public" />
               </v-card-text>
               <v-divider />
               <v-card-actions>
-                <v-switch v-model="post.public" label="Public" />
                 <v-spacer />
                 <v-btn
                   :disabled="loading"
@@ -62,6 +53,22 @@
                   Delete
                 </v-btn>
               </v-card-actions>
+            </v-tab-item>
+            <v-tab>Summary</v-tab>
+            <v-tab-item>
+              <monaco-editor
+                v-model="post.summary"
+                language="txt"
+                class="editor"
+              />
+            </v-tab-item>
+            <v-tab>Content</v-tab>
+            <v-tab-item>
+              <monaco-editor
+                v-model="post.content"
+                language="txt"
+                class="editor"
+              />
             </v-tab-item>
             <v-tab>Tags</v-tab>
             <v-tab-item>
@@ -98,33 +105,6 @@
               </v-card-text>
             </v-tab-item>
           </v-tabs>
-          <v-dialog v-model="editPublished" width="unset">
-            <v-card>
-              <v-tabs>
-                <v-tab>Date</v-tab>
-                <v-tab-item>
-                  <v-date-picker v-model="publishedDate" />
-                </v-tab-item>
-                <v-tab>Time</v-tab>
-                <v-tab-item>
-                  <v-time-picker v-model="publishedTime" use-seconds />
-                </v-tab-item>
-                <v-tab>Advanced</v-tab>
-                <v-tab-item>
-                  <v-card-text>
-                    <v-text-field
-                      v-model.lazy.number="post.published"
-                      label="Published"
-                      type="number"
-                    />
-                    <v-btn color="primary" @click="post.published = Date.now()">
-                      Now
-                    </v-btn>
-                  </v-card-text>
-                </v-tab-item>
-              </v-tabs>
-            </v-card>
-          </v-dialog>
         </v-card>
       </v-col>
     </v-row>
@@ -137,16 +117,11 @@ import { mdiDelete, mdiPencil } from '@mdi/js'
 import TagAutocomplete from '~/components/tag/TagAutocomplete.vue'
 import Post from '~/components/post/Post.vue'
 import MonacoEditor from '~/components/MonacoEditor.vue'
-import {
-  toISODateString,
-  toISOTimeString,
-  updateByISODateString,
-  updateByISOTimeString
-} from '~/utils/dates'
+import DateEditor from '~/components/misc/DateEditor.vue'
 
 export default Vue.extend({
   name: 'AdminPostItemPage',
-  components: { TagAutocomplete, Post, MonacoEditor },
+  components: { TagAutocomplete, Post, MonacoEditor, DateEditor },
   async asyncData(ctx) {
     const id = ctx.params.id
     const data: any = await ctx.$http.$get(`/post/${id}`)
@@ -158,34 +133,11 @@ export default Vue.extend({
     return {
       loading: false,
       newTag: null as any,
-      editPublished: false,
       mdiDelete,
       mdiPencil
     }
   },
   computed: {
-    publishedDate: {
-      get() {
-        return toISODateString(new Date(this.$data.post.published))
-      },
-      set(str: string) {
-        this.$data.post.published = +updateByISODateString(
-          new Date(this.$data.post.published),
-          str
-        )
-      }
-    },
-    publishedTime: {
-      get() {
-        return toISOTimeString(new Date(this.$data.post.published))
-      },
-      set(str: string) {
-        this.$data.post.published = +updateByISOTimeString(
-          new Date(this.$data.post.published),
-          str
-        )
-      }
-    },
     priorityHint() {
       if (this.$data.post.priority === -1)
         return "Page (won't display in post list)"

@@ -19,6 +19,7 @@ export function toISOTimeString(date: Date) {
   const s = date.getSeconds()
   return `${h}:${m}:${s}`
 }
+
 export function updateByISOTimeString(date: Date, str: string) {
   const [h, m, s] = str.split(':').map((x) => parseInt(x))
   date.setHours(h)

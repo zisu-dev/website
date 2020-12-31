@@ -13,6 +13,16 @@
             <v-icon left>{{ mdiClockOutline }}</v-icon>
             {{ new Date(post.published).toLocaleString() }}
           </v-chip>
+          <v-chip
+            v-if="post.updated !== post.published"
+            class="pa-1"
+            small
+            label
+            color="transparent"
+          >
+            <v-icon left>{{ mdiCalendarEdit }}</v-icon>
+            {{ new Date(post.updated).toLocaleString() }}
+          </v-chip>
         </div>
       </div>
       <template v-if="post.priority > 0">
@@ -49,7 +59,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
-import { mdiClockOutline } from '@mdi/js'
+import { mdiClockOutline, mdiCalendarEdit } from '@mdi/js'
 import Bml from '~/components/Bml.vue'
 import TagChip from '~/components/tag/TagChip.vue'
 
@@ -67,7 +77,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      mdiClockOutline
+      mdiClockOutline,
+      mdiCalendarEdit
     }
   },
   computed: {
