@@ -62,7 +62,8 @@ export default Vue.extend({
     const { page, itemsPerPage } = this.postsTableOpt
     const searchParams: Record<string, any> = {
       page,
-      per_page: itemsPerPage
+      per_page: itemsPerPage,
+      published_before: 8640000000000000
     }
 
     const data: any = await this.$http.$get(this.page ? '/page/' : '/post', {

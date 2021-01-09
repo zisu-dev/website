@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostTable from '~/components/post/PostTable.vue'
+import PostTable from '~/components/admin/post/PostTable.vue'
 
 export default Vue.extend({
   name: 'AdminPostPage',

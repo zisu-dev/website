@@ -158,7 +158,7 @@ export default Vue.extend({
           label: 'TEL'
         }
       ],
-      mottos: ['Code is philosophy'],
+      mottos: ['Code is philosophy', 'Decadent Evolution'],
       motto: '',
 
       mdiArrowDown
@@ -176,14 +176,32 @@ export default Vue.extend({
     this.typeMottos()
   },
   methods: {
+    async *mottoStream(): AsyncGenerator<string, void> {
+      for (;;) {
+        for (const motto of this.mottos) {
+          yield motto
+          await wait(10000)
+        }
+      }
+    },
     async typeMottos() {
-      await this.typeMotto(this.mottos[0])
+      const it = this.mottoStream()
+      for await (const motto of it) {
+        await this.clearMotto()
+        await this.typeMotto(motto)
+      }
     },
     async typeMotto(str: string) {
       this.motto = ''
       for (const c of str) {
         this.motto += c
         await wait(100)
+      }
+    },
+    async clearMotto() {
+      while (this.motto.length) {
+        this.motto = this.motto.substr(0, this.motto.length - 1)
+        await wait(50)
       }
     },
     scroll() {
