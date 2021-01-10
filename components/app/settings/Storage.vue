@@ -11,8 +11,6 @@
       <v-progress-linear :value="used" />
       <div class="text-overline usage-info py-2">
         Used: {{ usage }}/{{ quota }}
-        <br />
-        Cached Requests: {{ cachedReqs }}
       </div>
     </template>
     <v-btn block color="primary" depressed :loading="cleaning" @click="clear">
@@ -32,8 +30,7 @@ export default Vue.extend({
       quota: '',
       usage: '',
       used: 0,
-      cleaning: false,
-      cachedReqs: 0
+      cleaning: false
     }
   },
   async fetch() {
@@ -41,13 +38,6 @@ export default Vue.extend({
     this.quota = formatDataSize(res.quota || 0)
     this.usage = formatDataSize(res.usage || 0)
     this.used = res.usage && res.quota ? (res.usage / res.quota) * 100 : 0
-    const cacheKeys = await caches.keys()
-    this.cachedReqs = 0
-    for (const key of cacheKeys) {
-      const cache = await caches.open(key)
-      const reqs = await cache.keys()
-      this.cachedReqs += reqs.length
-    }
   },
   fetchOnServer: false,
   methods: {

@@ -27,7 +27,7 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import { mdiCog } from '@mdi/js'
-import UserIndicator from '~/components/UserIndicator.vue'
+import UserIndicator from '~/components/app/AppBarUserIndicator.vue'
 
 export default Vue.extend({
   name: 'App',

@@ -8,8 +8,12 @@
               <code>ZZisu.dev</code>
             </v-card-text>
             <v-card-text class="text-h6 pt-1 pb-1">
-              <code>> {{ motto }}</code>
-              <code class="blink">|</code>
+              <code>
+                <span style="color: #2ecc71">></span>
+                <span style="color: #3498db">~</span>
+                <span>{{ motto }}</span>
+                <span :class="{ blink: !typing }">|</span>
+              </code>
             </v-card-text>
             <v-divider />
             <v-card-text class="text-center text-overline pa-1">
@@ -159,7 +163,8 @@ export default Vue.extend({
         }
       ],
       mottos: ['Code is philosophy', 'Decadent Evolution'],
-      motto: '',
+      motto: 'Code is philosophy',
+      typing: false,
 
       mdiArrowDown
     }
@@ -187,22 +192,20 @@ export default Vue.extend({
     async typeMottos() {
       const it = this.mottoStream()
       for await (const motto of it) {
-        await this.clearMotto()
         await this.typeMotto(motto)
       }
     },
     async typeMotto(str: string) {
-      this.motto = ''
-      for (const c of str) {
-        this.motto += c
-        await wait(100)
-      }
-    },
-    async clearMotto() {
+      this.typing = true
       while (this.motto.length) {
         this.motto = this.motto.substr(0, this.motto.length - 1)
         await wait(50)
       }
+      for (const c of str) {
+        this.motto += c
+        await wait(100)
+      }
+      this.typing = false
     },
     scroll() {
       this.$vuetify.goTo(this.$refs.next)
