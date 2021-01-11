@@ -1,5 +1,5 @@
 import { Plugin } from '@nuxt/types'
-import iziToast from 'izitoast'
+import iziToast, { IziToastSettings } from 'izitoast'
 import 'izitoast/dist/css/iziToast.css'
 
 const toast = {
@@ -11,6 +11,18 @@ const toast = {
       return
     }
     iziToast.error({ title: 'Failed', message: e.message })
+  },
+  async $wrap(fn: () => Promise<string | IziToastSettings>) {
+    try {
+      const r = await fn()
+      if (typeof r === 'string') {
+        this.success({ title: 'Success', message: r })
+      } else {
+        this.success(r)
+      }
+    } catch (e) {
+      this.$error(e)
+    }
   }
 }
 

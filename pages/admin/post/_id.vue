@@ -127,7 +127,7 @@ import Vue from 'vue'
 import { mdiDelete, mdiPencil } from '@mdi/js'
 import TagAutocomplete from '~/components/tag/TagAutocomplete.vue'
 import Post from '~/components/post/Post.vue'
-import MonacoEditor from '~/components/MonacoEditor.vue'
+import MonacoEditor from '~/components/MonacoEditor'
 import DateEditor from '~/components/misc/DateEditor.vue'
 import ErrorCard from '~/components/ErrorCard.vue'
 

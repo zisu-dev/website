@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MonacoEditor from '~/components/MonacoEditor.vue'
+import MonacoEditor from '~/components/MonacoEditor'
 
 export default Vue.extend({
   name: 'JSONEditor',

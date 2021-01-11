@@ -1,8 +1,3 @@
-<template>
-  <div />
-</template>
-
-<script lang="ts">
 import Vue from 'vue'
 import { MonarchDefination } from '~/utils/bml'
 
@@ -123,6 +118,8 @@ export default Vue.extend({
     focus() {
       this.editor!.focus()
     }
+  },
+  render(h) {
+    return h('div')
   }
 })
-</script>

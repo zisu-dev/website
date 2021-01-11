@@ -43,16 +43,14 @@ export default Vue.extend({
   methods: {
     async clear() {
       this.cleaning = true
-      try {
+      await this.$toast.$wrap(async () => {
         const cacheKeys = await caches.keys()
         for (const key of cacheKeys) {
           await caches.delete(key)
         }
         await wait(500)
-        this.$toast.success({ title: 'Success', message: 'All cache cleared' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return 'All cache cleared'
+      })
       this.cleaning = false
       this.$fetch()
     }
