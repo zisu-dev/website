@@ -115,7 +115,7 @@
           <v-card-title>Raw</v-card-title>
           <v-divider />
           <v-card-text>
-            <prism :code="JSON.stringify(stat, null, '\t')" language="json" />
+            <prism :content="JSON.stringify(stat, null, '\t')" lang="json" />
           </v-card-text>
         </v-card>
       </v-col>
@@ -125,7 +125,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Prism from '~/components/functional/VCode'
+import Prism from '~/components/bml/Code'
 
 export default Vue.extend({
   name: 'AdminHomePage',

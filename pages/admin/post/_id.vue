@@ -45,19 +45,11 @@
               </v-tab-item>
               <v-tab>Summary</v-tab>
               <v-tab-item>
-                <monaco-editor
-                  v-model="post.summary"
-                  language="bml"
-                  class="editor"
-                />
+                <editor v-model="post.summary" language="bml" />
               </v-tab-item>
               <v-tab>Content</v-tab>
               <v-tab-item>
-                <monaco-editor
-                  v-model="post.content"
-                  language="bml"
-                  class="editor"
-                />
+                <editor v-model="post.content" language="bml" />
               </v-tab-item>
               <v-tab>Tags</v-tab>
               <v-tab-item>
@@ -127,13 +119,13 @@ import Vue from 'vue'
 import { mdiDelete, mdiPencil } from '@mdi/js'
 import TagAutocomplete from '~/components/tag/TagAutocomplete.vue'
 import Post from '~/components/post/Post.vue'
-import MonacoEditor from '~/components/MonacoEditor'
+import Editor from '~/components/editor/Editor'
 import DateEditor from '~/components/misc/DateEditor.vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'AdminPostItemPage',
-  components: { TagAutocomplete, Post, MonacoEditor, DateEditor, ErrorCard },
+  components: { TagAutocomplete, Post, Editor, DateEditor, ErrorCard },
   data() {
     return {
       post: {} as any,

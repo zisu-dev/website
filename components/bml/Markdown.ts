@@ -1,10 +1,11 @@
+import Vue from 'vue'
 import md from '~/utils/markdown'
 
-export default {
-  name: 'VText',
+export default Vue.extend({
+  name: 'BmlMarkdown',
   functional: true,
   props: {
-    src: {
+    value: {
       type: String,
       required: true
     }
@@ -13,11 +14,11 @@ export default {
     return h(
       'div',
       Object.assign({}, ctx.data, {
-        class: [ctx.data.class],
+        class: [ctx.data.class, 'markdown-body'],
         domProps: {
-          innerHTML: md.utils.escapeHtml(ctx.props.src).replace(/\n/g, '<br/>')
+          innerHTML: md.render(ctx.props.value)
         }
       })
     )
   }
-}
+})

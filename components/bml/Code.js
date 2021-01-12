@@ -1,27 +1,27 @@
 import Prism from '~/utils/prism.ts'
 
 export default {
-  name: 'VCode',
+  name: 'BmlCode',
   functional: true,
   props: {
-    code: {
+    value: {
       type: String
     },
     inline: {
       type: Boolean,
       default: false
     },
-    language: {
+    lang: {
       type: String,
       default: 'markup'
     }
   },
   render(h, ctx) {
     const code =
-      ctx.props.code ||
+      ctx.props.value ||
       (ctx.children && ctx.children.length > 0 ? ctx.children[0].text : '')
     const inline = ctx.props.inline
-    const language = ctx.props.language
+    const language = ctx.props.lang
     const prismLanguage = Prism.languages[language]
     const className = `language-${language}`
 

@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import JsonEditor from '~/components/JSONEditor.vue'
+import JsonEditor from '~/components/editor/JSONEditor.vue'
 
 export default Vue.extend({
   name: 'AdminMetaNewPage',

@@ -19,6 +19,8 @@
     <template v-if="settingsDrawer">
       <theme />
       <v-divider />
+      <editor />
+      <v-divider />
       <storage />
       <v-divider />
       <version />
@@ -30,12 +32,13 @@
 import Vue from 'vue'
 import { mdiClose } from '@mdi/js'
 import Theme from '~/components/app/settings/Theme.vue'
+import Editor from '~/components/app/settings/Editor.vue'
 import Storage from '~/components/app/settings/Storage.vue'
 import Version from '~/components/app/settings/Version.vue'
 
 export default Vue.extend({
   name: 'AppSettingsDrawer',
-  components: { Theme, Storage, Version },
+  components: { Theme, Editor, Storage, Version },
   data() {
     return {
       mdiClose

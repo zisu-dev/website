@@ -37,9 +37,9 @@
     </template>
     <v-divider />
     <v-card-text>
-      <bml :src="post.summary" />
+      <bml :value="post.summary" />
       <v-divider class="mb-2 mt-2" />
-      <bml :src="post.content" />
+      <bml :value="post.content" />
     </v-card-text>
     <v-divider />
     <div class="pl-1 pr-1">
@@ -57,7 +57,7 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import { mdiClockOutline, mdiCalendarEdit } from '@mdi/js'
-import Bml from '~/components/Bml.vue'
+import Bml from '~/components/bml/Bml'
 import TagChip from '~/components/tag/TagChip.vue'
 
 export default Vue.extend({

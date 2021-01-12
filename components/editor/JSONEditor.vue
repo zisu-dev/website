@@ -1,14 +1,14 @@
 <template>
-  <monaco-editor v-model.lazy="json" language="json" class="editor" />
+  <editor v-model.lazy="json" language="json" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import MonacoEditor from '~/components/MonacoEditor'
+import Editor from '~/components/editor/Editor'
 
 export default Vue.extend({
   name: 'JSONEditor',
-  components: { MonacoEditor },
+  components: { Editor },
   model: {
     prop: 'value',
     event: 'change'

@@ -22,12 +22,16 @@
             dense
           >
             <template #[`item._id`]="{ item }">
-              <nuxt-link class="object-id" :to="'/admin/meta/' + item._id" nuxt>
+              <nuxt-link
+                class="z-object-id"
+                :to="'/admin/meta/' + item._id"
+                nuxt
+              >
                 {{ item._id }}
               </nuxt-link>
             </template>
             <template #[`item.slug`]="{ item }">
-              <span class="object-id">
+              <span class="z-object-id">
                 {{ item.slug }}
               </span>
             </template>

@@ -19,7 +19,7 @@
               </template>
               <v-divider />
               <v-card-text>
-                <bml :src="tag.content" />
+                <bml :value="tag.content" />
               </v-card-text>
               <v-divider />
               <v-card-text>
@@ -73,8 +73,8 @@ import { mapGetters } from 'vuex'
 import { mdiLabel } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
 import PostSidebar from '~/components/post/PostSidebar.vue'
-import Bml from '~/components/Bml.vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import Bml from '~/components/bml/Bml'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'TagPage',

@@ -54,8 +54,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import JsonEditor from '~/components/JSONEditor.vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import JsonEditor from '~/components/editor/JSONEditor.vue'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'AdminMetaItemPage',

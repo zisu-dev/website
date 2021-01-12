@@ -5,7 +5,7 @@ export default Vue.extend({
   name: 'MonacoEditor',
   model: {
     prop: 'value',
-    event: 'change'
+    event: 'input'
   },
   props: {
     theme: {
@@ -87,7 +87,7 @@ export default Vue.extend({
       this.editor.onDidChangeModelContent((ev: any) => {
         const value = this.editor!.getValue()
         if (this.value !== value) {
-          this.$emit('change', value, ev)
+          this.$emit('input', value, ev)
         }
       })
       this.editor.onDidChangeModelDecorations((ev: any) =>
@@ -120,6 +120,6 @@ export default Vue.extend({
     }
   },
   render(h) {
-    return h('div')
+    return h('div', { class: 'z-editor-monaco' })
   }
 })

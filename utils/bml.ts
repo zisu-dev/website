@@ -1,6 +1,6 @@
-interface IBlock {
-  type: string
-  content: string
+export interface IBmlBlock {
+  tag: string
+  value: string
   id?: string
   props?: Record<string, any>
 }
@@ -9,9 +9,9 @@ export function parse(bml: string) {
   if (typeof bml !== 'string' || !bml) return []
 
   const lines = bml.split('\n')
-  const blocks: IBlock[] = []
+  const blocks: IBmlBlock[] = []
 
-  let cur: IBlock | undefined
+  let cur: IBmlBlock | undefined
   let contentLines: string[] = []
   let textLines: string[] = []
 
@@ -20,8 +20,8 @@ export function parse(bml: string) {
       while (textLines.length && !textLines[textLines.length - 1].trim())
         textLines.pop()
       blocks.push({
-        type: 'text',
-        content: textLines.join('\n')
+        tag: 'text',
+        value: textLines.join('\n')
       })
       textLines = []
     }
@@ -31,8 +31,8 @@ export function parse(bml: string) {
     const line = lines[i]
     if (cur) {
       const m = line.match(/^<\/\s*([a-zA-Z]+)(?:\[(\w+)\])?\s*>/)
-      if (m && m[1] === cur.type && m[2] === cur.id) {
-        cur.content = contentLines.join('\n')
+      if (m && m[1] === cur.tag && m[2] === cur.id) {
+        cur.value = contentLines.join('\n')
         blocks.push(cur)
         cur = undefined
         contentLines = []
@@ -46,7 +46,7 @@ export function parse(bml: string) {
       if (m && m[1]) {
         finalizeTextBlock()
 
-        const [, type, id, attrs] = m
+        const [, tag, id, attrs] = m
         const props: Record<string, any> = {}
         if (attrs) {
           const result = attrs.matchAll(
@@ -62,10 +62,10 @@ export function parse(bml: string) {
           }
         }
         cur = {
-          type,
+          tag,
           id,
           props,
-          content: ''
+          value: ''
         }
       } else if (!line.startsWith('//')) {
         if (textLines.length || line.trim()) {

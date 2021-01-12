@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'AdminTagItemPage',

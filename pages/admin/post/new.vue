@@ -17,18 +17,14 @@
                 <v-text-field v-model="post.slug" label="Slug" />
                 <v-text-field v-model="post.title" label="Title" />
                 <v-card-subtitle>Summary</v-card-subtitle>
-                <monaco-editor
+                <editor
                   v-model="post.summary"
                   language="txt"
                   class="editor"
                   style="height: 300px"
                 />
                 <v-card-subtitle>Content</v-card-subtitle>
-                <monaco-editor
-                  v-model="post.content"
-                  language="txt"
-                  class="editor"
-                />
+                <editor v-model="post.content" language="txt" />
               </v-card-text>
               <v-divider />
               <v-card-actions>
@@ -51,11 +47,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MonacoEditor from '~/components/MonacoEditor'
+import Editor from '~/components/editor/Editor'
 
 export default Vue.extend({
   name: 'AdminPostNewPage',
-  components: { MonacoEditor },
+  components: { Editor },
   data() {
     return {
       loading: false,

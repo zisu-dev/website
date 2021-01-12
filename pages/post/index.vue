@@ -56,7 +56,7 @@
 import Vue from 'vue'
 import { mdiMagnify } from '@mdi/js'
 import PostList from '~/components/post/PostList.vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 
 export default Vue.extend({
   name: 'PostPage',

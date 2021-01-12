@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ErrorCard from '~/components/ErrorCard.vue'
+import ErrorCard from '~/components/app/ErrorCard.vue'
 import PostList from '~/components/post/PostList.vue'
 
 export default Vue.extend({
