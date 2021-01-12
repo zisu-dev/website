@@ -170,7 +170,7 @@ export default Vue.extend({
   methods: {
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const body: Record<string, any> = {
           name: this.$data.user.name,
           email: this.$data.user.email
@@ -179,21 +179,17 @@ export default Vue.extend({
           body.pass = this.pass
         }
         await this.$http.$put(`/user/${this.$data.user._id}`, body)
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async remove() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         await this.$http.$delete(`/user/${this.$data.user._id}`)
-        this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/user')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async oAuthGithub() {

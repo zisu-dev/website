@@ -88,24 +88,20 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const meta = this.$data.meta
         await this.$http.$put(`/meta/${this.$data.meta._id}`, meta)
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async remove() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         await this.$http.$delete(`/meta/${this.$data.meta._id}`)
-        this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/meta')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     }
   }

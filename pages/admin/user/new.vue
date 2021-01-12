@@ -43,13 +43,11 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         throw await new Error('Not implemented')
         // this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
         // this.$router.push('/user/' + _id)
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+      })
       this.loading = false
     }
   }

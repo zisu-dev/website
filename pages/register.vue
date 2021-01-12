@@ -82,11 +82,9 @@ export default Vue.extend({
   methods: {
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         throw await new Error('Only Github OAuth is currently supported')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+      })
       this.loading = false
     },
     githubOpen() {
@@ -94,16 +92,14 @@ export default Vue.extend({
     },
     async githubLogin(code: string, state: string) {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const body = { code, state }
         const res: any = await this.$http.$post('/oauth/github/register', body)
         this.setToken(res.token)
         this.$store.commit(':login', res)
-        this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push(`/user/${res.user._id}`)
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: `Welcome ${res.user.name}` }
+      })
       this.loading = false
     },
     setToken(token: string) {

@@ -56,14 +56,12 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const tag = this.$data.tag
         const _id: string = await this.$http.$post(`/tag`, tag)
-        this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
         this.$router.push('/admin/tag/' + _id)
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success', message: 'ID: ' + _id }
+      })
       this.loading = false
     }
   }

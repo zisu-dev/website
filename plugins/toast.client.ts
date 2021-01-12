@@ -12,12 +12,12 @@ const toast = {
     }
     iziToast.error({ title: 'Failed', message: e.message })
   },
-  async $wrap(fn: () => Promise<string | IziToastSettings>) {
+  async $wrap(fn: () => Promise<void | string | IziToastSettings>) {
     try {
       const r = await fn()
       if (typeof r === 'string') {
         this.success({ title: 'Success', message: r })
-      } else {
+      } else if (typeof r === 'object') {
         this.success(r)
       }
     } catch (e) {

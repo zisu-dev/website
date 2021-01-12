@@ -39,12 +39,10 @@ export default Vue.extend({
       if (this.items.length) return
       if (this.loading) return
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const res: any = await this.$http.$get('/tag')
         this.items = res.items
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+      })
       this.loading = false
     }
   }

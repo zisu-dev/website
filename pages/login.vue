@@ -88,7 +88,7 @@ export default Vue.extend({
   methods: {
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const body = {
           login: this.login,
           pass: this.pass,
@@ -97,11 +97,9 @@ export default Vue.extend({
         const res: any = await this.$http.$post('/login', body)
         this.setToken(res.token)
         this.$store.commit(':login', res)
-        this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push('/')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: `Welcome ${res.user.name}` }
+      })
       this.loading = false
     },
     githubOpen() {
@@ -109,16 +107,14 @@ export default Vue.extend({
     },
     async githubLogin(code: string, state: string) {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const body = { code, state }
         const res: any = await this.$http.$post('/oauth/github/login', body)
         this.setToken(res.token)
         this.$store.commit(':login', res)
-        this.$toast.success({ title: `Welcome ${res.user.name}` })
         this.$router.push('/')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: `Welcome ${res.user.name}` }
+      })
       this.loading = false
     },
     setToken(token: string) {

@@ -54,14 +54,12 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const meta = this.meta
         const _id: string = await this.$http.$post(`/meta`, meta)
-        this.$toast.success({ title: 'Success', message: 'ID: ' + _id })
         this.$router.push('/admin/meta/' + _id)
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success', message: 'ID: ' + _id }
+      })
       this.loading = false
     }
   }

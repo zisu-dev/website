@@ -157,18 +157,16 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const post = this.post
         await this.$http.$put(`/post/${this.post._id}`, post)
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async addTag() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const res: boolean = await this.$http.$put(
           `/post/${this.post._id}/tag/${this.newTag._id}`
         )
@@ -176,36 +174,30 @@ export default Vue.extend({
           this.post.tags.push(this.newTag)
         }
         this.newTag = null
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async deleteTag(tag: any) {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const res: boolean = await this.$http.$delete(
           `/post/${this.post._id}/tag/${tag._id}`
         )
         if (res) {
           this.post.tags.splice(this.post.tags.indexOf(tag), 1)
         }
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async remove() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         await this.$http.$delete(`/post/${this.post._id}`)
-        this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/post')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     }
   }

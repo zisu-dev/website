@@ -75,24 +75,20 @@ export default Vue.extend({
     },
     async submit() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         const tag = this.tag
         await this.$http.$put(`/tag/${this.tag._id}`, tag)
-        this.$toast.success({ title: 'Success' })
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     },
     async remove() {
       this.loading = true
-      try {
+      await this.$toast.$wrap(async () => {
         await this.$http.$delete(`/tag/${this.tag._id}`)
-        this.$toast.success({ title: 'Success' })
         this.$router.replace('/admin/tag')
-      } catch (e) {
-        this.$toast.$error(e)
-      }
+        return { title: 'Success' }
+      })
       this.loading = false
     }
   }
