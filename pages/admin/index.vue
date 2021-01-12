@@ -115,7 +115,7 @@
           <v-card-title>Raw</v-card-title>
           <v-divider />
           <v-card-text>
-            <prism :content="JSON.stringify(stat, null, '\t')" lang="json" />
+            <prism :value="JSON.stringify(stat, null, '\t')" lang="json" />
           </v-card-text>
         </v-card>
       </v-col>
