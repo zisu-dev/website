@@ -16,7 +16,7 @@
     <v-spacer />
     <user-indicator />
     <v-divider vertical inset />
-    <v-btn icon @click="settingsDrawer">
+    <v-btn icon aria-label="Settings" @click="settingsDrawer">
       <v-icon>{{ mdiCog }}</v-icon>
     </v-btn>
   </v-app-bar>

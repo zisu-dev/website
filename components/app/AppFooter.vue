@@ -14,6 +14,7 @@
                   tile
                   target="_blank"
                   rel="noopener"
+                  :aria-label="badge.text"
                 >
                   <v-icon :left="hover">{{ badge.icon }}</v-icon>
                   <template v-if="hover">

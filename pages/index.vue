@@ -57,8 +57,14 @@
           <v-divider />
           <v-card-text>
             <template v-for="(s, i) in social">
-              <a :key="i" :href="s.href" target="_blank" class="pr-1">
-                <img :src="s.img" />
+              <a
+                :key="i"
+                :href="s.href"
+                target="_blank"
+                class="pr-1"
+                rel="noreferrer"
+              >
+                <img :src="s.img" :alt="s.text" />
               </a>
             </template>
           </v-card-text>
@@ -66,9 +72,16 @@
           <v-card-text>
             <template v-for="(c, i) in contacts">
               <template v-if="c.href">
-                <a :key="i" :href="c.href" target="_blank" class="pr-1">
+                <a
+                  :key="i"
+                  :href="c.href"
+                  target="_blank"
+                  class="pr-1"
+                  rel="noreferrer"
+                >
                   <img
                     :src="`https://img.shields.io/static/v1?label=&message=${c.text}&color=${c.color}&style=flat-square&logo=${c.icon}&logoColor=FFF`"
+                    :alt="c.text"
                   />
                 </a>
               </template>
@@ -76,6 +89,7 @@
                 <img
                   :key="i"
                   :src="`https://img.shields.io/static/v1?label=${c.label}&message=${c.text}&color=${c.color}&style=flat-square&logo=${c.icon}&logoColor=FFF`"
+                  :alt="c.text"
                   class="pr-1"
                 />
               </template>
@@ -120,11 +134,13 @@ export default Vue.extend({
         {
           href: 'https://github.com/zzisu',
           img:
-            'https://img.shields.io/github/followers/zzisu?label=Follow%20%40zzisu&style=social'
+            'https://img.shields.io/github/followers/zzisu?label=Follow%20%40zzisu&style=social',
+          text: 'GitHub'
         },
         {
           href: 'https://twitter.com/zzisu03',
-          img: 'https://img.shields.io/twitter/follow/zzisu03?style=social'
+          img: 'https://img.shields.io/twitter/follow/zzisu03?style=social',
+          text: 'Twitter'
         }
       ],
       contacts: [
