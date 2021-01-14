@@ -41,6 +41,7 @@ export default Vue.extend({
     })
 
     this.posts = data.items
-  }
+  },
+  fetchOnServer: false
 })
 </script>
