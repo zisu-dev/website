@@ -27,7 +27,6 @@ export default Vue.extend({
   watch: {
     basic(val) {
       set(val)
-      this.$toast.success({ title: 'Success', message: 'Refresh to apply' })
     }
   },
   created() {
