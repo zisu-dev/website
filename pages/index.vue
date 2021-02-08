@@ -190,11 +190,11 @@ export default Vue.extend({
       title: 'Index'
     }
   },
-  created() {
-    this.$store.commit('scope:update', 'index')
-  },
   mounted() {
     this.typeMottos()
+  },
+  created() {
+    this.$store.commit('scope:update', 'index')
   },
   methods: {
     async *mottoStream(): AsyncGenerator<string, void> {
