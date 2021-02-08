@@ -13,24 +13,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { sync } from '~/utils/localStorage'
-
-const { get, set } = sync<boolean>('settings:editor:basic')
+import { setItem } from '~/utils/localStorage'
 
 export default Vue.extend({
   name: 'Editor',
-  data() {
-    return {
-      basic: false
+  computed: {
+    basic: {
+      get() {
+        return this.$store.state.editor.basic
+      },
+      set(val: boolean) {
+        this.$store.commit('editor:basic:update', val)
+        setItem('settings:editor:basic', val)
+      }
     }
-  },
-  watch: {
-    basic(val) {
-      set(val)
-    }
-  },
-  created() {
-    this.basic = !!get()
   }
 })
 </script>

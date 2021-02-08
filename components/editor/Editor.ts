@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import MonacoEditor from '@/components/editor/MonacoEditor'
 import BasicEditor from '@/components/editor/BasicEditor'
-import { getItem } from '~/utils/localStorage'
 
 export default Vue.extend({
   name: 'Editor',
@@ -30,7 +29,7 @@ export default Vue.extend({
   render(h, { data, props, listeners, parent }) {
     // @ts-expect-error
     if (parent._isMounted) {
-      if (getItem('settings:editor:basic')) {
+      if (parent.$store.state.editor.basic) {
         return h(BasicEditor, {
           ...data,
           props,

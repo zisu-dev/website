@@ -1,5 +1,6 @@
 import { Context } from '@nuxt/types'
 import { GetterTree, ActionTree, MutationTree } from 'vuex'
+import { getItem } from '~/utils/localStorage'
 
 type Theme = 'auto' | 'dark' | 'light'
 
@@ -11,7 +12,10 @@ export const state = () => ({
   user: null as Record<string, any> | null,
   initialized: false,
   zen: false,
-  settingsDrawer: false
+  settingsDrawer: false,
+  editor: {
+    basic: false
+  }
 })
 
 type RootState = ReturnType<typeof state>
@@ -52,6 +56,9 @@ export const mutations: MutationTree<RootState> = {
   },
   ':logout'(state: RootState) {
     state.token = state.user = null
+  },
+  'editor:basic:update'(state: RootState, basic: boolean) {
+    state.editor.basic = basic
   }
 }
 
@@ -90,6 +97,13 @@ export const actions: ActionTree<RootState, RootState> = {
       store.commit(':initialize')
     } else if (store.state.token) {
       ctx.$http.setToken(token, 'Bearer')
+    }
+
+    if (process.client) {
+      store.commit(
+        'editor:basic:update',
+        getItem<boolean>('settings:editor:basic') ?? false
+      )
     }
   }
 }
