@@ -37,9 +37,9 @@
     </template>
     <v-divider />
     <v-card-text>
-      <bml :value="post.summary" />
-      <v-divider class="my-2" />
-      <bml :value="post.content" />
+      <bml v-if="post.summary" :value="post.summary" />
+      <v-divider v-if="post.summary && post.content" class="my-2" />
+      <bml v-if="post.content" :value="post.content" />
     </v-card-text>
     <v-divider />
     <div class="px-1">

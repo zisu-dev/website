@@ -44,12 +44,10 @@
     <v-card-text>
       <bml :value="post.summary" />
     </v-card-text>
-    <template v-if="true">
-      <v-divider />
-      <v-card-actions class="py-1">
-        <v-btn text block small :to="`/post/${post.slug}`">Read More</v-btn>
-      </v-card-actions>
-    </template>
+    <v-divider />
+    <v-card-actions class="py-1">
+      <v-btn text block small :to="`/post/${post.slug}`">Read More</v-btn>
+    </v-card-actions>
     <v-divider />
     <div class="px-1">
       <tag-chip
