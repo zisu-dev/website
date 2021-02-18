@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-2 pl-4 pr-4">
+  <div class="pb-2 px-4">
     <div class="text-button">Storage</div>
     <template v-if="$fetchState.pending">
       <v-skeleton-loader type="text@2" />

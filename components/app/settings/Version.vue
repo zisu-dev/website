@@ -1,5 +1,5 @@
 <template>
-  <div class="pb-2 pl-4 pr-4">
+  <div class="pb-2 px-4">
     <div class="text-button">Version</div>
     <div class="version-info">
       <code>

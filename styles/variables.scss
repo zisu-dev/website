@@ -1,8 +1,6 @@
 $body-font-family: 'Roboto', 'Noto Sans SC', 'Microsoft YaHei', sans-serif !default;
 
-$code-color: unset;
 $code-padding: unset;
-$code-background-color: unset;
 $code-kbd-border-radius: unset;
 $code-kbd-font-size: unset;
 $code-kbd-font-weight: unset;
@@ -12,7 +10,11 @@ $material-light: (
   'app-bar': #ffffffc0,
   'navigation-drawer': #ffffffc0,
   'cards': transparent,
-  'bg-color': transparent
+  'bg-color': transparent,
+  'code': (
+    'background': unset,
+    'color': currentColor
+  )
 );
 
 $material-dark: (
@@ -20,5 +22,9 @@ $material-dark: (
   'app-bar': #000000c0,
   'navigation-drawer': #000000c0,
   'cards': transparent,
-  'bg-color': transparent
+  'bg-color': transparent,
+  'code': (
+    'background': unset,
+    'color': currentColor
+  )
 );

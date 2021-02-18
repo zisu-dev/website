@@ -38,11 +38,11 @@
     <v-divider />
     <v-card-text>
       <bml :value="post.summary" />
-      <v-divider class="mb-2 mt-2" />
+      <v-divider class="my-2" />
       <bml :value="post.content" />
     </v-card-text>
     <v-divider />
-    <div class="pl-1 pr-1">
+    <div class="px-1">
       <tag-chip
         v-for="(tag, i) of post.tags"
         :key="i"

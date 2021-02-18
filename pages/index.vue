@@ -7,7 +7,7 @@
             <v-card-text class="text-h3 text-3d">
               <code>ZZisu.dev</code>
             </v-card-text>
-            <v-card-text class="text-h6 pt-1 pb-1">
+            <v-card-text class="text-h6 py-1">
               <code>
                 <span style="color: #2ecc71">></span>
                 <span style="color: #3498db">~</span>
