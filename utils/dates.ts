@@ -14,9 +14,9 @@ export function updateByISODateString(date: Date, str: string) {
 }
 
 export function toISOTimeString(date: Date) {
-  const h = date.getHours()
-  const m = date.getMinutes()
-  const s = date.getSeconds()
+  const h = date.getHours().toString().padStart(2, '0')
+  const m = date.getMinutes().toString().padStart(2, '0')
+  const s = date.getSeconds().toString().padStart(2, '0')
   return `${h}:${m}:${s}`
 }
 

@@ -24,7 +24,7 @@
       </v-tabs>
       <v-card-actions>
         <v-spacer />
-        <v-btn color="green" @click="now">Now</v-btn>
+        <v-btn color="green" dark @click="now">Now</v-btn>
         <v-btn color="error" @click="cancel">Cancel</v-btn>
         <v-btn color="primary" @click="update">OK</v-btn>
       </v-card-actions>
