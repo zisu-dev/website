@@ -57,7 +57,7 @@ export default Vue.extend({
             {
               avatar: 'https://q1.qlogo.cn/g?b=qq&nk=1254846416&s=640',
               name: 'Mo Yi',
-              link: 'https://moyi.ml/'
+              link: 'https://nekomoyi.com/'
             }
           ]
         },
